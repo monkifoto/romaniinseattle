@@ -1,6 +1,6 @@
 .container {
   text-align: center;
-  padding: 60px 20px;
+  /* padding: 60px 20px; */
 }
 
 .container h1 {
@@ -12,4 +12,70 @@
 .container p {
   font-size: 24px;
   color: #666;
+}
+.hero-section {
+  position: relative;
+  height: 50vh;
+  /* background-image: url('http://source.unsplash.com/800x600/?Seattle'); */
+  background-image: url(../../../assets/images/Seattle-Romania.png);
+  background-size: cover;
+  background-position: 0 25%;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-overlay h1 {
+  color: white;
+  font-size: 4rem;
+  text-align: center;
+}
+
+
+.community-descriptions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+}
+
+.description-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+}
+
+.description-card h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.description-card p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.description-card-group{
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  padding: 20px;
+  width: 100%;
+  text-align: center;
 }

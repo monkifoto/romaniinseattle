@@ -1,5 +1,5 @@
 nav {
-  background-color: #4CAF50;
+  /* background-color: #4CAF50; */
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -17,7 +17,7 @@ nav ul li {
 }
 
 nav ul li a {
-  color: white;
+  color: black;
   text-align: center;
   text-decoration: none;
   font-size: 16px;
@@ -25,5 +25,6 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  background-color: #3e8e41;
+  border-bottom: 2px solid; /* Required for border-image to work */
+  border-image: linear-gradient(to right, blue, yellow, red) 1;
 }

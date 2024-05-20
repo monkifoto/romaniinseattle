@@ -1,1 +1,14 @@
-<p>services works!</p>
+<div class="services-container">
+  <mat-grid-list cols="4" rowHeight="1:1" gutterSize="16px">
+    <mat-grid-tile *ngFor="let service of services">
+      <mat-card>
+        <mat-card-title>{{ service.name }}</mat-card-title>
+        <mat-card-subtitle>{{ service.person }}</mat-card-subtitle>
+        <mat-card-subtitle>{{ service.phone }}</mat-card-subtitle>
+        <mat-card-subtitle>{{ service.email }}</mat-card-subtitle>
+        <mat-card-subtitle>{{ service.website }}</mat-card-subtitle>
+        <mat-card-subtitle>{{ service.description }}</mat-card-subtitle>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

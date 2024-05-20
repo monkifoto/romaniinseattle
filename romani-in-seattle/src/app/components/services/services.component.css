@@ -1,0 +1,14 @@
+.services-container {
+  padding: 20px;
+}
+
+mat-card {
+  height: 300px;
+  width: 400px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
