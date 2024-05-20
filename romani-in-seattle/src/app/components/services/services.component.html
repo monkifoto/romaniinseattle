@@ -1,12 +1,41 @@
 <div class="services-container">
-  <mat-grid-list cols="4" rowHeight="1:1" gutterSize="16px">
-    <mat-grid-tile *ngFor="let service of services">
+  <b>Imobiliare</b>
+  <mat-grid-list cols="4" rowHeight="2:1" gutterSize="16px">
+    <mat-grid-tile *ngFor="let service of realestateservices">
       <mat-card>
         <mat-card-title>{{ service.name }}</mat-card-title>
         <mat-card-subtitle>{{ service.person }}</mat-card-subtitle>
         <mat-card-subtitle>{{ service.phone }}</mat-card-subtitle>
-        <mat-card-subtitle>{{ service.email }}</mat-card-subtitle>
-        <mat-card-subtitle>{{ service.website }}</mat-card-subtitle>
+        <mat-card-subtitle><a href='mailto:{{ service.email }}'>{{ service.email }}</a></mat-card-subtitle>
+        <mat-card-subtitle><a href='{{ service.website }}'>{{ service.website }}</a></mat-card-subtitle>
+        <mat-card-subtitle>{{ service.description }}</mat-card-subtitle>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <hr>
+  <b>Notari</b>
+  <mat-grid-list cols="4" rowHeight="2:1" gutterSize="16px">
+    <mat-grid-tile *ngFor="let service of notaryservices">
+      <mat-card>
+        <mat-card-title>{{ service.name }}</mat-card-title>
+        <mat-card-subtitle>{{ service.person }}</mat-card-subtitle>
+        <mat-card-subtitle>{{ service.phone }}</mat-card-subtitle>
+        <mat-card-subtitle><a href='mailto:{{ service.email }}'>{{ service.email }}</a></mat-card-subtitle>
+        <mat-card-subtitle><a href='{{ service.website }}'>{{ service.website }}</a></mat-card-subtitle>
+        <mat-card-subtitle>{{ service.description }}</mat-card-subtitle>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <hr>
+  <b>Traducatori</b>
+  <mat-grid-list cols="4" rowHeight="2:1" gutterSize="16px">
+    <mat-grid-tile *ngFor="let service of translationservices">
+      <mat-card>
+        <mat-card-title>{{ service.name }}</mat-card-title>
+        <mat-card-subtitle>{{ service.person }}</mat-card-subtitle>
+        <mat-card-subtitle>{{ service.phone }}</mat-card-subtitle>
+        <mat-card-subtitle><a href='mailto:{{ service.email }}'>{{ service.email }}</a></mat-card-subtitle>
+        <mat-card-subtitle><a href='{{ service.website }}'>{{ service.website }}</a></mat-card-subtitle>
         <mat-card-subtitle>{{ service.description }}</mat-card-subtitle>
       </mat-card>
     </mat-grid-tile>
