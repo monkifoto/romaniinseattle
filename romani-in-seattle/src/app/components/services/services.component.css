@@ -1,12 +1,4 @@
-.services-container {
-  padding: 20px;
-  width: 100vw;
-}
 
-.mat-grid-tile-content
-{
-    flex-direction: column;
-}
 
 
 .section-header {
@@ -26,14 +18,74 @@
   color: #666;
 }
 
+.services-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px;
+}
 
-mat-card {
-  height: 100%;
-  width: 100%;
-  border: 1px solid black;
+.service-card {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  padding: 20px;
+  width: calc(25% - 32px);
+  box-sizing: border-box;
+  position: relative;
+  min-width: 400px;
+}
+
+.card-header {
   text-align: center;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.card-subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-top: 4px;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: gold;
+}
+
+.sponsor-icon {
+  font-size: 1.5rem;
+  margin-right: 4px;
+}
+
+.sponsor-text {
+  font-size: 1rem;
+  color: gold;
+}
+
+/* Responsive layout for smaller screens */
+@media (max-width: 1024px) {
+  .service-card {
+    width: calc(50% - 32px);
+  }
+}
+
+@media (max-width: 600px) {
+  .service-card {
+    width: calc(100% - 32px);
+  }
 }

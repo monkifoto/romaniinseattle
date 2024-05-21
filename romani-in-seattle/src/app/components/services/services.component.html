@@ -1,18 +1,24 @@
+<div class="section-header">
+  <h2>Lista de Servicii</h2>
+  <p>Discover what's happening in our community.</p>
+</div>
 <div class="services-container">
-  <div class="section-header">
-    <h2>Lista de Servicii</h2>
-    <p>Discover what's happening in our community.</p>
+
+
+
+  <div class="service-card" *ngFor="let service of services">
+    <div class="card-header">
+      <div class="card-title">{{ service.Name }}</div>
+      <div class="card-subtitle">{{ service.Service_Type}}</div>
+      <div class="card-subtitle">{{ service.Phone_Number}}</div>
+      <div class="card-subtitle"><a href='mailto:{{ service.Email }}'>{{ service.Email }}</a></div>
+      <div class="card-subtitle"><a href='{{ service.Website }}'>{{ service.Website }}</a></div>
+      <div class="card-subtitle">{{ service.Description }}</div>
+    </div>
+    <div class="card-footer" *ngIf="service.Community_Sponsor">
+      <span class="sponsor-icon">★</span>
+      <span class="sponsor-text">Sponsor</span>
+    </div>
   </div>
-  <mat-grid-list cols="4" rowHeight="2:1" gutterSize="16px">
-    <mat-grid-tile *ngFor="let service of services">
-      <mat-card>
-        <mat-card-title>{{ service.Name }}</mat-card-title>
-        <mat-card-subtitle>{{ service.Phone_Number }}</mat-card-subtitle>
-        <mat-card-subtitle><a href='mailto:{{ service.Email }}'>{{ service.Email }}</a></mat-card-subtitle>
-        <mat-card-subtitle><a href='{{ service.Website }}'>{{ service.Website }}</a></mat-card-subtitle>
-        <mat-card-subtitle>{{ service.Description }}</mat-card-subtitle>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
 </div>
 

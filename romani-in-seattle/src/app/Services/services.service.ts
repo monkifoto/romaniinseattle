@@ -10,7 +10,7 @@ interface Service {
   Email:string;
   Description:string;
   Website:string;
-  Comunity_Sponsor: boolean;
+  Community_Sponsor: boolean;
 }
 
 
@@ -22,7 +22,7 @@ export class ServicesService {
   constructor(private firestore: AngularFirestore) { }
 
   getServices(): Observable<Service[]> {
-    return this.firestore.collection<Service>('Services').valueChanges();
+    return this.firestore.collection<Service>('Services',ref=>ref.orderBy('Community_Sponsor','desc')).valueChanges();
   }
 }
 
