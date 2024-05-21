@@ -11,6 +11,14 @@ import { EventsComponent } from './components/events/events.component';
 import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JobsComponent } from './components/jobs/jobs.component';
+import { environment } from '../environments/environment';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { provideStorage, getStorage} from '@angular/fire/storage';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +35,15 @@ import { JobsComponent } from './components/jobs/jobs.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    provideFirebaseApp(()=> initializeApp(environment.firebase)),
+    provideFirestore(()=>getFirestore()),
+    provideStorage(()=> getStorage()),
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]

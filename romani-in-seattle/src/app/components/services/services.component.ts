@@ -1,11 +1,26 @@
 import { Component,OnInit } from '@angular/core';
+import { ServicesService } from 'src/app/Services/services.service';
+
+
+interface Service {
+  Name: string;
+  Service_Type: string;
+  Phone_Number: string;
+  Email:string;
+  Description:string;
+  Website:string;
+  Comunity_Sponsor: boolean;
+}
 
 @Component({
   selector: 'app-services',
   templateUrl: './services.component.html',
   styleUrls: ['./services.component.css']
 })
-export class ServicesComponent {
+export class ServicesComponent implements OnInit {
+  services: Service[] = [];
+
+
   realestateservices = [
     { name: 'Agent Imobiliar', person: 'Nicolae Leva', phone: '206-566-9343', email: "nicolae.leva@206realty.com", website: "www.nicolaeleva.com", description : "Agent Imobiliar/Real Estate Broker" },
     { name: 'Agent Imobiliar', person: 'Gabriel Albut', phone: '206-484-9410', email: "albutlazea@yahoo.com", website: "www.gabrielal.johnlscott.com", description : "Agent Imobiliar/Real Estate Broker" },
@@ -44,9 +59,13 @@ export class ServicesComponent {
 
 
 
-  constructor() { }
+  constructor(private servicesService: ServicesService) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.servicesService.getServices().subscribe(data => {
+      this.services = data;
+    });
+  }
 }
 
 

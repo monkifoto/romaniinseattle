@@ -4,9 +4,13 @@ import { Observable } from 'rxjs';
 
 
 interface Service {
-  name: string;
-  person: string;
-  phone: string;
+  Name: string;
+  Service_Type: string;
+  Phone_Number: string;
+  Email:string;
+  Description:string;
+  Website:string;
+  Comunity_Sponsor: boolean;
 }
 
 
@@ -18,7 +22,7 @@ export class ServicesService {
   constructor(private firestore: AngularFirestore) { }
 
   getServices(): Observable<Service[]> {
-    return this.firestore.collection<Service>('services').valueChanges();
+    return this.firestore.collection<Service>('Services').valueChanges();
   }
 }
 

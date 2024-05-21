@@ -1,67 +1,18 @@
 <div class="services-container">
   <div class="section-header">
-    <h2>Agent Imobiliare</h2>
+    <h2>Lista de Servicii</h2>
     <p>Discover what's happening in our community.</p>
   </div>
   <mat-grid-list cols="4" rowHeight="2:1" gutterSize="16px">
-    <mat-grid-tile *ngFor="let service of realestateservices">
+    <mat-grid-tile *ngFor="let service of services">
       <mat-card>
-        <!-- <mat-card-title>{{ service.name }}</mat-card-title> -->
-        <mat-card-title>{{ service.person }}</mat-card-title>
-        <mat-card-subtitle>{{ service.phone }}</mat-card-subtitle>
-        <mat-card-subtitle><a href='mailto:{{ service.email }}'>{{ service.email }}</a></mat-card-subtitle>
-        <mat-card-subtitle><a href='{{ service.website }}'>{{ service.website }}</a></mat-card-subtitle>
-        <mat-card-subtitle>{{ service.description }}</mat-card-subtitle>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
-
-  <div class="section-header">
-    <h2>Notar Public</h2>
-    <p>Discover what's happening in our community.</p>
-  </div>
-  <mat-grid-list cols="4" rowHeight="2:1" gutterSize="16px">
-    <mat-grid-tile *ngFor="let service of notaryservices">
-      <mat-card>
-        <!-- <mat-card-title>{{ service.name }}</mat-card-title> -->
-        <mat-card-title>{{ service.person }}</mat-card-title>
-        <mat-card-subtitle>{{ service.phone }}</mat-card-subtitle>
-        <mat-card-subtitle><a href='mailto:{{ service.email }}'>{{ service.email }}</a></mat-card-subtitle>
-        <mat-card-subtitle><a href='{{ service.website }}'>{{ service.website }}</a></mat-card-subtitle>
-        <mat-card-subtitle>{{ service.description }}</mat-card-subtitle>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
-  <div class="section-header">
-    <h2>Translator</h2>
-    <p>Traducatori din Romana in Engleza si Engleza in Romana</p>
-  </div>
-  <mat-grid-list cols="4" rowHeight="2:1" gutterSize="16px">
-    <mat-grid-tile *ngFor="let service of translationservices">
-      <mat-card>
-        <!-- <mat-card-title>{{ service.name }}</mat-card-title> -->
-        <mat-card-title>{{ service.person }}</mat-card-title>
-        <mat-card-subtitle>{{ service.phone }}</mat-card-subtitle>
-        <mat-card-subtitle><a href='mailto:{{ service.email }}'>{{ service.email }}</a></mat-card-subtitle>
-        <mat-card-subtitle><a href='{{ service.website }}'>{{ service.website }}</a></mat-card-subtitle>
-        <mat-card-subtitle>{{ service.description }}</mat-card-subtitle>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
-  <div class="section-header">
-    <h2>Avocati</h2>
-    <p></p>
-  </div>
-  <mat-grid-list cols="4" rowHeight="2:1" gutterSize="16px">
-    <mat-grid-tile *ngFor="let service of lawservices">
-      <mat-card>
-        <!-- <mat-card-title>{{ service.name }}</mat-card-title> -->
-        <mat-card-title>{{ service.person }}</mat-card-title>
-        <mat-card-subtitle>{{ service.phone }}</mat-card-subtitle>
-        <mat-card-subtitle><a href='mailto:{{ service.email }}'>{{ service.email }}</a></mat-card-subtitle>
-        <mat-card-subtitle><a href='{{ service.website }}'>{{ service.website }}</a></mat-card-subtitle>
-        <mat-card-subtitle>{{ service.description }}</mat-card-subtitle>
+        <mat-card-title>{{ service.Name }}</mat-card-title>
+        <mat-card-subtitle>{{ service.Phone_Number }}</mat-card-subtitle>
+        <mat-card-subtitle><a href='mailto:{{ service.Email }}'>{{ service.Email }}</a></mat-card-subtitle>
+        <mat-card-subtitle><a href='{{ service.Website }}'>{{ service.Website }}</a></mat-card-subtitle>
+        <mat-card-subtitle>{{ service.Description }}</mat-card-subtitle>
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
 </div>
+
