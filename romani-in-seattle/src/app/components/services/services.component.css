@@ -1,10 +1,35 @@
 .services-container {
   padding: 20px;
+  width: 100vw;
 }
 
+.mat-grid-tile-content
+{
+    flex-direction: column;
+}
+
+
+.section-header {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #f0f0f0;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.section-header p {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+
 mat-card {
-  height: 300px;
-  width: 400px;
+  height: 100%;
+  width: 100%;
   border: 1px solid black;
   display: flex;
   flex-direction: column;

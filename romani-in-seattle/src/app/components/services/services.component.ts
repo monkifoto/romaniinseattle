@@ -29,11 +29,20 @@ export class ServicesComponent {
 
   translationservices = [
     { name: 'Traducator autorizat', person: 'Daniela Ypersiel', phone: '253-455-8582', email: "cvltranslation@gmail.com", website: "", description : "Traducator" },
-    { name: 'Traducator autorizat',person: 'Cristina Moldovan', phone: '1-866-928-6404' , email: "cristina@traduterra.com", website: "lwww.traduterra.com", description : "Traducator"},
+    { name: 'Traducator autorizat',person: 'Cristina Moldovan', phone: '1-866-928-6404' , email: "cristina@traduterra.com", website: "www.traduterra.com", description : "Traducator"},
     { name: 'Traducator autorizat', person: 'Ionela Popescu', phone: '425-773-8751' , email: "usionelapopescu@yahoo.com", website: "www.romanica-translations.com", description : "Traducator"},
-
-
   ];
+
+  lawservices = [
+    { name: 'Avocat', person: 'Robert Radulescu', phone: '206-799-6472', email: "robert@robertradulescu.com", website: "", description : "Emigrari in WA si Cazuri civile in California" },
+    { name: 'Avocat',person: 'Cristina Mehling', phone: '425-990-1046' , email: "cm@mehlinglawfirm.com", website: "mehlinglawfirm.com", description : "Traducator"},
+    { name: 'Avocat', person: 'Mihnea Andrei Andreescu', phone: '860-796-7552' , email: "andreescu_mihnea97@yahoo.com", website: "https://buckleylaw.net/", description : ""},
+    { name: 'Avocat', person: 'Cosmin Popa', phone: '425-750-2061' , email: "cosmin@popalaw.com", website: "www.popalaw.com", description : ""},
+    { name: 'Avocat', person: 'Octavian Jumanca', phone: '425-770-2550' , email: "octavian@westlakelaw.net", website: "https://buckleylaw.net/", description : "emigrari"},
+    { name: 'Avocat', person: 'Ruxandra Dragan', phone: '425-449-5700' , email: "ruxandra@dragn-law.com", website: "", description : "emigrari"},
+  ];
+
+
 
   constructor() { }
 
@@ -53,19 +62,17 @@ export class ServicesComponent {
 
 
 
-// Avocat,Robert Radulescu,206-799-6472,robert@robertradulescu.com,Emigrari in WA si Cazuri civile in California,,,,,,,,,,,,,,,,
-// Avocat,"Cristina Mehling, Mehling Law Firm ",425-990-1046,cm@mehlinglawfirm.com,mehlinglawfirm.com,,,,,,,,,,,,,,,,
-// Avocat (personal injury/accidente/malpraxis medical),Mihnea Andrei Andreescu,860-796-7552,andreescu_mihnea97@yahoo.com,https://buckleylaw.net/,8am - 6 pm,,,,,,,,,,,,,,,
-// Avocat (personal injury and estate planning),Cosmin Popa,425-750-2061,cosmin@popalaw.com,www.popalaw.com,9am-5pm,,,,,,,,,,,,,,,
-// Avocat emigrari,Octavian Jumanca,425-770-2550,octavian@westlakelaw.net,,,,,,,,,,,,,,,,,
-// Avocat emigrari,Ruxandra Dragan,425-449-5700,ruxandra@dragn-law.com,,,,,,,,,,,,,,,,,
-
+// Catering ,Alfred Vararu (Freddy),425-301-5736,alfredvararu@yahoo.com,Ca la mama (Facebook),,,,,,,,,,,,,,,,
 // Mancare (mici),Lucian Breban,206-799-5941,,,,,,,,,,,,,,,,,,
+// Vin Românesc Premium,Teodora Baba,509-570-3094,teodora@teinnovadora.com,www.teinnovadora.com,,,,,,,,,,,,,,,,
+// "Cozonaci, prăjituri, mancare",Florentina Mihai,425-295-9922,https://www.facebook.com/profile.php?id=100010798932084&mibextid=ZbWKwL,,,,,,,,,,,,,,,,,
+// Produse de panificație din Maia naturală și cofetărie ,Cristina Turcan,(425)354-7785,cristina.turcan56@gmail.com,,,,,,,,,,,,,,,,,
+
+
 // Podele laminate,Sorin Draghici (Alpha Pro Services),206-227-9704,,,,,,,,,,,,,,,,,,
 // Oncologist veterinar,"Luminita Sarbu, PhD, DVM, ACVIM (Oncology)",425-242-7005,info@helpingpetswithcancer.com,www.helpingpetswithcancer.com,,,,,,,,,,,,,,,,
 // Cosmetician,Pusa Ichim ,425-485-5749,,http://erikazhairdesign.com/,,,,,,,,,,,,,,,,
 // CNA/ caregiver with all certifications and current licence,Emilia Gherman,425-922-4289,emiliag811@gmail.com,,,,,,,,,,,,,,,,,
-// Catering ,Alfred Vararu (Freddy),425-301-5736,alfredvararu@yahoo.com,Ca la mama (Facebook),,,,,,,,,,,,,,,,
 // Wedding flowers and design,Salomeia Marta (Sally),425-623-8233,coutureblossoms@gmail.com,coutureblossoms.com,,,,,,,,,,,,,,,,
 // "Acupunctura, Masaj de relaxare, Sound healing",Ioana Todoran,206-331-0951,office@acupuncture-5e.com,https://www.acupuncture-5e.com/,,,,,,,,,,,,,,,,
 
@@ -85,8 +92,7 @@ export class ServicesComponent {
 // Mortgage Loan Officer,Cristian Toaca,425-999-9044,cristian@hometrustloans.com,www.cristiantoaca.com,7 zile pe saptamina ,,,,,,,,,,,,,,,
 // Livrari colete (toata Europa - inclusiv Ro/Md),Adrian,www.fb.com/Seattle2Europe,,,,,,,,,,,,,,,,,,
 // Taxe CPA ,Anca Pop,(425) 444-9122,,https://www.aeppllc.com/about-us/meet-the-founder,,,,,,,,,,,,,,,,
-// Vin Românesc Premium,Teodora Baba,509-570-3094,teodora@teinnovadora.com,www.teinnovadora.com,,,,,,,,,,,,,,,,
-// "Cozonaci, prăjituri, mancare",Florentina Mihai,425-295-9922,https://www.facebook.com/profile.php?id=100010798932084&mibextid=ZbWKwL,,,,,,,,,,,,,,,,,
+
 // Cleaning Services,Olga Gherghel,206-750-1101,office@purelightgreen.com,https://www.purelightgreen.com/,,,,,,,,,,,,,,,,
 // Personal Training /Zoom classes/Nutrition ,Andreea Marinescu,775-350-8745,andreea.marinescu91@gmail.com,https://fitnesswithandreea.com/,,,,,,,,,,,,,,,,
-// Produse de panificație din Maia naturală și cofetărie ,Cristina Turcan,(425)354-7785,cristina.turcan56@gmail.com,,,,,,,,,,,,,,,,,
+
