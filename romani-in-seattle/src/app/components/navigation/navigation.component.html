@@ -1,10 +1,39 @@
-<nav>
+<!-- <nav>
   <ul>
     <li><a routerLink="/">Acasa</a></li>
     <li><a routerLink="/services">Servicii</a></li>
     <li><a routerLink="/events">Evenimente</a></li>
-    <li><a routerLink="/Jobs">Locuri de Munca</a></li>
+    <li><a routerLink="/jobs">Locuri de Munca</a></li>
     <li><a routerLink="/rules">Regulament</a></li>
 
   </ul>
+</nav> -->
+
+
+<nav class="navbar">
+  <div class="navbar-container">
+    <div class="navbar-logo">
+      <a routerLink="/">Romani in Seattle</a>
+    </div>
+    <div class="menu-icon" (click)="toggleMenu()">
+      <i class="fa" [ngClass]="{'fa-bars': !menuOpen, 'fa-times': menuOpen}"></i>
+    </div>
+    <ul class="nav-menu" [ngClass]="{'active': menuOpen}">
+      <li class="nav-item">
+        <a routerLink="/" class="nav-links" (click)="closeMenu()">Home</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/services" class="nav-links" (click)="closeMenu()">Services</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/events" class="nav-links" (click)="closeMenu()">Evenimente</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/jobs" class="nav-links" (click)="closeMenu()">Locuri de Munca</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/rules" class="nav-links" (click)="closeMenu()">Rules</a>
+      </li>
+    </ul>
+  </div>
 </nav>

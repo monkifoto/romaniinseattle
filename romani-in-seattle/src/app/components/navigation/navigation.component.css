@@ -1,5 +1,5 @@
-nav {
-  /* background-color: #4CAF50; */
+/* nav {
+
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -25,6 +25,121 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  border-bottom: 2px solid; /* Required for border-image to work */
+  border-bottom: 2px solid;
   border-image: linear-gradient(to right, blue, yellow, red) 1;
+}
+ */
+
+
+.navbar {
+  /* background: #333; */
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+  z-index: 1;
+  width: 100%;
+  max-width: 1000px;
+  padding: 0 10px;
+}
+
+.navbar-logo{
+  /* border: solid 1px green; */
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navbar-logo a {
+  /* color: white; */
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  /* border: solid 1px red; */
+}
+
+.menu-icon {
+  display: none;
+  /* color: white; */
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  text-align: center;
+}
+
+.nav-item {
+  height: 20px;
+}
+
+.nav-links {
+  /* color: white; */
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.nav-links:hover {
+  border-bottom: 2px solid;
+  border-image: linear-gradient(to right, blue, yellow, red) 1;
+}
+
+.active {
+  display: block;
+}
+
+/* Mobile View */
+@media screen and (max-width: 960px) {
+  .navbar-container {
+    justify-content: space-between;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 60px;
+    left: -100%;
+    opacity: 1;
+    transition: all 0.5s ease;
+    background: #999;
+  }
+
+  .nav-menu.active {
+    background: #999;
+    left: 0;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 1;
+  }
+
+  .nav-item {
+    width: 100%;
+  }
+
+  .nav-links {
+    text-align: center;
+    padding: 2rem;
+    width: 100%;
+    display: table;
+  }
 }
