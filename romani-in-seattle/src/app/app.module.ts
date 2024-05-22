@@ -19,6 +19,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { provideStorage, getStorage} from '@angular/fire/storage';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { provideStorage, getStorage} from '@angular/fire/storage';
     RulesComponent,
     NavigationComponent,
     EventsComponent,
-    JobsComponent
+    JobsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
