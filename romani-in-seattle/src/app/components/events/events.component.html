@@ -1,1 +1,34 @@
-<p>events works!</p>
+<div class="hero-section">
+  <div class="hero-overlay">
+    <h1>Lista de Evenimente</h1>
+  </div>
+  <div class="overlay_subtitle">
+    <h2>Descoperiți serviciile oferite de membrii comunității</h2>
+  </div>
+</div>
+
+
+<!-- <div class="section-header">
+  <h2>Lista de Servicii</h2>
+  <p>Discover what's happening in our community.</p>
+</div> -->
+<div class="services-container">
+  <div class="service-card" *ngFor="let event of events">
+    <div class="card-header">
+      <div class="card-title">{{ event.Name }}</div>
+      <div class="card-image"><img src='{{ event.Poster_Image}}'></div>
+      <div class="card-subtitle">{{ event.Location}}</div>
+      <div class="card-subtitle">{{ event.Event_date}}</div>
+      <div class="card-subtitle">{{ event.Price}}</div>
+      <div class="card-subtitle">{{ event.Phone_Number}}</div>
+      <div class="card-subtitle"><a href='mailto:{{ event.Contact }}'>{{ event.Contact }}</a></div>
+      <div class="card-subtitle"><a href='{{ event.Website }}'>{{ event.Website }}</a></div>
+      <div class="card-subtitle">{{ event.Description }}</div>
+    </div>
+    <div class="card-footer" *ngIf="event.Community_Sponsor">
+      <span class="sponsor-text">Sponsor al Comunitatii</span>
+      <span class="sponsor-icon">★</span>
+    </div>
+  </div>
+</div>
+
