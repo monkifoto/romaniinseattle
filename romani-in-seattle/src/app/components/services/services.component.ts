@@ -19,13 +19,52 @@ interface Service {
 })
 export class ServicesComponent implements OnInit {
   services: Service[] = [];
+  serviceTypes: string[] = [];
+  selectedServiceType: string = '';
 
 
   constructor(private servicesService: ServicesService) { }
 
+  handleChange(event:Event): string{
+    console.log(event);
+    const {target} = event
+    if(target) console.log((target as HTMLInputElement).value);
+    return (target as HTMLInputElement).value;
+  }
+
   ngOnInit(): void {
+    // this.servicesService.getServices().subscribe(data => {
+    //   this.services = data;
+    // });
+    this.fetchServiceTypes();
+    this.fetchServices();
+  }
+
+  fetchServiceTypes(): void {
+    this.servicesService.getAllServiceTypes().subscribe(types => {
+      this.serviceTypes = types;
+      types.forEach(element => {
+        console.log("Serviciu: " + element);
+      });
+    });
+  }
+
+  fetchServices(): void {
     this.servicesService.getServices().subscribe(data => {
       this.services = data;
     });
   }
+
+  onFilterChange(serviceType: string): void {
+    this.selectedServiceType = serviceType;
+    console.log(this.selectedServiceType);
+    if (serviceType) {
+      this.servicesService.getServicesByType(serviceType).subscribe(data => {
+        this.services = data;
+      });
+    } else {
+      this.fetchServices();
+    }
+  }
+
 }

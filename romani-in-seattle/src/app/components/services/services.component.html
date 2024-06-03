@@ -7,12 +7,22 @@
   </div>
 </div>
 
-
 <!-- <div class="section-header">
   <h2>Lista de Servicii</h2>
   <p>Discover what's happening in our community.</p>
 </div> -->
+
+<div class="services-filter">
+  <label for="service-type">Filtrați după tipul serviciului: </label>
+  <select id="service-type" (change)="onFilterChange(this.handleChange($event))">
+    <option value="">All</option>
+    <option *ngFor="let type of serviceTypes" [value]="type">{{ type }}</option>
+  </select>
+</div>
+
+
 <div class="services-container">
+
   <div class="service-card" *ngFor="let service of services">
     <div class="card-header">
       <div class="card-title">{{ service.Name }}</div>
