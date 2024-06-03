@@ -5,13 +5,15 @@ import { ServicesComponent } from './components/services/services.component';
 import { RulesComponent } from './components/rules/rules.component';
 import { EventsComponent } from './components/events/events.component';
 import { JobsComponent } from './components/jobs/jobs.component';
+import { AddServiceComponent } from './components/add-service/add-service.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'services', component: ServicesComponent },
   { path: 'rules', component: RulesComponent },
   { path: 'events', component: EventsComponent},
-  { path: 'jobs', component: JobsComponent}
+  { path: 'jobs', component: JobsComponent},
+  { path: 'add-service', component: AddServiceComponent },
 ];
 
 @NgModule({

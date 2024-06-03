@@ -38,6 +38,11 @@ export class ServicesService {
       })
     );
   }
+
+  addService(service: Service): Promise<void> {
+    const id = this.firestore.createId();
+    return this.firestore.collection('Services').doc(id).set(service);
+  }
 }
 
 

@@ -20,6 +20,8 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { provideStorage, getStorage} from '@angular/fire/storage';
 import { FooterComponent } from './components/footer/footer.component';
+import { AddServiceComponent } from './components/add-service/add-service.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -31,7 +33,8 @@ import { FooterComponent } from './components/footer/footer.component';
     NavigationComponent,
     EventsComponent,
     JobsComponent,
-    FooterComponent
+    FooterComponent,
+    AddServiceComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +49,7 @@ import { FooterComponent } from './components/footer/footer.component';
     provideFirebaseApp(()=> initializeApp(environment.firebase)),
     provideFirestore(()=>getFirestore()),
     provideStorage(()=> getStorage()),
+    ReactiveFormsModule
 
 
   ],
