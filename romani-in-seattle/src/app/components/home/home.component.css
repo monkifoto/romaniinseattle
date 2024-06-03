@@ -79,6 +79,8 @@
   width: 100%;
   text-align: center;
 }
+
+a { color: inherit; }
 /* Responsive layout for smaller screens */
 @media (max-width: 1024px) {
   .service-card {
