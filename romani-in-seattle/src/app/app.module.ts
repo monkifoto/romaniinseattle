@@ -22,6 +22,8 @@ import { provideStorage, getStorage} from '@angular/fire/storage';
 import { FooterComponent } from './components/footer/footer.component';
 import { AddServiceComponent } from './components/add-service/add-service.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddEventComponent } from './components/add-event/add-event.component';
+import { AddJobComponent } from './components/add-job/add-job.component';
 
 
 @NgModule({
@@ -34,7 +36,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     EventsComponent,
     JobsComponent,
     FooterComponent,
-    AddServiceComponent
+    AddServiceComponent,
+    AddEventComponent,
+    AddJobComponent
   ],
   imports: [
     BrowserModule,

@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 
-
-interface Event {
+interface Job {
   Name: string;
   Approved: boolean;
   Contact: string;
@@ -17,18 +16,20 @@ interface Event {
   Description: string;
 }
 
+
 @Injectable({
   providedIn: 'root'
 })
-export class EventsService {
+export class JobsService {
+
   constructor(private firestore: AngularFirestore) { }
 
-  getEvents(): Observable<Event[]> {
-    return this.firestore.collection<Event>('Events',ref=>ref.orderBy('Community_Sponsor','desc')).valueChanges();
+  getEvents(): Observable<Job[]> {
+    return this.firestore.collection<Job>('Jobs').valueChanges();
   }
 
-  addEvent(event: Event): Promise<void> {
+  addJob(job: Job): Promise<void> {
     const id = this.firestore.createId();
-    return this.firestore.collection('events').doc(id).set(event);
+    return this.firestore.collection('Jobs').doc(id).set(job);
   }
 }

@@ -6,6 +6,8 @@ import { RulesComponent } from './components/rules/rules.component';
 import { EventsComponent } from './components/events/events.component';
 import { JobsComponent } from './components/jobs/jobs.component';
 import { AddServiceComponent } from './components/add-service/add-service.component';
+import { AddEventComponent } from './components/add-event/add-event.component';
+import { AddJobComponent } from './components/add-job/add-job.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,6 +16,8 @@ const routes: Routes = [
   { path: 'events', component: EventsComponent},
   { path: 'jobs', component: JobsComponent},
   { path: 'add-service', component: AddServiceComponent },
+  {path: 'add-event', component: AddEventComponent },
+  { path: 'add-job', component: AddJobComponent },
 ];
 
 @NgModule({

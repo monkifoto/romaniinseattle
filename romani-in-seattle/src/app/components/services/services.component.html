@@ -18,7 +18,10 @@
     <option value="">All</option>
     <option *ngFor="let type of serviceTypes" [value]="type">{{ type }}</option>
   </select>
-  <a href="#" routerLink="/add-service" >Adaugati un Serviciu</a>
+  <!-- <a href="#" routerLink="/add-service" >Adaugati un Serviciu</a> -->
+  <div class="add-service-container">
+    <button class="add-service-button" (click)="navigateToAddService()">Adaugati un Serviciu</button>
+  </div>
 </div>
 
 

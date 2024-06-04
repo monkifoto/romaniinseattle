@@ -1,4 +1,5 @@
 import { Component,OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ServicesService } from 'src/app/Services/services.service';
 
 
@@ -23,7 +24,11 @@ export class ServicesComponent implements OnInit {
   selectedServiceType: string = '';
 
 
-  constructor(private servicesService: ServicesService) { }
+  constructor(private servicesService: ServicesService, private router: Router) { }
+
+  navigateToAddService(): void {
+    this.router.navigate(['/add-service']);
+  }
 
   handleChange(event:Event): string{
     console.log(event);

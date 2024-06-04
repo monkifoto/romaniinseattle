@@ -1,0 +1,30 @@
+<div class="form-container">
+  <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="title">Job Title:</label>
+      <input id="title" formControlName="title" required>
+    </div>
+
+    <div class="form-group">
+      <label for="company">Company:</label>
+      <input id="company" formControlName="company" required>
+    </div>
+
+    <div class="form-group">
+      <label for="location">Location:</label>
+      <input id="location" formControlName="location" required>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea id="description" formControlName="description" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="contactEmail">Contact Email:</label>
+      <input id="contactEmail" type="email" formControlName="contactEmail" required>
+    </div>
+
+    <button type="submit" [disabled]="jobForm.invalid">Add Job</button>
+  </form>
+</div>
