@@ -1,17 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ServicesService } from 'src/app/Services/services.service';
-
-
-interface Service {
-  Name: string;
-  Service_Type: string;
-  Phone_Number: string;
-  Email:string;
-  Description:string;
-  Website:string;
-  Community_Sponsor: boolean;
-}
+import { Service, ServiceWithId } from 'src/app/Model/service.model';
 
 @Component({
   selector: 'app-services',
@@ -19,15 +9,32 @@ interface Service {
   styleUrls: ['./services.component.css']
 })
 export class ServicesComponent implements OnInit {
-  services: Service[] = [];
+  // services: Service[] = [];
+  services: ServiceWithId[] = [];
+  filteredServices: ServiceWithId[] = [];
   serviceTypes: string[] = [];
-  selectedServiceType: string = '';
 
 
   constructor(private servicesService: ServicesService, private router: Router) { }
 
+
+
+  ngOnInit(): void {
+    this.servicesService.getServices().subscribe(services => {
+      this.services = services;
+      this.filteredServices = services;
+      this.extractServiceTypes();
+    });
+    this.fetchServiceTypes();
+    this.fetchServices();
+  }
+
   navigateToAddService(): void {
     this.router.navigate(['/add-service']);
+  }
+  navigateToEditService(id: string): void {
+    console.log("Edit Service ID:" + id);
+    this.router.navigate(['/edit-service', id]);
   }
 
   handleChange(event:Event): string{
@@ -35,14 +42,6 @@ export class ServicesComponent implements OnInit {
     const {target} = event
     if(target) console.log((target as HTMLInputElement).value);
     return (target as HTMLInputElement).value;
-  }
-
-  ngOnInit(): void {
-    // this.servicesService.getServices().subscribe(data => {
-    //   this.services = data;
-    // });
-    this.fetchServiceTypes();
-    this.fetchServices();
   }
 
   fetchServiceTypes(): void {
@@ -61,15 +60,17 @@ export class ServicesComponent implements OnInit {
   }
 
   onFilterChange(serviceType: string): void {
-    this.selectedServiceType = serviceType;
-    console.log(this.selectedServiceType);
-    if (serviceType) {
-      this.servicesService.getServicesByType(serviceType).subscribe(data => {
-        this.services = data;
-      });
+     console.log('Filter changed:', serviceType);
+     this.fetchServices();
+    if (serviceType === '') {
+      this.filteredServices = this.services;
     } else {
-      this.fetchServices();
+      this.filteredServices = this.services.filter(service => service.Service_Type === serviceType);
     }
+  }
+
+  extractServiceTypes(): void {
+    this.serviceTypes = [...new Set(this.services.map(service => service.Service_Type))];
   }
 
 }

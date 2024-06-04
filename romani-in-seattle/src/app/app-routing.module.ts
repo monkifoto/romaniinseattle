@@ -8,6 +8,7 @@ import { JobsComponent } from './components/jobs/jobs.component';
 import { AddServiceComponent } from './components/add-service/add-service.component';
 import { AddEventComponent } from './components/add-event/add-event.component';
 import { AddJobComponent } from './components/add-job/add-job.component';
+import { EditServicesComponent } from './components/edit-services/edit-services.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'add-service', component: AddServiceComponent },
   {path: 'add-event', component: AddEventComponent },
   { path: 'add-job', component: AddJobComponent },
+  { path: 'edit-service/:id', component: EditServicesComponent },
 ];
 
 @NgModule({

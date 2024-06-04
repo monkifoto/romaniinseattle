@@ -24,6 +24,7 @@ import { AddServiceComponent } from './components/add-service/add-service.compon
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddEventComponent } from './components/add-event/add-event.component';
 import { AddJobComponent } from './components/add-job/add-job.component';
+import { EditServicesComponent } from './components/edit-services/edit-services.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { AddJobComponent } from './components/add-job/add-job.component';
     FooterComponent,
     AddServiceComponent,
     AddEventComponent,
-    AddJobComponent
+    AddJobComponent,
+    EditServicesComponent
   ],
   imports: [
     BrowserModule,

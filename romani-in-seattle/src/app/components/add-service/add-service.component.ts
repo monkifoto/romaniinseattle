@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ServicesService } from 'src/app/Services/services.service';
+import { Service } from 'src/app/Model/service.model';
 
 @Component({
   selector: 'app-add-service',
@@ -36,6 +37,7 @@ export class AddServiceComponent implements OnInit {
     if (this.serviceForm.valid) {
 
       const Service = {
+        id: this.serviceForm.value.ID,
         Name: this.serviceForm.value.businessName,
         Phone_Number: this.serviceForm.value.phone,
         Service_Type: this.serviceForm.value.serviceType,

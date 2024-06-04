@@ -146,58 +146,5 @@
   margin: 20px;
 }
 
-.add-service-button {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 1rem;
-  color: #fff;
-  background-color: #007bff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.add-service-button:hover {
-  background-color: #0056b3;
-}
-
-.add-service-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
-}
 
 /* Responsive layout for smaller screens */
-@media (max-width: 1024px) {
-  .service-card {
-    width: calc(50% - 32px);
-    min-width: 350px;
-  }
-}
-
-@media (max-width: 600px) {
-  .service-card {
-    width: calc(90% - 100px);
-    min-width: 350px;
-  }
-
-  @media screen and (max-width: 960px) {
-    .service-card {
-      width: calc(90% - 100px);
-      min-width: 350px;
-    }
-
-    .hero-overlay h1 {
-      color: white;
-      font-size: 2.5rem;
-      text-align: center;
-    }
-
-    .overlay_subtitle h2 {
-      color: white;
-      font-size: 1.5rem;
-      text-align: center;
-    }
-  }
-}

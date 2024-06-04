@@ -5,3 +5,65 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 body {
   margin-bottom: 50px; /* Adjust this if your footer height changes */
 }
+
+
+button, select {
+  background-color: #007bff; /* Primary button color */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 0;
+  transition: background-color 0.3s ease;
+}
+
+button[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
+button:hover, select:hover {
+  background-color: #0056b3; /* Hover color */
+}
+
+button:focus, select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+
+@media (max-width: 1024px) {
+  .service-card {
+    width: calc(50% - 32px);
+    min-width: 350px;
+  }
+}
+
+@media (max-width: 600px) {
+  .service-card {
+    width: calc(90% - 100px);
+    min-width: 350px;
+  }
+
+  @media screen and (max-width: 960px) {
+    .service-card {
+      width: calc(90% - 100px);
+      min-width: 350px;
+    }
+
+    .hero-overlay h1 {
+      color: white;
+      font-size: 2.5rem;
+      text-align: center;
+    }
+
+    .overlay_subtitle h2 {
+      color: white;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+  }
+}
