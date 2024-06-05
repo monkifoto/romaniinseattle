@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable, map } from 'rxjs';
 import { Service, ServiceWithId } from '../Model/service.model';
+import { ServiceType } from '../Model/service-type.model';
 
 
 @Injectable({
@@ -46,21 +47,22 @@ export class ServicesService {
   }
 
   getAllServiceTypes(): Observable<string[]> {
-    return this.firestore.collection<Service>('Services').valueChanges().pipe(
+    return this.firestore.collection<ServiceType>('ListOfServices').valueChanges().pipe(
       map(services => {
-        const serviceTypes = services.map(service => service.Service_Type);
+        const serviceTypes = services.map(svType => svType.Name);
         return Array.from(new Set(serviceTypes));
       })
     );
   }
 
-  addService(service: Service): Promise<void> {
-    const id = this.firestore.createId();
-    return this.firestore.collection('Services').doc(id).set(service);
+  addService(service: ServiceWithId) {
+     service.id = this.firestore.createId();
+    console.log("Firestore ID: " + service.id);
+    return this.firestore.collection('Services').doc(service.id).set(service);
   }
 
   updateService(id: string, service: Service): Promise<void> {
-    return this.firestore.collection('services').doc(id).update(service);
+    return this.firestore.collection('Services').doc(id).update(service);
   }
 }
 

@@ -12,15 +12,18 @@
   <p>Discover what's happening in our community.</p>
 </div> -->
 
-<div class="services-filter">
-  <label for="service-type">Filtrați după tipul serviciului: </label>
+<div class="services-control">
+  <div class='service-control-container'>
+    <label for="service-type">Filtrați după tipul serviciului: </label>
+  </div>
+  <div class='service-control-container'>
   <select id="service-type" (change)="onFilterChange(this.handleChange($event))">
-    <option value="">All</option>
+    <option value="">Toate serviciile</option>
     <option *ngFor="let type of serviceTypes" [value]="type">{{ type }}</option>
   </select>
-  <!-- <a href="#" routerLink="/add-service" >Adaugati un Serviciu</a> -->
-  <div class="add-service-container">
-    <button (click)="navigateToAddService()">Adaugati un Serviciu</button>
+</div>
+  <div class="service-control-container">
+    <button style="min-width: 150px;" (click)="navigateToAddService()">Adaugati un Serviciu</button>
   </div>
 </div>
 
@@ -35,9 +38,10 @@
       <div class="card-subtitle"><a href='mailto:{{ service.Email }}'>{{ service.Email }}</a></div>
       <div class="card-subtitle"><a href='{{ service.Website }}'>{{ service.Website }}</a></div>
       <div class="card-subtitle">{{ service.Description }}</div>
+      <div><button class="editButton" (click)="navigateToEditService(service.id)">Edit</button></div>
     </div>
     <div class="card-footer" *ngIf="service.Community_Sponsor">
-      <div><button (click)="navigateToEditService(service.id)">Edit</button></div>
+
       <span class="sponsor-text">Sponsor al Comunitatii</span>
       <span class="sponsor-icon">★</span>
     </div>
