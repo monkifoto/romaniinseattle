@@ -31,4 +31,13 @@
       </div>
     </div>
 
+    <section class="resources-section">
+      <h2 class="section-header">Resurse utile pentru comunitate</h2>
+      <ul class="resource-list">
+        <li *ngFor="let link of resourceLinks" class="resource-item">
+          <a href="{{ link.url }}" target="_blank">{{ link.name }}</a>
+        </li>
+      </ul>
+    </section>
+
 </div>

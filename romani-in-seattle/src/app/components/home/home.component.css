@@ -80,6 +80,27 @@
   text-align: center;
 }
 
+
+.resource-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.resource-item {
+  margin: 10px 0;
+}
+
+.resource-item a {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.resource-item a:hover {
+  color: #0056b3;
+}
+
 a { color: inherit; }
 /* Responsive layout for smaller screens */
 @media (max-width: 1024px) {

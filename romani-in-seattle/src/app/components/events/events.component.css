@@ -112,6 +112,10 @@
   color: gold;
 }
 
+.card-image img{
+  max-width: 300px;
+}
+
 .services-filter {
  display: flex;
  justify-content: center;
