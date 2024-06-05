@@ -55,7 +55,8 @@ import { EditServicesComponent } from './components/edit-services/edit-services.
     provideFirebaseApp(()=> initializeApp(environment.firebase)),
     provideFirestore(()=>getFirestore()),
     provideStorage(()=> getStorage()),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
 
 
   ],

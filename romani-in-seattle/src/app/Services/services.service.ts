@@ -42,8 +42,8 @@ export class ServicesService {
   }
 
 
-  getServicesByType(serviceType: string): Observable<Service[]> {
-    return this.firestore.collection<Service>('Services', ref => ref.where('Service_Type', '==', serviceType)).valueChanges();
+  getServicesByType(serviceType: string): Observable<ServiceWithId[]> {
+    return this.firestore.collection<ServiceWithId>('Services', ref => ref.where('Service_Type', '==', serviceType)).valueChanges();
   }
 
   getAllServiceTypes(): Observable<string[]> {
