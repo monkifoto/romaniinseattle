@@ -6,8 +6,8 @@ export class Service {
   Description: string='';
   Website: string='';
   Community_Sponsor!: boolean;
+  Date_Created: string ='';
 }
-
 export class ServiceWithId extends Service{
   id:string ='';
 }

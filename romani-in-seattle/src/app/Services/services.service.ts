@@ -57,11 +57,15 @@ export class ServicesService {
 
   addService(service: ServiceWithId) {
      service.id = this.firestore.createId();
-    console.log("Firestore ID: " + service.id);
+     const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+     service.Date_Created = today;
+   // console.log("Firestore ID: " + service.id);
     return this.firestore.collection('Services').doc(service.id).set(service);
   }
 
   updateService(id: string, service: Service): Promise<void> {
+    console.log("Update Service: " + id);
+    console.log (service);
     return this.firestore.collection('Services').doc(id).update(service);
   }
 }

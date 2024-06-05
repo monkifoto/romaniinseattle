@@ -1,29 +1,47 @@
 <div class="form-container">
   <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label for="title">Job Title:</label>
-      <input id="title" formControlName="title" required>
+      <label for="Title">Job Title:</label>
+      <input id="Title" formControlName="Title" required>
     </div>
 
     <div class="form-group">
-      <label for="company">Company:</label>
-      <input id="company" formControlName="company" required>
+      <label for="Company_Name">Company Name:</label>
+      <input id="Company_Name" formControlName="Company_Name" required>
     </div>
 
     <div class="form-group">
-      <label for="location">Location:</label>
-      <input id="location" formControlName="location" required>
+      <label for="Contact_Name">Contact Name:</label>
+      <input id="Contact_Name" formControlName="Contact_Name" required>
     </div>
 
     <div class="form-group">
-      <label for="description">Description:</label>
-      <textarea id="description" formControlName="description" required></textarea>
+      <label for="Phone_Number">Phone Number:</label>
+      <input id="Phone_Number" formControlName="Phone_Number" required>
     </div>
 
     <div class="form-group">
-      <label for="contactEmail">Contact Email:</label>
-      <input id="contactEmail" type="email" formControlName="contactEmail" required>
+      <label for="Email">Contact Email:</label>
+      <input id="Email" type="email" formControlName="Email" required>
     </div>
+    <div class="form-group">
+      <label for="Job_Description">Job Description:</label>
+      <textarea id="Job_Description" formControlName="Job_Description" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="Location">Location:</label>
+      <input id="Location" formControlName="Location" required>
+    </div>
+    <div class="form-group">
+      <label for="Website">Location:</label>
+      <input id="Website" formControlName="Website" required>
+    </div>
+
+
+
+
+
 
     <button type="submit" [disabled]="jobForm.invalid">Add Job</button>
   </form>

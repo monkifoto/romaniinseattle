@@ -14,10 +14,10 @@
 
 <div class="services-control">
   <div class='service-control-container'>
-    <label for="service-type">Filtrați după tipul serviciului: </label>
+    <label for="service-type">Filtrați lista după tipul serviciului: </label>
   </div>
   <div class='service-control-container'>
-  <select id="service-type" (change)="onFilterChange(this.handleChange($event))">
+  <select id="service-type" (change)="onFilterChange(this.handleChange($event))" class="filter-dropdown">
     <option value="">Toate serviciile</option>
     <option *ngFor="let type of serviceTypes" [value]="type">{{ type }}</option>
   </select>
@@ -33,8 +33,8 @@
   <div class="service-card" *ngFor="let service of filteredServices">
     <div class="card-header">
       <div class="card-title">{{ service.Name }}</div>
-      <div class="card-subtitle">{{ service.Service_Type}}</div>
-      <div class="card-subtitle">{{ service.Phone_Number}}</div>
+      <div class="card-subtitle service_type">{{ service.Service_Type}}</div>
+      <div class="card-subtitle contact_info">{{ service.Phone_Number}}</div>
       <div class="card-subtitle"><a href='mailto:{{ service.Email }}'>{{ service.Email }}</a></div>
       <div class="card-subtitle"><a href='{{ service.Website }}'>{{ service.Website }}</a></div>
       <div class="card-subtitle">{{ service.Description }}</div>

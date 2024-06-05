@@ -3,6 +3,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { JobsService } from 'src/app/Services/jobs.service';
+import { Job } from 'src/app/Model/job.model';
 
 @Component({
   selector: 'app-add-job',
@@ -14,11 +15,14 @@ export class AddJobComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private jobsService: JobsService) {
     this.jobForm = this.fb.group({
-      title: ['', Validators.required],
-      company: ['', Validators.required],
-      location: ['', Validators.required],
-      description: ['', Validators.required],
-      contactEmail: ['', [Validators.required, Validators.email]],
+      Title: ['', Validators.required],
+      Company_Name: ['', Validators.required],
+      Contact_Name: ['', Validators.required],
+      Phone_Number: ['', Validators.required],
+      Location: ['', Validators.required],
+      Website: ['', Validators.required],
+      Job_Description: ['', Validators.required],
+      Email: ['', [Validators.required, Validators.email]],
     });
   }
 

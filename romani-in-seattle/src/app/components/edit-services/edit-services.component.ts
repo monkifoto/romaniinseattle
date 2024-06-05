@@ -20,12 +20,12 @@ export class EditServicesComponent implements OnInit {
     private servicesService: ServicesService
   ) {
     this.serviceForm = this.fb.group({
-      businessName: ['', Validators.required],
-      email: ['', Validators.email],
-      phone: ['', Validators.required],
-      website: ['', Validators.required],
-      description: ['', Validators.required],
-      serviceType: ['', Validators.required],
+      Name: ['', Validators.required],
+      Email: ['', Validators.email],
+      Phone_Number: ['', Validators.required],
+      Website: ['', Validators.required],
+      Description: ['', Validators.required],
+      Service_Type: ['', Validators.required],
     });
   }
 
@@ -33,12 +33,12 @@ export class EditServicesComponent implements OnInit {
     this.serviceId = this.route.snapshot.paramMap.get('id')!;
     this.servicesService.getService(this.serviceId).subscribe(service => {
       this.serviceForm.patchValue({
-        businessName: service?.Name,
-        email: service?.Email,
-        phone: service?.Phone_Number,
-        serviceType: service?.Service_Type,
-        website: service?.Website,
-        description: service?.Description
+        Name: service?.Name,
+        Email: service?.Email,
+        Phone_Number: service?.Phone_Number,
+        Service_Type: service?.Service_Type,
+        Website: service?.Website,
+        Description: service?.Description
 
       });
     });

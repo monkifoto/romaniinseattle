@@ -1,10 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
 
-html, body {  }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+
 body {
-  margin-bottom: 150px; /* Adjust this if your footer height changes */
-}
+  margin: 0;
+   font-family: Roboto, "Helvetica Neue", sans-serif;
+   margin-bottom: 150px;
+  }
 
 
 button, select {

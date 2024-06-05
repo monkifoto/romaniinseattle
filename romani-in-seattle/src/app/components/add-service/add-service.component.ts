@@ -44,7 +44,8 @@ export class AddServiceComponent implements OnInit {
         Community_Sponsor: false,
         Email: this.serviceForm.value.email,
         Website: this.serviceForm.value.website,
-        Description: this.serviceForm.value.description
+        Description: this.serviceForm.value.description,
+        Date_Created: this.serviceForm.value.Date_Created
       };
 
       this.servicesService.addService(Service).then(() => {
