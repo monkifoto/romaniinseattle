@@ -3,6 +3,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EventsService } from 'src/app/Services/events.service';
+import { Event } from 'src/app/Model/event.model';
 
 @Component({
   selector: 'app-add-event',
@@ -14,12 +15,24 @@ export class AddEventComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private eventsService: EventsService) {
     this.eventForm = this.fb.group({
-      name: ['', Validators.required],
-      date: ['', Validators.required],
-      location: ['', Validators.required],
-      description: ['', Validators.required],
+      Approved: [''],
+      Community_Sponsor: [''],
+      Contact: [''],
+      Description: ['', Validators.required],
+      Event_date: ['', Validators.required],
+      Location: ['', Validators.required],
+      Name: ['', Validators.required],
+      Phone_Number: [''],
+      Poster_Image: ['', Validators.required],
+      Price: ['', Validators.required],
+      Website: [''],
     });
   }
+
+
+
+
+
 
   ngOnInit(): void {}
 

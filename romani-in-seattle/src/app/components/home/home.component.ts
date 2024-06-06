@@ -13,7 +13,8 @@ export class HomeComponent {
 
   resourceLinks: ResourceLink[] = [
     { name: 'Ambasada Romaniei in SUA', url: 'https://washington.mae.ro/' },
-    { name: 'American Romanian Cultural Society', url: 'www.arcsproject.org' }
+    { name: 'American Romanian Cultural Society', url: 'www.arcsproject.org' },
+    { name: 'Biserica Sfintii Trei Ierarhi', url: 'http://www.ortodox.org/'}
   ];
 
 }

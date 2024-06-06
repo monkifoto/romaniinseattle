@@ -29,6 +29,6 @@ export class EventsService {
 
   addEvent(event: Event): Promise<void> {
     const id = this.firestore.createId();
-    return this.firestore.collection('events').doc(id).set(event);
+    return this.firestore.collection('Events').doc(id).set(event);
   }
 }
