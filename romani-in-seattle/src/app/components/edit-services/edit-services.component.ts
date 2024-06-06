@@ -24,8 +24,11 @@ export class EditServicesComponent implements OnInit {
       Email: ['', Validators.email],
       Phone_Number: ['', Validators.required],
       Website: ['', Validators.required],
+      Facebook: [''],
+      Instagram: [''],
       Description: ['', Validators.required],
       Service_Type: ['', Validators.required],
+      Image:['']
     });
   }
 
@@ -34,11 +37,14 @@ export class EditServicesComponent implements OnInit {
     this.servicesService.getService(this.serviceId).subscribe(service => {
       this.serviceForm.patchValue({
         Name: service?.Name,
-        Email: service?.Email,
+        Email: service?.Email? '' : service?.Email,
         Phone_Number: service?.Phone_Number,
         Service_Type: service?.Service_Type,
         Website: service?.Website,
-        Description: service?.Description
+        Facebook: service?.Facebook,
+        Instagram: service?.Instagram,
+        Description: service?.Description,
+        Image: service?.Image
 
       });
     });
@@ -55,6 +61,12 @@ export class EditServicesComponent implements OnInit {
 
   onSubmit(): void {
     if (this.serviceForm.valid && this.serviceId) {
+      console.log(this.serviceForm);
+      this.serviceForm.value.Facebook = this.serviceForm.value.Facebook || '';
+      this.serviceForm.value.Instagram = this.serviceForm.value.Instagram || '';
+      this.serviceForm.value.Image = this.serviceForm.value.Image || '';
+      this.serviceForm.value.Email = this.serviceForm.value.Email || '';
+
       this.servicesService.updateService(this.serviceId, this.serviceForm.value).then(() => {
         console.log('Service updated successfully');
         this.router.navigate(['/services']);

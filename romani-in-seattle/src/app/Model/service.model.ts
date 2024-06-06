@@ -5,8 +5,11 @@ export class Service {
   Email: string='';
   Description: string='';
   Website: string='';
+  Facebook: string='';
+  Instagram: string='';
   Community_Sponsor!: boolean;
   Date_Created: string ='';
+  Image:string='';
 }
 export class ServiceWithId extends Service{
   id:string ='';
