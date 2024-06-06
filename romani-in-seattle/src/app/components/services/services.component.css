@@ -99,6 +99,17 @@
   margin-top: 4px;
 }
 
+.card-description {
+  text-align: left;
+  font-family: "Catamaran", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  color: #666;
+  margin-top: 4px;
+}
+
+
 .service_type{
   text-transform: uppercase;
   padding: 1rem 0;
@@ -117,7 +128,8 @@
   position: absolute;
   bottom: 10px;
   right: 10px;
-  color: gold;
+  color: #666;
+  font-size: .6rem;
 }
 
 .services-control {
@@ -150,6 +162,7 @@
 .sponsor-icon {
   font-size: 1.5rem;
   margin-right: 4px;
+  color: gold;
 }
 
 .sponsor-text {
@@ -216,7 +229,7 @@ label{
 .service-card {
   background-color: transparent;
   width: 400px;
-  height: 400px;
+  min-height: 450px;
   perspective: 1000px;
 }
 
@@ -230,11 +243,12 @@ label{
   /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
 }
 
-.service-card:hover .service-card-inner {
+/*.service-card:hover .service-card-inner {
   transform: rotateY(180deg);
-}
+}*/
 
-.service-card-front, .service-card-back {
+/*.service-card-front, .service-card-back {*/
+  .service-card-front{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -256,22 +270,23 @@ label{
   color: black;
 }
 
+/*
 .service-card-back {
   background-color: white;
   color: white;
   transform: rotateY(180deg);
 }
-
-.job-card-content {
-  padding: 20px;
+*/
+.service-card-content {
+  padding: 0px;
 }
 
-.job-date {
+.service-date {
   font-size: 12px;
   color: #f1c40f;
 }
 
-.job-footer {
+.service-footer {
   margin-top: 10px;
 }
 

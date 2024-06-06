@@ -1,20 +1,19 @@
-// src/app/add-job/add-job.component.ts
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { JobsService } from 'src/app/Services/jobs.service';
-import { Job } from 'src/app/Model/job.model';
+import { OffersService } from 'src/app/Services/offers.service';
+import { Offers } from 'src/app/Model/offers.model';
 
 @Component({
-  selector: 'app-add-job',
-  templateUrl: './add-job.component.html',
-  styleUrls: ['./add-job.component.css']
+  selector: 'app-add-offers',
+  templateUrl: './add-offers.component.html',
+  styleUrls: ['./add-offers.component.css']
 })
-export class AddJobComponent implements OnInit {
-  jobForm: FormGroup;
+export class AddOffersComponent implements OnInit {
+  offerForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private jobsService: JobsService) {
-    this.jobForm = this.fb.group({
+  constructor(private fb: FormBuilder, private offersService: OffersService) {
+    this.offerForm = this.fb.group({
       Title: ['', Validators.required],
       Company_Name: ['', Validators.required],
       Contact_Name: ['', Validators.required],
@@ -29,12 +28,12 @@ export class AddJobComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(): void {
-    if (this.jobForm.valid) {
-      const newJob = this.jobForm.value;
+    if (this.offerForm.valid) {
+      const newOffer = this.offerForm.value;
 
-      this.jobsService.addJob(newJob).then(() => {
+      this.offersService.addOffer(newOffer).then(() => {
         console.log('Job added successfully');
-        this.jobForm.reset();
+        this.offerForm.reset();
       }).catch(error => {
         console.error('Error adding job: ', error);
       });

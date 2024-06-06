@@ -1,0 +1,37 @@
+<div class="hero-section">
+  <div class="hero-overlay">
+    <h1>Locuri de munca</h1>
+  </div>
+  <div class="overlay_subtitle">
+    <h2>Descoperiți oferte de membrii comunității</h2>
+  </div>
+</div>
+
+<div class="add-job-container">
+  <button (click)="navigateToAddJob()">Adaugati oferte</button>
+</div>
+
+<div class="jobs">
+  <h2>Offers</h2>
+  <div class="job-list">
+    <div *ngFor="let offer of offers" class="job-card">
+      <div class="job-card-image">
+        <img src="http://source.unsplash.com/800x600/?Caregiver" alt="{{ offer.Title }}">
+      </div>
+      <div class="job-card-content">
+        <h3>{{ offer.Title }}</h3>
+        <h4>{{ offer.Company_Name }}</h4>
+        <p>{{ offer.Contact_Name }}</p>
+        <hr>
+        <p>{{ offer.Location }}</p>
+        <p>{{ offer.Phone_Number }}</p>
+        <p>{{ offer.Email }}</p>
+        <p>{{ offer.Website }}</p>
+        <p>{{ offer.Job_Description }}</p>
+        <div class="job-footer" *ngIf="offer.Filled">
+          <span class="featured">Expired</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

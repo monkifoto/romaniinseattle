@@ -1,5 +1,5 @@
 <div class="form-container">
-  <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="offerForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="Title">Job Title:</label>
       <input id="Title" formControlName="Title" required>
@@ -43,6 +43,6 @@
 
 
 
-    <button type="submit" [disabled]="jobForm.invalid">Add Job</button>
+    <button type="submit" [disabled]="offerForm.invalid">Add Job</button>
   </form>
 </div>

@@ -1,39 +1,39 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable, map } from 'rxjs';
-import { Job, JobWithId } from '../Model/job.model';
+import { Offers, OffersWithId } from '../Model/offers.model';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class JobsService {
+export class OffersService {
 
   constructor(private firestore: AngularFirestore) { }
 
 
-  getJobs(): Observable<JobWithId[]> {
+  getOffers(): Observable<OffersWithId[]> {
     return this.firestore.collection('Jobs').snapshotChanges().pipe(
       map(actions => actions.map(a => {
-        const data = a.payload.doc.data() as Job;
+        const data = a.payload.doc.data() as Offers;
         const id = a.payload.doc.id;
         return { id, ...data };
       }))
     );
   }
 
-  addJob(job: Job): Promise<void> {
+  addOffer(offer: Offers): Promise<void> {
     const id = this.firestore.createId();
     const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
-    job.Date_Created = today;
-    return this.firestore.collection('Jobs').doc(id).set(job);
+    offer.Date_Created = today;
+    return this.firestore.collection('Jobs').doc(id).set(offer);
   }
 
-  getJob(id: string): Observable<Job | undefined> {
-    return this.firestore.collection('Jobs').doc<Job>(id).valueChanges();
+  getOffer(id: string): Observable<Offers | undefined> {
+    return this.firestore.collection('Jobs').doc<Offers>(id).valueChanges();
   }
 
-  updateJob(id: string, job: Job): Promise<void> {
-    return this.firestore.collection('Jobs').doc(id).update(job);
+  updateOffer(id: string, offer: Offers): Promise<void> {
+    return this.firestore.collection('Jobs').doc(id).update(offer);
   }
 }

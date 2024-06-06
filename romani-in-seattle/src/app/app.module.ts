@@ -11,7 +11,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { EventsComponent } from './components/events/events.component';
 import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { JobsComponent } from './components/jobs/jobs.component';
+import { OffersComponent } from './components/offers/offers.component';
 import { environment } from '../environments/environment';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
@@ -23,7 +23,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AddServiceComponent } from './components/add-service/add-service.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddEventComponent } from './components/add-event/add-event.component';
-import { AddJobComponent } from './components/add-job/add-job.component';
+import { AddOffersComponent } from './components/add-offers/add-offers.component';
 import { EditServicesComponent } from './components/edit-services/edit-services.component';
 
 
@@ -35,11 +35,11 @@ import { EditServicesComponent } from './components/edit-services/edit-services.
     RulesComponent,
     NavigationComponent,
     EventsComponent,
-    JobsComponent,
+    OffersComponent,
     FooterComponent,
     AddServiceComponent,
     AddEventComponent,
-    AddJobComponent,
+    AddOffersComponent,
     EditServicesComponent
   ],
   imports: [

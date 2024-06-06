@@ -1,4 +1,4 @@
-export class Job {
+export class Offers {
   Title:string ='';
   Company_Name: string ='';
   Contact_Name: string = '';
@@ -11,6 +11,6 @@ export class Job {
   Date_Created: string = '';
 }
 
-export class JobWithId extends Job{
+export class OffersWithId extends Offers{
   id:string ='';
 }

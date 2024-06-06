@@ -31,6 +31,27 @@
       </div>
     </div>
 
+    <div class="services-container">
+      <div class="service-card" *ngFor="let event of events">
+        <div class="card-header">
+          <div class="card-title">{{ event.Name }}</div>
+          <div class="card-image"><img src='{{ event.Poster_Image}}'></div>
+          <div class="card-subtitle">{{ event.Location}}</div>
+          <div class="card-subtitle">{{ event.Event_date}}</div>
+          <div class="card-subtitle">{{ event.Price}}</div>
+          <div class="card-subtitle">{{ event.Phone_Number}}</div>
+          <div class="card-subtitle"><a href='mailto:{{ event.Contact }}'>{{ event.Contact }}</a></div>
+          <div class="card-subtitle"><a href='{{ event.Website }}'>{{ event.Website }}</a></div>
+          <div class="card-subtitle">{{ event.Description }}</div>
+        </div>
+        <div class="card-footer" *ngIf="event.Community_Sponsor">
+          <span class="sponsor-text">Sponsor al Comunitatii</span>
+          <span class="sponsor-icon">★</span>
+        </div>
+      </div>
+    </div>
+
+
     <section class="resources-section">
       <h2 class="section-header">Resurse utile pentru comunitate</h2>
       <ul class="resource-list">
