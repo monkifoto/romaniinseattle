@@ -8,17 +8,17 @@
 </div>
 
 <div class="add-job-container">
-  <button (click)="navigateToAddJob()">Adaugati oferte</button>
+  <button (click)="navigateToAddOffer()">Adaugati oferte</button>
 </div>
 
-<div class="jobs">
+<div class="offers">
   <h2>Offers</h2>
-  <div class="job-list">
-    <div *ngFor="let offer of offers" class="job-card">
-      <div class="job-card-image">
+  <div class="offers-list">
+    <div *ngFor="let offer of offers" class="offers-card">
+      <div class="offers-card-image">
         <img src="http://source.unsplash.com/800x600/?Caregiver" alt="{{ offer.Title }}">
       </div>
-      <div class="job-card-content">
+      <div class="offers-card-content">
         <h3>{{ offer.Title }}</h3>
         <h4>{{ offer.Company_Name }}</h4>
         <p>{{ offer.Contact_Name }}</p>
@@ -27,8 +27,13 @@
         <p>{{ offer.Phone_Number }}</p>
         <p>{{ offer.Email }}</p>
         <p>{{ offer.Website }}</p>
-        <p>{{ offer.Job_Description }}</p>
-        <div class="job-footer" *ngIf="offer.Filled">
+        <p>{{ offer.Description }}</p>
+        <p>{{ offer.Image1 }}</p>
+        <p>{{ offer.Image2 }}</p>
+        <p>{{ offer.Image3 }}</p>
+        <p>{{ offer.Image4 }}</p>
+        <p>{{ offer.Image5 }}</p>
+        <div class="offers-footer" *ngIf="offer.Filled">
           <span class="featured">Expired</span>
         </div>
       </div>

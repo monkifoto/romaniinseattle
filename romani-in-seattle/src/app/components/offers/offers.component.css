@@ -72,24 +72,24 @@
   padding: 20px;
 }
 
-.add-job-container {
+.add-offer-container {
   text-align: right;
   margin: 20px;
 }
 
 /*
-.jobs {
+.offers {
   text-align: center;
   padding: 20px;
 }
 
-.job-list {
+.offer-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.job-card {
+.offer-card {
   background-color: #f8f9fa;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -99,23 +99,23 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.job-card h3 {
+.offer-card h3 {
   margin: 0;
   font-size: 20px;
 }
 
-.job-card h4 {
+.offer-card h4 {
   margin: 5px 0;
   font-size: 16px;
   color: #555;
 }
 
-.job-card p {
+.offer-card p {
   margin: 10px 0;
   color: #777;
 }
 
-.job-footer {
+.offer-footer {
   text-align: right;
   margin-top: 10px;
 }
@@ -126,9 +126,9 @@
 } */
 
 
-/* src/app/jobs/jobs.component.css */
+/* src/app/offers/offers.component.css */
 
-.jobs {
+.offers {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -136,13 +136,13 @@
   padding: 20px;
 }
 
-.job-list {
+.offer-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.job-card {
+.offer-card {
   background-color: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -153,42 +153,42 @@
   min-width: 400px;
 }
 
-.job-card:hover {
+.offer-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
-.job-card-image img {
+.offer-card-image img {
   width: 100%;
   height: 180px;
   object-fit: cover;
 }
 
-.job-card-content {
+.offer-card-content {
   padding: 20px;
   text-align: left;
 }
 
-.job-card-content h3 {
+.offer-card-content h3 {
   margin: 0 0 10px;
   font-size: 22px;
   font-weight: 600;
 }
 
-.job-card-content h4 {
+.offer-card-content h4 {
   margin: 0 0 10px;
   font-size: 18px;
   color: #666;
   font-weight: 400;
 }
 
-.job-card-content p {
+.offer-card-content p {
   margin: 0 0 10px;
   font-size: 16px;
   color: #777;
 }
 
-.job-footer {
+.offer-footer {
   text-align: right;
   margin-top: 10px;
 }
@@ -199,14 +199,14 @@
 }
 
 @media (max-width: 1024px) {
-  .job-card {
+  .offer-card {
     width: calc(50% - 32px);
     min-width: 350px;
   }
 }
 
 @media (max-width: 600px) {
-  .job-card {
+  .offer-card {
     width: calc(90% - 100px);
     min-width: 350px;
   }

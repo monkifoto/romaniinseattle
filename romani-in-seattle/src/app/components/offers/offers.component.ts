@@ -18,7 +18,7 @@ export class OffersComponent implements OnInit {
     });
   }
 
-  navigateToAddJob(): void {
+  navigateToAddOffer(): void {
     this.router.navigate(['/add-offers']);
   }
 }

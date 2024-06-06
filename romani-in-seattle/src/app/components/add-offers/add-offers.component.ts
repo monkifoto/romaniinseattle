@@ -15,13 +15,18 @@ export class AddOffersComponent implements OnInit {
   constructor(private fb: FormBuilder, private offersService: OffersService) {
     this.offerForm = this.fb.group({
       Title: ['', Validators.required],
-      Company_Name: ['', Validators.required],
+      Company_Name: [''],
       Contact_Name: ['', Validators.required],
       Phone_Number: ['', Validators.required],
+      Email: ['', [ Validators.email]],
       Location: ['', Validators.required],
-      Website: ['', Validators.required],
-      Job_Description: ['', Validators.required],
-      Email: ['', [Validators.required, Validators.email]],
+      Website: [''],
+      Description: ['', Validators.required],
+      Image1: [''],
+      Image2: [''],
+      Image3: [''],
+      Image4: [''],
+      Image5: [''],
     });
   }
 
@@ -32,10 +37,10 @@ export class AddOffersComponent implements OnInit {
       const newOffer = this.offerForm.value;
 
       this.offersService.addOffer(newOffer).then(() => {
-        console.log('Job added successfully');
+        console.log('Offer added successfully');
         this.offerForm.reset();
       }).catch(error => {
-        console.error('Error adding job: ', error);
+        console.error('Error adding Offer: ', error);
       });
     }
   }

@@ -4,11 +4,16 @@ export class Offers {
   Contact_Name: string = '';
   Phone_Number: string ='';
   Email: string='';
-  Job_Description: string='';
+  Description: string='';
   Location: string='';
   Website: string='';
   Filled:boolean = false;
   Date_Created: string = '';
+  Image1: string = '';
+  Image2: string = '';
+  Image3: string = '';
+  Image4: string = '';
+  Image5: string = '';
 }
 
 export class OffersWithId extends Offers{

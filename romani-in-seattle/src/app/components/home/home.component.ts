@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { OffersWithId } from 'src/app/Model/offers.model';
 import { EventsService } from 'src/app/Services/events.service';
+import { OffersService } from 'src/app/Services/offers.service';
 // import { Event } from 'src/app/Model/event.model';
 interface ResourceLink {
   name: string;
@@ -35,12 +37,16 @@ export class HomeComponent implements OnInit  {
   ];
 
   events: Event[] = [];
+  offers: OffersWithId[] = [];
 
-  constructor(private eventService: EventsService, private router: Router) { }
+  constructor(private eventService: EventsService, private offersService: OffersService, private router: Router) { }
 
   ngOnInit(): void {
     this.eventService.getEvents().subscribe(data => {
       this.events = data;
+    });
+    this.offersService.getOffers().subscribe(offer => {
+      this.offers = offer;
     });
   }
 
