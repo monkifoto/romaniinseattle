@@ -15,9 +15,16 @@
 
 .form-group label {
   display: block;
-  margin-bottom: 5px;
   font-weight: bold;
+  margin-bottom: 5px;
 }
+
+.form-group label.required::after {
+  content: " *";
+  color: red;
+  margin-left: 5px;
+}
+
 
 .form-group input,
 .form-group textarea {

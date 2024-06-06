@@ -10,7 +10,7 @@
 <div class="form-container">
   <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label for="businessName">Nume:</label>
+      <label class="required" for="businessName">Nume:</label>
       <input id="businessName" formControlName="businessName" required>
     </div>
 
@@ -45,7 +45,7 @@
     </div>
 
     <div class="form-group">
-      <label for="serviceType">Categoria de serviciului:</label>
+      <label class="required" for="serviceType">Categoria de serviciului:</label>
       <select id="serviceType" formControlName="serviceType" required>
         <option *ngFor="let type of serviceTypes" [value]="type">{{ type }}</option>
       </select>
