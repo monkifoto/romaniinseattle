@@ -1,0 +1,89 @@
+.offer-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+  max-width: 400px;
+}
+
+.offer-card:hover {
+  transform: translateY(-5px);
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-inner {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.carousel img {
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+.offer-details {
+  padding: 15px;
+}
+
+.offer-details h3 {
+  margin-top: 0;
+}
+
+.offer-details p {
+  margin: 5px 0;
+}
+
+.card-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: #666;
+  font-size: .6rem;
+}
+
+
+.social-icons {
+  display: flex;
+  justify-content: space-around;
+  width: 400px; /* Adjust as needed */
+}
+
+.social-icons a {
+  color: #666;
+  text-decoration: none;
+}
+
+.social-icons a:hover {
+  color: #000; /* Adjust hover color as needed */
+}

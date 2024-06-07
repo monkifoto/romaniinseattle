@@ -52,7 +52,12 @@
     </div>
 
     <h1>Oferte</h1>
-    <div class="offers">
+
+    <div class="offer-list">
+      <app-offer-card *ngFor="let offer of offers" [offer]="offer"></app-offer-card>
+    </div>
+
+    <!-- <div class="offers">
       <div class="services-container">
         <div *ngFor="let offer of offers" class="offers-card">
           <div class="offers-card-image">
@@ -79,7 +84,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
 
 

@@ -12,6 +12,8 @@ import { Offers } from 'src/app/Model/offers.model';
 export class AddOffersComponent implements OnInit {
   offerForm: FormGroup;
 
+  offerTypes: string[] = [];
+
   constructor(private fb: FormBuilder, private offersService: OffersService) {
     this.offerForm = this.fb.group({
       Title: ['', Validators.required],
@@ -27,10 +29,18 @@ export class AddOffersComponent implements OnInit {
       Image3: [''],
       Image4: [''],
       Image5: [''],
+      Filled: false,
+      Date_Created: [''],
+      OfferType: ['']
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.offersService.getAllOfferTypes().subscribe((types) => {
+      this.offerTypes = types;
+    });
+
+  }
 
   onSubmit(): void {
     if (this.offerForm.valid) {

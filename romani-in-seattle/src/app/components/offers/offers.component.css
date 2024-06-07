@@ -128,6 +128,13 @@
 
 /* src/app/offers/offers.component.css */
 
+.offer-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
 .offers {
   display: flex;
   flex-wrap: wrap;

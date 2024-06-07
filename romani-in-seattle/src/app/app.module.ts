@@ -25,6 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddEventComponent } from './components/add-event/add-event.component';
 import { AddOffersComponent } from './components/add-offers/add-offers.component';
 import { EditServicesComponent } from './components/edit-services/edit-services.component';
+import { OfferCardComponent } from './components/offer-card/offer-card.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { EditServicesComponent } from './components/edit-services/edit-services.
     AddServiceComponent,
     AddEventComponent,
     AddOffersComponent,
-    EditServicesComponent
+    EditServicesComponent,
+    OfferCardComponent
   ],
   imports: [
     BrowserModule,

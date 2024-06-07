@@ -7,6 +7,8 @@ export class Offers {
   Description: string='';
   Location: string='';
   Website: string='';
+  Facebook: string = '';
+  Instagram: string = '';
   Filled:boolean = false;
   Date_Created: string = '';
   Image1: string = '';
@@ -14,6 +16,7 @@ export class Offers {
   Image3: string = '';
   Image4: string = '';
   Image5: string = '';
+  OfferType: string ='';
 }
 
 export class OffersWithId extends Offers{

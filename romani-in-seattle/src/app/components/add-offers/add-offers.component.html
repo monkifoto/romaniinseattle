@@ -56,6 +56,13 @@
       <label for="Website">Website:</label>
       <input id="Website" formControlName="Website" >
     </div>
+    <div class="form-group">
+      <label class="required" for="OfferType">Categoria de serviciului:</label>
+      <select id="offerTypes" formControlName="offerTypes" required>
+        <option *ngFor="let type of offerTypes" [value]="type">{{ type }}</option>
+      </select>
+    </div>
+
     <button type="submit" [disabled]="offerForm.invalid">Adauga Oferta</button>
   </form>
 </div>
