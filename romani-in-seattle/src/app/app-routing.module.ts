@@ -9,6 +9,7 @@ import { AddServiceComponent } from './components/add-service/add-service.compon
 import { AddEventComponent } from './components/add-event/add-event.component';
 import { AddOffersComponent } from './components/add-offers/add-offers.component';
 import { EditServicesComponent } from './components/edit-services/edit-services.component';
+import { AnalyticsComponent } from './components/analytics/analytics.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'add-event', component: AddEventComponent },
   { path: 'add-offers', component: AddOffersComponent },
   { path: 'edit-service/:id', component: EditServicesComponent },
+  { path: 'analytics', component: AnalyticsComponent },
 ];
 
 @NgModule({

@@ -1,0 +1,19 @@
+<div class="container">
+  <h2>Analytics Data</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Page Path</th>
+        <th>Query Params</th>
+        <th>Timestamp</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of analyticsData">
+        <td>{{ item.page_path }}</td>
+        <td>{{ item.query_params | json }}</td>
+        <td>{{ item.timestamp | date:'medium' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

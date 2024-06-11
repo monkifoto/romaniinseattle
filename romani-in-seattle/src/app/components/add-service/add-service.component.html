@@ -10,45 +10,50 @@
 <div class="form-container">
   <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label class="required" for="businessName">Nume:</label>
-      <input id="businessName" formControlName="businessName" required>
+      <label class="required" for="Name">Nume:</label>
+      <input id="Name" formControlName="Name" required>
     </div>
 
     <div class="form-group">
-      <label for="email">Adresa Email:</label>
-      <input id="email" type="email" formControlName="email">
+      <label for="Email">Adresa Email:</label>
+      <input id="Email" type="Email" formControlName="Email">
     </div>
 
     <div class="form-group">
-      <label for="phone">Numar de telefon:</label>
-      <input id="phone" formControlName="phone">
+      <label for="Phone_Number">Numar de telefon:</label>
+      <input id="Phone_Number" formControlName="Phone_Number">
     </div>
 
     <div class="form-group">
-      <label for="website">Pagina Web:</label>
-      <input id="website" formControlName="website" >
+      <label for="Website">Pagina Web:</label>
+      <input id="Website" formControlName="Website" >
     </div>
 
     <div class="form-group">
-      <label for="facebook">Pagina Facebook:</label>
-      <input id="facebook" formControlName="facebook" >
+      <label for="Facebook">Pagina Facebook:</label>
+      <input id="Facebook" formControlName="Facebook" >
     </div>
 
     <div class="form-group">
-      <label for="instagram">Instagram:</label>
-      <input id="instagram" formControlName="instagram" >
+      <label for="Instagram">Instagram:</label>
+      <input id="Instagram" formControlName="Instagram" >
     </div>
 
     <div class="form-group">
-      <label for="description">Descriere a serviciile oferite:</label>
-      <textarea id="description" formControlName="description" ></textarea>
+      <label for="Description">Descriere a serviciile oferite:</label>
+      <textarea id="Description" formControlName="Description" ></textarea>
     </div>
 
+
     <div class="form-group">
-      <label class="required" for="serviceType">Categoria de serviciului:</label>
-      <select id="serviceType" formControlName="serviceType" required>
+      <label class="required" for="Service_Type">Categoria de serviciului:</label>
+      <select id="Service_Type" formControlName="Service_Type" required>
         <option *ngFor="let type of serviceTypes" [value]="type">{{ type }}</option>
       </select>
+    </div>
+    <div class="form-group">
+      <label  for="Image">Categoria de serviciului:</label>
+      <input type="file" formControlName="Image" (change)="onFileSelected($event)">
     </div>
 
     <button type="submit" [disabled]="serviceForm.invalid">Add Service</button>

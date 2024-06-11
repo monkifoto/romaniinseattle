@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ServicesService } from 'src/app/Services/services.service';
 import { Service } from 'src/app/Model/service.model';
+import { ImageUploadService } from 'src/app/Services/image-upload.service';
 
 @Component({
   selector: 'app-add-service',
@@ -11,8 +12,9 @@ import { Service } from 'src/app/Model/service.model';
 export class AddServiceComponent implements OnInit {
   serviceForm: FormGroup;
   serviceTypes: string[] = [];
+  selectedFile: File | null = null;
 
-  constructor(private fb: FormBuilder, private servicesService: ServicesService) {
+  constructor(private fb: FormBuilder, private servicesService: ServicesService, private imageUploadService: ImageUploadService) {
     this.serviceForm = this.fb.group({
       businessName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -27,6 +29,10 @@ export class AddServiceComponent implements OnInit {
     this.fetchServiceTypes();
   }
 
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0];
+  }
+
   fetchServiceTypes(): void {
     this.servicesService.getAllServiceTypes().subscribe(types => {
       this.serviceTypes = types;
@@ -34,8 +40,10 @@ export class AddServiceComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.serviceForm.valid) {
 
+
+
+    if (this.serviceForm.valid) {
       const Service = {
         id: this.serviceForm.value.ID,
         Name: this.serviceForm.value.businessName,
@@ -51,10 +59,19 @@ export class AddServiceComponent implements OnInit {
         Image: this.serviceForm.value.image
       };
 
+      // if (this.selectedFile) {
+      //   this.imageUploadService.uploadImage(this.selectedFile, 'serviceImages').subscribe(downloadURL => {
+      //     this.service.imageUrl = downloadURL;
+      //     this.saveService();
+      //   });
+      // } else {
+      //   this.saveService();
+      // }
+
       this.servicesService.addService(Service).then(() => {
         console.log('Service added successfully');
         this.serviceForm.reset();
-      }).catch(error => {
+      }).catch((error:Error | any) => {
         console.error('Error adding service: ', error);
       });
     }
