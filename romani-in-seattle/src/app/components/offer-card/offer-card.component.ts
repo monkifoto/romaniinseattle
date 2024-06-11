@@ -11,8 +11,25 @@ export class OfferCardComponent implements OnInit {
   offer!: Offers;
   currentImageIndex = 1;
 
-
   ngOnInit(): void {
+
+    if(!this.offer.Image1){
+      this.offer.Image1 = 'https://storage.cloud.google.com/romaniinseattle.appspot.com/offers/dafaultImage.jpg';
+    }
+    if(!this.offer.Image2){
+      this.offer.Image2 = 'https://storage.cloud.google.com/romaniinseattle.appspot.com/offers/dafaultImage.jpg';
+    }
+    if(!this.offer.Image3){
+      this.offer.Image3 = 'https://storage.cloud.google.com/romaniinseattle.appspot.com/offers/dafaultImage.jpg';
+    }
+    if(!this.offer.Image4){
+      this.offer.Image4 = 'https://storage.cloud.google.com/romaniinseattle.appspot.com/offers/dafaultImage.jpg';
+    }
+    if(!this.offer.Image5){
+      this.offer.Image5 = 'https://storage.cloud.google.com/romaniinseattle.appspot.com/offers/dafaultImage.jpg';
+    }
+
+
     this.startImageCarousel();
   }
 

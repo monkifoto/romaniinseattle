@@ -32,5 +32,11 @@ service firebase.storage {
       allow write;
       allow read;
     }
+    match /offers/{document} {
+      allow read, write: if true;
+    }
+    match /serviceImages/{document} {
+      allow read, write: if true;
+    }
   }
 }
