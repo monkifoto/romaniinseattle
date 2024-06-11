@@ -55,13 +55,13 @@ export class ServicesService {
     );
   }
 
-  // addService(service: ServiceWithId) {
-  //    service.id = this.firestore.createId();
-  //    const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
-  //    service.Date_Created = today;
-  //  // console.log("Firestore ID: " + service.id);
-  //   return this.firestore.collection('Services').doc(service.id).set(service);
-  // }
+  addServiceWithDate(service: ServiceWithId) {
+     service.id = this.firestore.createId();
+     const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+     service.Date_Created = today;
+   // console.log("Firestore ID: " + service.id);
+    return this.firestore.collection('Services').doc(service.id).set(service);
+  }
 
   addService(service: Service): Promise<void> {
     const id = this.firestore.createId();

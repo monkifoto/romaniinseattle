@@ -51,6 +51,7 @@
         <option *ngFor="let type of serviceTypes" [value]="type">{{ type }}</option>
       </select>
     </div>
+
     <div class="form-group">
       <label  for="Image">Categoria de serviciului:</label>
       <input type="file" formControlName="Image" (change)="onFileSelected($event)">
