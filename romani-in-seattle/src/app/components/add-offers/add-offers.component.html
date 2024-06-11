@@ -1,68 +1,57 @@
 <div class="form-container">
-  <form [formGroup]="offerForm" (ngSubmit)="onSubmit()">
+  <form  #offerForm="ngForm" (ngSubmit)="onSubmit(offerForm)">
     <div class="form-group">
       <label class="required" for="Title">Offer Title:</label>
-      <input id="Title" formControlName="Title" required>
+      <input type="text" [(ngModel)]="offer.Title" name="Title" required placeholder="Title">
     </div>
 
     <div class="form-group">
-      <label for="Company_Name">Company Name:</label>
-      <input id="Company_Name" formControlName="Company_Name" >
+      <label for="Company_Name">Numele Companiei:</label>
+      <input type="text" [(ngModel)]="offer.Company_Name" name="Company_Name" required placeholder="Company Name">
     </div>
 
     <div class="form-group">
-      <label class="required" for="Contact_Name">Contact Name:</label>
-      <input id="Contact_Name" formControlName="Contact_Name" required>
+      <label class="required" for="Contact_Name">Numele persoanei de contact:</label>
+      <input type="text" [(ngModel)]="offer.Contact_Name" name="Contact_Name" required placeholder="Contact Name">
     </div>
 
     <div class="form-group">
-      <label class="required" for="Phone_Number">Phone Number:</label>
-      <input id="Phone_Number" formControlName="Phone_Number" required>
+      <label class="required" for="Phone_Number">Numar de telfon:</label>
+      <input type="text" [(ngModel)]="offer.Phone_Number" name="Phone_Number" required placeholder="Phone Number">
     </div>
 
     <div class="form-group">
-      <label for="Email">Contact Email:</label>
-      <input id="Email" type="email" formControlName="Email" >
+      <label for="Email">Adresa de Email:</label>
+      <input type="email" [(ngModel)]="offer.Email" name="Email" required placeholder="Email">
     </div>
     <div class="form-group">
-      <label class="required" for="Description">Description:</label>
-      <textarea id="Description" formControlName="Description" required></textarea>
+      <label class="required" for="Description">Descriiere:</label>
+      <textarea [(ngModel)]="offer.Description" name="Description" required placeholder="Description"></textarea>
     </div>
     <div class="form-group">
-      <label for="Image1">Image1:</label>
-      <textarea id="Image1" formControlName="Image1" ></textarea>
+      <label for="Price">Pret:</label>
+      <input type="text" [(ngModel)]="offer.Price" name="Price" required placeholder="Price">
     </div>
     <div class="form-group">
-      <label for="Image2">Image2:</label>
-      <textarea id="Image2" formControlName="Image2" ></textarea>
-    </div>
-    <div class="form-group">
-      <label for="Image3">Image3:</label>
-      <textarea id="Image3" formControlName="Image3" ></textarea>
-    </div>
-    <div class="form-group">
-      <label for="Image4">Image4:</label>
-      <textarea id="Image4" formControlName="Image4" ></textarea>
-    </div>
-    <div class="form-group">
-      <label for="Image5">Image5:</label>
-      <textarea id="Image5" formControlName="Image5" ></textarea>
-    </div>
-    <div class="form-group">
-      <label class="required" for="Location">Location:</label>
-      <input id="Location" formControlName="Location" required>
+      <label class="required" for="Location">Locatie:</label>
+      <input type="text" [(ngModel)]="offer.Location" name="Location" required placeholder="Location">
     </div>
     <div class="form-group">
       <label for="Website">Website:</label>
-      <input id="Website" formControlName="Website" >
+      <input type="url" [(ngModel)]="offer.Website" name="Website" placeholder="Website">
     </div>
     <div class="form-group">
-      <label class="required" for="OfferType">Categoria de serviciului:</label>
-      <select id="offerTypes" formControlName="offerTypes" required>
+      <label for="OfferType">Tip de oferta</label>
+      <select id="OfferType" [(ngModel)]="offer.OfferType" name="OfferType" required class="form-control">
         <option *ngFor="let type of offerTypes" [value]="type">{{ type }}</option>
       </select>
     </div>
 
-    <button type="submit" [disabled]="offerForm.invalid">Adauga Oferta</button>
+    <div class="form-group">
+      <label for="Images">Images</label>
+      <input type="file" id="Images" (change)="onFileSelected($event)" multiple accept="image/*" class="form-control">
+    </div>
+
+    <button type="submit" >Adauga Oferta</button>
   </form>
 </div>

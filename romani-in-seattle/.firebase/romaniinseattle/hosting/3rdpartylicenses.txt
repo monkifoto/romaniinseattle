@@ -95,6 +95,12 @@ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
+@firebase/analytics
+Apache-2.0
+
+@firebase/analytics-compat
+Apache-2.0
+
 @firebase/app
 Apache-2.0
 
@@ -116,6 +122,9 @@ Apache-2.0
 @firebase/firestore-compat
 Apache-2.0
 
+@firebase/installations
+Apache-2.0
+
 @firebase/logger
 Apache-2.0
 
@@ -131,9 +140,13 @@ Apache-2.0
 @firebase/webchannel-wrapper
 Apache-2.0
 
+firebase/analytics
+
 firebase/app
 
 firebase/auth
+
+firebase/compat/analytics
 
 firebase/compat/app
 

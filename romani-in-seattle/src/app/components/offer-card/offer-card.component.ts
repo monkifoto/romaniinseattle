@@ -8,37 +8,24 @@ import { Offers } from 'src/app/Model/offers.model';
 })
 export class OfferCardComponent implements OnInit {
   @Input()
-  offer: Offers = new Offers;
-  currentSlide = 0;
-  totalSlides = 0;
+  offer!: Offers;
+  currentImageIndex = 1;
+
 
   ngOnInit(): void {
-    this.totalSlides = this.getOfferImages().length;
+    this.startImageCarousel();
   }
 
-  getOfferImages(): string[] {
-    return [
-      this.offer.Image1,
-      this.offer.Image2,
-      this.offer.Image3,
-      this.offer.Image4,
-      this.offer.Image5
-    ].filter(image => image);
+  startImageCarousel(): void {
+    setInterval(() => {
+      this.currentImageIndex = (this.currentImageIndex % 5) + 1; // Loop from 1 to 5
+    }, 3000); // Change image every 3 seconds
+  }
+  nextImage(): void {
+    this.currentImageIndex = (this.currentImageIndex % 5) + 1;
   }
 
-  prevSlide(): void {
-    this.currentSlide = (this.currentSlide > 0) ? this.currentSlide - 1 : this.totalSlides - 1;
-    this.updateCarousel();
-  }
-
-  nextSlide(): void {
-    this.currentSlide = (this.currentSlide < this.totalSlides - 1) ? this.currentSlide + 1 : 0;
-    this.updateCarousel();
-  }
-
-  updateCarousel(): void {
-    const offset = -this.currentSlide * 100;
-    const carouselInner = document.querySelector('.carousel-inner') as HTMLElement;
-    carouselInner.style.transform = `translateX(${offset}%)`;
+  prevImage(): void {
+    this.currentImageIndex = ((this.currentImageIndex - 2 + 5) % 5) + 1;
   }
 }

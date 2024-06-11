@@ -1,12 +1,36 @@
 rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+       allow read, write: if false;
+    }
+     match /Events/{document} {
+      allow read, write: if true;
+    }
+     match /ListOfServices/{document} {
+      allow read, write: if true;
+    }
+     match /OfferTypes/{document} {
+      allow read, write: if true;
+    }
+    match /Offers/{document} {
+      allow read, write: if true;
+    }
+     match /Services/{document} {
+      allow read, write: if true;
+    }
+     match /analytics/{document} {
+      allow read, write: if true;
+    }
 
-// Craft rules based on data in your Firestore database
-// allow write: if firestore.get(
-//    /databases/(default)/documents/users/$(request.auth.uid)).data.isAdmin;
+  }
+}
 service firebase.storage {
   match /b/{bucket}/o {
+    // Allow anyone to upload files
     match /{allPaths=**} {
-      allow read, write;
+      allow write;
+      allow read;
     }
   }
 }

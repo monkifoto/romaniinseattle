@@ -229,7 +229,7 @@ label{
 .service-card {
   background-color: transparent;
   width: 400px;
-  min-height: 450px;
+  min-height: 500px;
   perspective: 1000px;
 }
 
