@@ -19,6 +19,8 @@ export interface Offers {
   Image4: string;
   Image5: string;
   OfferType: string;
+  id?:string;
+  Community_Sponsor: boolean;
 }
 
 export interface OffersWithId {
@@ -41,5 +43,6 @@ export interface OffersWithId {
   Image4: string;
   Image5: string;
   OfferType: string;
-  id:string;
+  id?:string;
+  Community_Sponsor:boolean;
 }

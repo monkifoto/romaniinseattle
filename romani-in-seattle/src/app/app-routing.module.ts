@@ -10,6 +10,7 @@ import { AddEventComponent } from './components/add-event/add-event.component';
 import { AddOffersComponent } from './components/add-offers/add-offers.component';
 import { EditServicesComponent } from './components/edit-services/edit-services.component';
 import { AnalyticsComponent } from './components/analytics/analytics.component';
+import { OfferDetailComponent } from './components/offer-detail/offer-detail.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,10 +19,14 @@ const routes: Routes = [
   { path: 'events', component: EventsComponent},
   { path: 'offers', component: OffersComponent},
   { path: 'add-service', component: AddServiceComponent },
-  {path: 'add-event', component: AddEventComponent },
+  { path: 'add-event', component: AddEventComponent },
   { path: 'add-offers', component: AddOffersComponent },
   { path: 'edit-service/:id', component: EditServicesComponent },
   { path: 'analytics', component: AnalyticsComponent },
+  { path: 'offers', component: OffersComponent },
+  { path: 'offers/:id', component: OfferDetailComponent },
+  { path: '', redirectTo: '/offers', pathMatch: 'full' },
+  { path: '**', redirectTo: '/offers' }
 ];
 
 @NgModule({

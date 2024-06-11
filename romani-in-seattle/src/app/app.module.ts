@@ -27,6 +27,7 @@ import { AddOffersComponent } from './components/add-offers/add-offers.component
 import { EditServicesComponent } from './components/edit-services/edit-services.component';
 import { OfferCardComponent } from './components/offer-card/offer-card.component';
 import { AnalyticsComponent } from './components/analytics/analytics.component';
+import { OfferDetailComponent } from './components/offer-detail/offer-detail.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { AnalyticsComponent } from './components/analytics/analytics.component';
     AddOffersComponent,
     EditServicesComponent,
     OfferCardComponent,
-    AnalyticsComponent
+    AnalyticsComponent,
+    OfferDetailComponent
   ],
   imports: [
     BrowserModule,

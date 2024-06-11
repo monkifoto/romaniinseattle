@@ -7,23 +7,20 @@
   </div>
   </div>
   <div class="offer-details">
-    <h3>{{ offer.Title }}</h3>
+    <h3>{{ offer.Title }}</h3><span class="sponsor-icon" *ngIf="offer.Community_Sponsor">★</span>
     <p><strong>Compania:</strong> {{ offer.Company_Name }}</p>
     <p><strong>Persona de contact:</strong> {{ offer.Contact_Name }}</p>
     <hr>
     <p><strong>Numar de Tel:</strong> {{ offer.Phone_Number }}</p>
     <p><strong>Locatie:</strong> {{ offer.Location }}</p>
-
     <p><strong>Descriiere:</strong>{{ offer.Description }}</p>
     <p><strong>Pret:</strong>{{ offer.Price}}</p>
+    <p><strong>Tip de ofertā:</strong>{{ offer.OfferType }}</p>
+    <p><strong>Creata pe data de:</strong> {{ offer.Date_Created | date: 'shortDate'}}</p>
 
-
-    <p>Offer Type: {{ offer.OfferType }}</p>
-    <p>Date Created: {{ offer.Date_Created | date: 'shortDate'}}</p>
-
-    <p *ngIf="offer.Filled">This offer is filled</p>
-    <p *ngIf="!offer.Filled">This offer is still open</p>
-
+    <p *ngIf="offer.Filled">Oferta a expirat</p>
+    <p *ngIf="!offer.Filled">Oferta este valabilā</p>
+    <button (click)="navigateToDetails()">View Details</button>
   </div>
   <!-- <div class="offers-footer" *ngIf="offer.Filled">
     <span class="featured">Expired</span>

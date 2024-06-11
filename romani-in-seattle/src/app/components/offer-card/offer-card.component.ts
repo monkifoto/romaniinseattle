@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Offers } from 'src/app/Model/offers.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-offer-card',
@@ -11,8 +12,10 @@ export class OfferCardComponent implements OnInit {
   offer!: Offers;
   currentImageIndex = 1;
 
-  ngOnInit(): void {
+  constructor(private router: Router) {}
 
+  ngOnInit(): void {
+    //console.log(this.offer);
     if(!this.offer.Image1){
       this.offer.Image1 = 'https://storage.cloud.google.com/romaniinseattle.appspot.com/offers/dafaultImage.jpg';
     }
@@ -44,5 +47,10 @@ export class OfferCardComponent implements OnInit {
 
   prevImage(): void {
     this.currentImageIndex = ((this.currentImageIndex - 2 + 5) % 5) + 1;
+  }
+
+  navigateToDetails(): void {
+    console.log('Navigating to details:', this.offer.id);
+    this.router.navigate(['/offers', this.offer.id]);
   }
 }

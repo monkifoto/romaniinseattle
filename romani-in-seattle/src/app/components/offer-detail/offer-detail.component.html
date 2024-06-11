@@ -1,0 +1,19 @@
+<div class="offer-detail">
+  <h2>{{ offer?.Title }}</h2>
+  <div class="carousel">
+    <div class="image-container" *ngFor="let image of images">
+      <img [src]="image" alt="Offer Image">
+    </div>
+  </div>
+  <p><strong>Company Name:</strong> {{ offer?.Company_Name }}</p>
+  <p><strong>Contact Name:</strong> {{ offer?.Contact_Name }}</p>
+  <p><strong>Phone Number:</strong> {{ offer?.Phone_Number }}</p>
+  <p><strong>Email:</strong> {{ offer?.Email }}</p>
+  <p><strong>Description:</strong> {{ offer?.Description }}</p>
+  <p><strong>Location:</strong> {{ offer?.Location }}</p>
+  <p><strong>Website:</strong> <a [href]="offer?.Website" target="_blank">{{ offer?.Website }}</a></p>
+  <p><strong>Offer Type:</strong> {{ offer?.OfferType }}</p>
+  <p><strong>Date Created:</strong> {{ offer?.Date_Created | date: 'shortDate' }}</p>
+
+  <button (click)="goBack()">Back to Offers</button>
+</div>

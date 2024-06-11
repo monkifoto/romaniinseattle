@@ -13,8 +13,18 @@ export class OffersService {
   constructor(private firestore: AngularFirestore) { }
 
 
-  getOffers(): Observable<OffersWithId[]> {
-    return this.firestore.collection('Offers').snapshotChanges().pipe(
+  getOffers(): Observable<Offers[]> {
+    return this.firestore.collection('Offers',ref=>ref.orderBy('Community_Sponsor','desc')).snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as Offers;
+        const id = a.payload.doc.id;
+        return {id, ...data };
+      }))
+    );
+  }
+
+  getOffersWithId(): Observable<Offers[]> {
+    return this.firestore.collection<Offers>('Offers',ref=>ref.orderBy('Community_Sponsor','desc')).snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Offers;
         const id = a.payload.doc.id;
@@ -24,10 +34,10 @@ export class OffersService {
   }
 
   addOffer(offer: Offers): Promise<void> {
-    const id = this.firestore.createId();
+    offer.id = this.firestore.createId();
     const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
     offer.Date_Created = today;
-    return this.firestore.collection('Offers').doc(id).set(offer);
+    return this.firestore.collection('Offers').doc(offer.id).set(offer);
   }
 
   getOffer(id: string): Observable<Offers | undefined> {
@@ -45,6 +55,10 @@ export class OffersService {
         return Array.from(new Set(offerTypes));
       })
     );
+  }
+
+  getOfferById(id: string): Observable<Offers | undefined> {
+    return this.firestore.collection<Offers>('Offers').doc(id).valueChanges();
   }
 
 }

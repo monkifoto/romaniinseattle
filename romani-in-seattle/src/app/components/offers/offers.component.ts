@@ -13,7 +13,8 @@ export class OffersComponent implements OnInit {
   constructor(private offersService: OffersService,private router: Router) { }
 
   ngOnInit(): void {
-    this.offersService.getOffers().subscribe(offer => {
+    this.offersService.getOffersWithId().subscribe(offer => {
+      console.log(offer);
       this.offers = offer;
     });
   }

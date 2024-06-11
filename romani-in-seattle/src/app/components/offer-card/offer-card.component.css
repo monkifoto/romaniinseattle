@@ -100,3 +100,14 @@
 .social-icons a:hover {
   color: #000; /* Adjust hover color as needed */
 }
+
+.sponsor-icon {
+  font-size: 1.5rem;
+  margin-right: 4px;
+  color: gold;
+}
+
+.sponsor-text {
+  font-size: 1rem;
+  color: gold;
+}

@@ -1,0 +1,43 @@
+.offer-detail {
+  max-width: 600px;
+  margin: auto;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.carousel {
+  display: flex;
+  overflow: hidden;
+  max-height: 300px;
+  margin-bottom: 16px;
+}
+
+.image-container {
+  flex: 0 0 400px;
+  overflow: hidden;
+  position: relative;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  object-fit: cover;
+}
+
+button {
+  display: block;
+  margin: 16px auto;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
