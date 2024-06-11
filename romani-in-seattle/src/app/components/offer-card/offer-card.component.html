@@ -2,7 +2,9 @@
   <div class="carousel">
     <button (click)="prevImage()" class="prev">&#10094;</button>
     <button (click)="nextImage()" class="next">&#10095;</button>
+    <div class="image-container">
     <img [src]="offer['Image' + currentImageIndex]" alt="Image {{ currentImageIndex }}">
+  </div>
   </div>
   <div class="offer-details">
     <h3>{{ offer.Title }}</h3>
@@ -17,7 +19,7 @@
 
 
     <p>Offer Type: {{ offer.OfferType }}</p>
-    <p>Date Created: {{ offer.Date_Created }}</p>
+    <p>Date Created: {{ offer.Date_Created | date: 'shortDate'}}</p>
 
     <p *ngIf="offer.Filled">This offer is filled</p>
     <p *ngIf="!offer.Filled">This offer is still open</p>

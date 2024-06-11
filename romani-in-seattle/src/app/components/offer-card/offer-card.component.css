@@ -25,9 +25,18 @@
   transition: transform 0.5s ease;
 }
 
-.carousel img {
+.image-container img {
   width: 100%;
   flex-shrink: 0;
+}
+
+.image-container {
+  width: 400px;
+  height: 250px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .prev,
