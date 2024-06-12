@@ -71,6 +71,7 @@ export class ServicesService {
 
   addService(service: Service):Observable<ServiceWithId | undefined> {
     const id = this.firestore.createId();
+    service['id'] = id;
     this.firestore.collection('Services').doc(id).set(service);
     return this.firestore.doc<Service>(`Services/${id}`).valueChanges().pipe(
       map(service => service ? { id, ...service } : undefined)

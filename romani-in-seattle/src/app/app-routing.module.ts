@@ -3,15 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { ServicesComponent } from './components/services/services.component';
 import { RulesComponent } from './components/rules/rules.component';
-import { EventsComponent } from './components/events/events.component';
-import { OffersComponent } from './components/offers/offers.component';
-import { AddServiceComponent } from './components/add-service/add-service.component';
-import { AddEventComponent } from './components/add-event/add-event.component';
-import { AddOffersComponent } from './components/add-offers/add-offers.component';
-import { EditServicesComponent } from './components/edit-services/edit-services.component';
-import { AnalyticsComponent } from './components/analytics/analytics.component';
-import { OfferDetailComponent } from './components/offer-detail/offer-detail.component';
-import { ServiceDetailComponent } from './components/service-detail/service-detail.component';
+import { EventsComponent } from './components/Evenimente/events/events.component';
+import { OffersComponent } from './components/Oferte/offers/offers.component';
+import { AddServiceComponent } from './components/Servicii/add-service/add-service.component';
+import { AddEventComponent } from './components/Evenimente/add-event/add-event.component';
+import { AddOffersComponent } from './components/Oferte/add-offers/add-offers.component';
+import { EditServicesComponent } from './components/Servicii/edit-services/edit-services.component';
+import { AnalyticsComponent } from './components/Admin/analytics/analytics.component';
+import { OfferDetailComponent } from './components/Oferte/offer-detail/offer-detail.component';
+import { ServiceDetailComponent } from './components/Servicii/service-detail/service-detail.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },

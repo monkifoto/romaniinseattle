@@ -8,10 +8,10 @@ import { AppComponent } from './app.component';
 import { ServicesComponent } from './components/services/services.component';
 import { RulesComponent } from './components/rules/rules.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { EventsComponent } from './components/events/events.component';
+import { EventsComponent } from './components/Evenimente/events/events.component';
 import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { OffersComponent } from './components/offers/offers.component';
+import { OffersComponent } from './components/Oferte/offers/offers.component';
 import { environment } from '../environments/environment';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
@@ -20,16 +20,16 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { provideStorage, getStorage} from '@angular/fire/storage';
 import { FooterComponent } from './components/footer/footer.component';
-import { AddServiceComponent } from './components/add-service/add-service.component';
+import { AddServiceComponent } from './components/Servicii/add-service/add-service.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AddEventComponent } from './components/add-event/add-event.component';
-import { AddOffersComponent } from './components/add-offers/add-offers.component';
-import { EditServicesComponent } from './components/edit-services/edit-services.component';
-import { OfferCardComponent } from './components/offer-card/offer-card.component';
-import { AnalyticsComponent } from './components/analytics/analytics.component';
-import { OfferDetailComponent } from './components/offer-detail/offer-detail.component';
-import { ServiceDetailComponent } from './components/service-detail/service-detail.component';
-import { ServiceCardComponent } from './components/service-card/service-card.component';
+import { AddEventComponent } from './components/Evenimente/add-event/add-event.component';
+import { AddOffersComponent } from './components/Oferte/add-offers/add-offers.component';
+import { EditServicesComponent } from './components/Servicii/edit-services/edit-services.component';
+import { OfferCardComponent } from './components/Oferte/offer-card/offer-card.component';
+import { AnalyticsComponent } from './components/Admin/analytics/analytics.component';
+import { OfferDetailComponent } from './components/Oferte/offer-detail/offer-detail.component';
+import { ServiceDetailComponent } from './components/Servicii/service-detail/service-detail.component';
+import { ServiceCardComponent } from './components/Servicii/service-card/service-card.component';
 
 
 @NgModule({
