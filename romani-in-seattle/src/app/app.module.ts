@@ -28,6 +28,8 @@ import { EditServicesComponent } from './components/edit-services/edit-services.
 import { OfferCardComponent } from './components/offer-card/offer-card.component';
 import { AnalyticsComponent } from './components/analytics/analytics.component';
 import { OfferDetailComponent } from './components/offer-detail/offer-detail.component';
+import { ServiceDetailComponent } from './components/service-detail/service-detail.component';
+import { ServiceCardComponent } from './components/service-card/service-card.component';
 
 
 @NgModule({
@@ -46,7 +48,9 @@ import { OfferDetailComponent } from './components/offer-detail/offer-detail.com
     EditServicesComponent,
     OfferCardComponent,
     AnalyticsComponent,
-    OfferDetailComponent
+    OfferDetailComponent,
+    ServiceDetailComponent,
+    ServiceCardComponent
   ],
   imports: [
     BrowserModule,

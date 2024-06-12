@@ -1,6 +1,7 @@
 export class Event {
   Approved: boolean = true;
   Community_Sponsor: boolean = false;
+  Expired: boolean = false;
   Contact: string ='';
   Description: string ='';
   Event_date:string ='';

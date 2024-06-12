@@ -1,0 +1,46 @@
+
+
+<!-- <h1> Detalii Serviciu</h1>
+<div class="service-detail">
+  <h2>{{ service.Name }}</h2>
+  <div class="carousel">
+    <div class="image-container">
+      <img [src]="service.Image" alt="Offer Image">
+    </div>
+  </div>
+  <p><strong>Service Type:</strong> {{ service.Service_Type }}</p>
+  <p><strong>Phone Number:</strong> {{ service.Phone_Number }}</p>
+  <p><strong>Email:</strong> {{ service.Email }}</p>
+  <p><strong>Description:</strong> {{ service.Description }}</p>
+  <p><strong>Website:</strong> <a [href]="service.Website" target="_blank">{{ service.Website }}</a></p>
+  <p><strong>Date Created:</strong> {{ service.Date_Created | date: 'shortDate' }}</p>
+  <button (click)="goBack()">Inapoi la Servicii</button>
+</div> -->
+
+
+<div class="service-details-container" >
+  <div class="service-header">
+    <h1>{{ service.Name }}</h1>
+  </div>
+  <div class="service-content">
+    <div class="service-image">
+      <img [src]="service.Image" alt="{{ service.Name }}">
+    </div>
+    <div class="service-details">
+      <h2>Contact Details</h2>
+      <p><strong>Service Type:</strong> {{ service.Service_Type }}</p>
+      <p><strong>Phone Number:</strong> {{ service.Phone_Number }}</p>
+      <p><strong>Email:</strong> {{ service.Email }}</p>
+      <p><strong>Website:</strong> <a [href]="service.Website" target="_blank">{{ service.Website }}</a></p>
+      <p><strong>Facebook:</strong> <a [href]="service.Facebook" target="_blank">{{ service.Facebook }}</a></p>
+      <p><strong>Instagram:</strong> <a [href]="service.Instagram" target="_blank">{{ service.Instagram }}</a></p>
+      <p><strong>Community Sponsor:</strong> {{ service.Community_Sponsor ? 'Yes' : 'No' }}</p>
+      <p><strong>Date Created:</strong> {{ service.Date_Created | date:'shortDate' }}</p>
+    </div>
+  </div>
+  <div class="service-actions">
+    <button (click)="goBack()">Inapoi la Servicii</button>
+  </div>
+</div>
+
+

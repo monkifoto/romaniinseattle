@@ -6,6 +6,7 @@ import { Offers, OffersWithId } from 'src/app/Model/offers.model';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ImageUploadService } from 'src/app/Services/image-upload.service';
 import { Observable, forkJoin, from, map, switchMap } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-offers',
@@ -44,7 +45,7 @@ export class AddOffersComponent implements OnInit {
   };
   selectedFiles: FileList | null = null;
 
-  constructor(private fb: FormBuilder, private offersService: OffersService, private firestore: AngularFirestore, private imageUploadService: ImageUploadService) {
+  constructor(private fb: FormBuilder, private offersService: OffersService, private firestore: AngularFirestore, private imageUploadService: ImageUploadService, private router: Router) {
     this.offerForm = this.fb.group({
       Title: ['', Validators.required],
       Company_Name: [''],
@@ -116,11 +117,19 @@ export class AddOffersComponent implements OnInit {
     // }
   }
   private saveOffer(): Observable<void> {
-    return from(this.firestore.collection('Offers').add(this.offer).then(() => {
-      console.log('Offer added successfully');
-      this.offerForm.reset();
-    }).catch((error:Error | any) => {
-      console.error('Error adding offer: ', error);
-    }));
+    return from(this.firestore.collection('Offers').add(this.offer).then((newOffer) => {
+      console.log('Offer added with ID:', newOffer.id);
+    this.router.navigate(['/offers', newOffer.id]);
+  }).catch(error => {
+    console.error('Error adding offer:', error);
+  }));
   }
+
+  // this.offerService.addOffer(this.offer).then(newOffer => {
+  //   console.log('Offer added with ID:', newOffer.id);
+  //   this.router.navigate(['/offers', newOffer.id]);
+  // }).catch(error => {
+  //   console.error('Error adding offer:', error);
+  // });
+
   }

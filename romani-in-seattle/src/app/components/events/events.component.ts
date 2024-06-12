@@ -13,6 +13,7 @@ interface Event {
   Website:string;
   Community_Sponsor: boolean;
   Description: string;
+  Expired:boolean;
 }
 
 

@@ -26,6 +26,9 @@
       <div class="card-subtitle"><a href='mailto:{{ event.Contact }}'>{{ event.Contact }}</a></div>
       <div class="card-subtitle"><a href='{{ event.Website }}'>{{ event.Website }}</a></div>
       <div class="card-subtitle">{{ event.Description }}</div>
+      <div class="card-expired" *ngIf="event.Expired">
+        <span class="">Event Expired</span>
+      </div>
     </div>
     <div class="card-footer" *ngIf="event.Community_Sponsor">
       <span class="sponsor-text">Sponsor al Comunitatii</span>

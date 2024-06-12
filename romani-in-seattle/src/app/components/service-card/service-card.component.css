@@ -1,0 +1,207 @@
+.service-card {
+  background-color: transparent;
+  width: 400px;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  margin: 10px;
+  padding: 40px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.service-card-image-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.service-card-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+
+.card-header {
+  text-align: center;
+  margin: 25px;
+}
+
+.card-title {
+  font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: bold;
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: #333;
+  line-height: 1.2;
+}
+
+.card-subtitle {
+  font-family: "Catamaran", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  font-size: 1rem;
+  color: #666;
+  margin-top: 4px;
+}
+
+.card-description {
+  text-align: left;
+  font-family: "Catamaran", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  color: #666;
+  margin-top: 4px;
+  /**Major Properties**/
+  overflow:hidden;
+  /* line-height: 2rem;
+  max-height: 8rem; */
+  -webkit-box-orient: vertical;
+  display: block;
+  display: -webkit-box;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 4;
+
+}
+
+
+.service_type{
+  text-transform: uppercase;
+  padding: 1rem 0;
+}
+
+.contact_info{
+  padding: 0 0 1rem 0;
+  font-size: 1.2rem;
+}
+
+.card-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: #666;
+  font-size: .6rem;
+}
+
+
+@media (max-width: 1024px) {
+  .service-card {
+    width: calc(50% - 32px);
+    min-width: 350px;
+  }
+}
+
+@media (max-width: 600px) {
+  .service-card {
+    width: calc(90% - 100px);
+    min-width: 350px;
+  }
+
+  .services-control  {
+    flex-direction: column;
+}
+
+  @media screen and (max-width: 960px) {
+    .service-card {
+      width: calc(90% - 100px);
+      min-width: 350px;
+    }
+
+    .hero-overlay h1 {
+      color: white;
+      font-size: 2.5rem;
+      text-align: center;
+    }
+
+    .overlay_subtitle h2 {
+      color: white;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+  }
+}
+
+
+
+
+.service-card-front {
+  background-color: white;
+  color: black;
+}
+
+.service-card-content {
+  padding: 0px;
+}
+
+.service-date {
+  font-size: 12px;
+  color: #f1c40f;
+}
+
+.service-footer {
+  margin-top: 10px;
+}
+
+.featured {
+  font-weight: bold;
+  color: #f39c12;
+}
+
+
+.social-icons {
+  display: flex;
+  justify-content: space-around;
+  width: 400px;
+}
+
+.social-icons a {
+  color: #666;
+  text-decoration: none;
+}
+
+.social-icons a:hover {
+  color: #000;
+}
+
+#browser-icon{
+  fill: red;
+  stroke: black;
+}
+
+
+
+
+.sponsor-icon {
+  font-size: 1.5rem;
+  margin-right: 4px;
+  color: gold;
+}
+
+.sponsor-text {
+  font-size: 1rem;
+  color: gold;
+}
+
+.editButton{
+
+  visibility: hidden;
+}
+
+
+
+

@@ -1,4 +1,5 @@
 export class Service {
+  [x: string]: any;
   Name: string='';
   Service_Type!: string;
   Phone_Number: string ='';

@@ -1,0 +1,30 @@
+  <div  class="service-card">
+    <div class="service-card-image-container">
+      <img [src]="svc.Image" alt="{{ svc.Name }}" class="service-card-image">
+    </div>
+        <div class="service-card-content">
+          <div class="card-header">
+            <div class="card-title">{{ svc.Name }}<span class="sponsor-icon" *ngIf="svc.Community_Sponsor">★</span></div>
+            <div class="card-subtitle service_type">{{ svc.Service_Type}}</div>
+            <div class="card-subtitle contact_info">{{ svc.Phone_Number}}</div>
+            <div class="card-description">{{ svc.Description }}</div>
+            <!-- <div><button class="editButton" (click)="navigateToEditService(service.id)">Edit</button></div> -->
+            <button (click)="viewDetails()">View Details</button>
+          </div>
+
+          <div class="card-footer">
+            <div class="social-icons">
+              <div *ngIf="svc.Facebook"><a target="_blank" href='{{svc.Facebook }}'><img src='../../../assets/images/SVG/facebook-icon.svg'></a><br>
+              Facebook</div>
+           <div *ngIf="svc.Instagram"><a target="_blank" href='https://www.instagram.com/{{svc.Instagram }}'><img src='../../../assets/images/SVG/instagram-icon.svg'></a><br>
+          Instagram</div>
+           <div *ngIf="svc.Email"><a href='mailto:{{svc.Email }}'><img src='../../../assets/images/SVG/email-icon.svg'></a><br>
+          Email</div>
+           <div *ngIf="svc.Website"><a target="_blank" href='{{svc.Website }}'><img src='../../../assets/images/SVG/browser-icon.svg'></a><br>
+          Website</div>
+       </div>
+          </div>
+
+        </div>
+
+  </div>

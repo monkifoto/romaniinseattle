@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 interface Event {
   Name: string;
   Approved: boolean;
+  Expired:boolean;
   Contact: string;
   Event_date: Date;
   Location: string;

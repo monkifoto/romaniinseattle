@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ServicesService } from 'src/app/Services/services.service';
 import { Service, ServiceWithId } from 'src/app/Model/service.model';
 import { ImageUploadService } from 'src/app/Services/image-upload.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-service',
@@ -13,9 +14,9 @@ export class AddServiceComponent implements OnInit {
   serviceForm: FormGroup;
   serviceTypes: string[] = [];
   selectedFile: File | null = null;
-  serviceObj: ServiceWithId = new ServiceWithId;
+  serviceObj: ServiceWithId = new ServiceWithId();
 
-  constructor(private fb: FormBuilder, private servicesService: ServicesService, private imageUploadService: ImageUploadService) {
+  constructor(private fb: FormBuilder, private servicesService: ServicesService, private imageUploadService: ImageUploadService, private router: Router) {
     this.serviceForm = this.fb.group({
       Name: ['', Validators.required],
       Email: ['', [Validators.required, Validators.email]],
@@ -98,12 +99,26 @@ export class AddServiceComponent implements OnInit {
         Image: this.serviceObj.Image
       };
 
-      this.servicesService.addService(serviceJS).then(() => {
-          console.log('Service added successfully');
-          this.serviceForm.reset();
-        }).catch((error:Error | any) => {
-          console.error('Error adding service: ', error);
-        });
-      }
+      this.servicesService.addService(serviceJS).subscribe(ser =>{
+        console.log('Service added successfully with ID:', ser?.id);
+        this.serviceForm.reset();
+        this.router.navigate(['/services', ser?.id]);
+      })
+      // then((newSer:any) => {
+      //     console.log('Service added successfully with ID:', newSer.id);
+      //     this.serviceForm.reset();
+      //     this.router.navigate(['/services', newSer.id]);
+      //   }).catch((error:Error | any) => {
+      //     console.error('Error adding service: ', error);
+      //   });
+
+        // this.servicesService.addService(serviceJS).(newService) => {
+        //   console.log('Service added with ID:', newService.id);
+        //   this.router.navigate(['/services', newService.id]);
+        // }).catch((error: any) => {
+        //   console.error('Error adding service:', error);
+        // });
+
+  }
   //}
 }

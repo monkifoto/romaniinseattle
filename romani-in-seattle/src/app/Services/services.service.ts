@@ -41,6 +41,12 @@ export class ServicesService {
     return this.firestore.collection('Services').doc<Service>(id).valueChanges();
   }
 
+  getServiceById(id: string): Observable<Service | undefined> {
+    return this.firestore.doc<Service>(`services/${id}`).valueChanges().pipe(
+      map(service => service ? { id, ...service } : undefined)
+    );
+  }
+
 
   getServicesByType(serviceType: string): Observable<ServiceWithId[]> {
     return this.firestore.collection<ServiceWithId>('Services', ref => ref.where('Service_Type', '==', serviceType)).valueChanges();
@@ -63,9 +69,12 @@ export class ServicesService {
     return this.firestore.collection('Services').doc(service.id).set(service);
   }
 
-  addService(service: Service): Promise<void> {
+  addService(service: Service):Observable<ServiceWithId | undefined> {
     const id = this.firestore.createId();
-    return this.firestore.collection('Services').doc(id).set(service);
+    this.firestore.collection('Services').doc(id).set(service);
+    return this.firestore.doc<Service>(`Services/${id}`).valueChanges().pipe(
+      map(service => service ? { id, ...service } : undefined)
+    );
   }
 
   updateService(id: string, service: Service): Promise<void> {
