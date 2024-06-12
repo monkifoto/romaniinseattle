@@ -3,7 +3,7 @@
   position: relative;
   height: 30vh;
   /* background-image: url('http://source.unsplash.com/800x600/?Seattle'); */
-  background-image: url(../../../assets/images/Services.png);
+  background-image: url(../../../../assets/images/Services.png);
   background-size: cover;
   background-position: 0 35%;
 }

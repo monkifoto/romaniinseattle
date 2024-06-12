@@ -20,7 +20,8 @@
 
 <div class="service-details-container" >
   <div class="service-header">
-    <h1>{{ service.Name }}</h1>
+    <h1><strong>Name:</strong>{{ service.Name }}</h1>
+    <h3><strong>Service Id:</strong>{{service.id}}</h3>
   </div>
   <div class="service-content">
     <div class="service-image">
@@ -36,9 +37,11 @@
       <p><strong>Instagram:</strong> <a [href]="service.Instagram" target="_blank">{{ service.Instagram }}</a></p>
       <p><strong>Community Sponsor:</strong> {{ service.Community_Sponsor ? 'Yes' : 'No' }}</p>
       <p><strong>Date Created:</strong> {{ service.Date_Created | date:'shortDate' }}</p>
+      <p><strong>Description:</strong> {{ service.Description | date:'shortDate' }}</p>
     </div>
   </div>
   <div class="service-actions">
+    <button class="editButton" (click)="navigateToEditService(service.id)">Edit</button> &nbsp;
     <button (click)="goBack()">Inapoi la Servicii</button>
   </div>
 </div>

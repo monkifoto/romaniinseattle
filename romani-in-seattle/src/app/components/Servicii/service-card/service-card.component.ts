@@ -16,4 +16,6 @@ export class ServiceCardComponent {
   viewDetails(): void {
     this.router.navigate(['/services', this.svc.id]);
   }
+
+
 }

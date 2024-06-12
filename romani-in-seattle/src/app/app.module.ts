@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ServicesComponent } from './components/services/services.component';
+import { ServicesComponent } from './components/Servicii/services/services.component';
 import { RulesComponent } from './components/rules/rules.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { EventsComponent } from './components/Evenimente/events/events.component';

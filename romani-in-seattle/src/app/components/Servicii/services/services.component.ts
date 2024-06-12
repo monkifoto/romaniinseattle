@@ -27,9 +27,9 @@ export class ServicesComponent implements OnInit {
   navigateToAddService(): void {
     this.router.navigate(['/add-service']);
   }
-  navigateToEditService(id: string): void {
-    this.router.navigate(['/edit-service', id]);
-  }
+  // navigateToEditService(id: string): void {
+  //   this.router.navigate(['/edit-service', id]);
+  // }
 
   handleChange(event:Event): string{
     const {target} = event

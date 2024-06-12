@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
-import { ServicesComponent } from './components/services/services.component';
+import { ServicesComponent } from './components/Servicii/services/services.component';
 import { RulesComponent } from './components/rules/rules.component';
 import { EventsComponent } from './components/Evenimente/events/events.component';
 import { OffersComponent } from './components/Oferte/offers/offers.component';

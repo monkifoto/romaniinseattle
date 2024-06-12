@@ -23,7 +23,7 @@ export class EditServicesComponent implements OnInit {
       Name: ['', Validators.required],
       Email: ['', Validators.email],
       Phone_Number: ['', Validators.required],
-      Website: ['', Validators.required],
+      Website: [''],
       Facebook: [''],
       Instagram: [''],
       Description: ['', Validators.required],
@@ -64,7 +64,7 @@ export class EditServicesComponent implements OnInit {
       console.log(this.serviceForm);
       this.serviceForm.value.Facebook = this.serviceForm.value.Facebook || '';
       this.serviceForm.value.Instagram = this.serviceForm.value.Instagram || '';
-      this.serviceForm.value.Image = this.serviceForm.value.Image || '';
+      this.serviceForm.value.Image = this.serviceForm.value.Image || 'https://firebasestorage.googleapis.com/v0/b/romaniinseattle.appspot.com/o/serviceImages%2FdafaultImage.jpg?alt=media&token=3b0787df-12f0-444a-a426-013843534f1e';
       this.serviceForm.value.Email = this.serviceForm.value.Email || '';
 
       this.servicesService.updateService(this.serviceId, this.serviceForm.value).then(() => {

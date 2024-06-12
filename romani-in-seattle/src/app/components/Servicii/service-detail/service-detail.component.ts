@@ -37,6 +37,8 @@ export class ServiceDetailComponent implements OnInit {
           this.service.Service_Type = serviceDBItem.Service_Type;
           this.service.Website = serviceDBItem.Website;
           this.service.Image = serviceDBItem.Image;
+          if(this.serviceId)
+          this.service.id = this.serviceId;
         }
 
 
@@ -47,5 +49,8 @@ export class ServiceDetailComponent implements OnInit {
 
   goBack(): void {
     this.router.navigate(['/services']);
+  }
+  navigateToEditService(id: string): void {
+    this.router.navigate(['/edit-service', id]);
   }
 }
