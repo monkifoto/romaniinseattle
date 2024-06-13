@@ -41,7 +41,7 @@ export class EditServicesComponent implements OnInit {
 
   ngOnInit(): void {
     this.serviceId = this.route.snapshot.paramMap.get('id')!;
-    this.servicesService.getService(this.serviceId).subscribe(service => {
+    this.servicesService.getServiceById(this.serviceId).subscribe(service => {
       this.serviceForm.patchValue({
         Name: service?.Name,
         // Email: service?.Email? '' : service?.Email,

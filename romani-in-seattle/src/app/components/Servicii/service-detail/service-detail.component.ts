@@ -25,7 +25,7 @@ export class ServiceDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.serviceId = this.route.snapshot.paramMap.get('id')!;
-    this.servicesService.getService(this.serviceId).subscribe(serviceDBItem => {
+    this.servicesService.getServiceById(this.serviceId).subscribe(serviceDBItem => {
         if(serviceDBItem){
           this.service.Community_Sponsor = serviceDBItem?.Community_Sponsor;
           this.service.Name = serviceDBItem.Name;

@@ -15,7 +15,7 @@ export class ServicesManagementComponent implements OnInit  {
   constructor(private serviceManagementService: ServicesService) { }
 
   ngOnInit(): void {
-    this.serviceManagementService.getServices().subscribe(services => {
+    this.serviceManagementService.getAllServices().subscribe(services => {
       this.services = services.sort((a, b) => {
         if (a.Approved === b.Approved) {
           return new Date(b.Date_Created).getTime() - new Date(a.Date_Created).getTime();
