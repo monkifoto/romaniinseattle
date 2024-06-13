@@ -7,7 +7,7 @@ import { Service, ServiceWithId } from 'src/app/Model/service.model';
   templateUrl: './manage-services.component.html',
   styleUrls: ['./manage-services.component.css']
 })
-export class ManageServicesComponent implements OnInit  {
+export class ServicesManagementComponent implements OnInit  {
 
 
   services: ServiceWithId[] = [];
@@ -30,7 +30,7 @@ export class ManageServicesComponent implements OnInit  {
     this.serviceManagementService.updateService(service.id, service);
   }
 
-  updateDateCreated(): void {
-    this.serviceManagementService.updateAllEntriesWithCurrentDate();
-  }
+  // updateDateCreated(): void {
+  //   this.serviceManagementService.updateAllEntriesWithCurrentDate();
+  // }
 }

@@ -41,7 +41,9 @@ export class AddOffersComponent implements OnInit {
     Facebook: '',
     Instagram: '',
     id: '',
-    Community_Sponsor:false
+    Community_Sponsor:false,
+    Approved: false,
+    ApprovedDate: ''
   };
   selectedFiles: FileList | null = null;
 
@@ -63,6 +65,7 @@ export class AddOffersComponent implements OnInit {
       Image5: [''],
       Filled: false,
       Date_Created: [''],
+      ApprovedDate: [''],
       OfferType: [''],
       Community_Sponsor:false
     });

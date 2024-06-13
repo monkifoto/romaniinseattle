@@ -45,6 +45,7 @@ export class OffersService {
   }
 
   updateOffer(id: string, offer: Offers): Promise<void> {
+    console.log("Update Offer: " + id);
     return this.firestore.collection('Offers').doc(id).update(offer);
   }
 

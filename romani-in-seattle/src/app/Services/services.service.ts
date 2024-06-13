@@ -85,23 +85,23 @@ export class ServicesService {
     return this.firestore.collection('Services').doc(id).update(service);
   }
 
-  updateAllEntriesWithCurrentDate(): void {
-    const currentDate = new Date().toISOString();
+  // updateAllEntriesWithCurrentDate(): void {
+  //   const currentDate = new Date().toISOString();
 
-    this.servicesCollection.snapshotChanges().pipe(
-      map(actions => actions.map(a => {
-        const id = a.payload.doc.id;
-        return { id };
-      })),
-      mergeMap(services => from(services)),
-      mergeMap(service => {
-        return this.firestore.doc(`Services/${service.id}`).update({ Date_Created: currentDate });
-      })
-    ).subscribe({
-      next: () => console.log('Update successful'),
-      error: err => console.error('Update failed', err)
-    });
-  }
+  //   this.servicesCollection.snapshotChanges().pipe(
+  //     map(actions => actions.map(a => {
+  //       const id = a.payload.doc.id;
+  //       return { id };
+  //     })),
+  //     mergeMap(services => from(services)),
+  //     mergeMap(service => {
+  //       return this.firestore.doc(`Services/${service.id}`).update({ Date_Created: currentDate });
+  //     })
+  //   ).subscribe({
+  //     next: () => console.log('Update successful'),
+  //     error: err => console.error('Update failed', err)
+  //   });
+  // }
 }
 
 

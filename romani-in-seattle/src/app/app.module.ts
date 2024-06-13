@@ -33,7 +33,8 @@ import { ServiceDetailComponent } from './components/Servicii/service-detail/ser
 import { ServiceCardComponent } from './components/Servicii/service-card/service-card.component';
 import { LoginComponent } from './components/Admin/login/login.component';
 import { AdminComponent } from './components/Admin/admin/admin.component';
-import { ManageServicesComponent } from './components/Admin/manage-services/manage-services.component';
+import { ServicesManagementComponent } from './components/Admin/manage-services/manage-services.component';
+import { OfferManagementComponent } from './components/Admin/offer-management/offer-management.component';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { ManageServicesComponent } from './components/Admin/manage-services/mana
     ServiceCardComponent,
     LoginComponent,
     AdminComponent,
-    ManageServicesComponent
+    ServicesManagementComponent,
+    OfferManagementComponent
   ],
   imports: [
     BrowserModule,

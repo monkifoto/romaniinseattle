@@ -21,23 +21,24 @@
 <div class="service-details-container" >
   <div class="service-header">
     <h1><strong>Name:</strong>{{ service.Name }}</h1>
+    <div class="forDebug">
     <h3><strong>Service Id:</strong>{{service.id}}</h3>
+  </div>
   </div>
   <div class="service-content">
     <div class="service-image">
       <img [src]="service.Image" alt="{{ service.Name }}">
     </div>
     <div class="service-details">
-      <h2>Contact Details</h2>
-      <p><strong>Service Type:</strong> {{ service.Service_Type }}</p>
-      <p><strong>Phone Number:</strong> {{ service.Phone_Number }}</p>
-      <p><strong>Email:</strong> {{ service.Email }}</p>
-      <p><strong>Website:</strong> <a [href]="service.Website" target="_blank">{{ service.Website }}</a></p>
-      <p><strong>Facebook:</strong> <a [href]="service.Facebook" target="_blank">{{ service.Facebook }}</a></p>
-      <p><strong>Instagram:</strong> <a [href]="service.Instagram" target="_blank">{{ service.Instagram }}</a></p>
-      <p><strong>Community Sponsor:</strong> {{ service.Community_Sponsor ? 'Yes' : 'No' }}</p>
-      <p><strong>Date Created:</strong> {{ service.Date_Created | date:'shortDate' }}</p>
-      <p><strong>Description:</strong></p>
+      <div><label class="service-details-label">Tip Serviciu:</label> {{ service.Service_Type }}</div>
+      <div><label class="service-details-label">Nr Telefon:</label> {{ service.Phone_Number }}</div>
+        <div><label class="service-details-label">Email:</label> {{ service.Email }}</div>
+        <div><label class="service-details-label">Website:</label> <a [href]="service.Website" target="_blank">{{ service.Website }}</a></div>
+        <div><label class="service-details-label">Facebook:</label> <a [href]="service.Facebook" target="_blank">{{ service.Facebook }}</a></div>
+        <div><label class="service-details-label">Instagram:</label> <a [href]="service.Instagram" target="_blank">{{ service.Instagram }}</a></div>
+        <div><label class="service-details-label">Sponsor:</label> {{ service.Community_Sponsor ? 'Yes' : 'No' }}</div>
+        <div><label class="service-details-label">Date Created:</label> {{ service.Date_Created | date:'shortDate' }}</div>
+        <div><label class="service-details-label">Description:</label>{{ service.Description}}</div>
     </div>
   </div>
   <div class="service-actions">

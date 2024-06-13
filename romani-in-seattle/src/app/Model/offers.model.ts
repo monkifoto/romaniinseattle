@@ -21,6 +21,8 @@ export interface Offers {
   OfferType: string;
   id?:string;
   Community_Sponsor: boolean;
+  Approved: boolean;
+  ApprovedDate: string;
 }
 
 export interface OffersWithId {
@@ -45,4 +47,6 @@ export interface OffersWithId {
   OfferType: string;
   id?:string;
   Community_Sponsor:boolean;
+  Approved: boolean;
+  ApprovedDate: string;
 }

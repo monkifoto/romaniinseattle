@@ -44,7 +44,8 @@ export class EditServicesComponent implements OnInit {
     this.servicesService.getService(this.serviceId).subscribe(service => {
       this.serviceForm.patchValue({
         Name: service?.Name,
-        Email: service?.Email? '' : service?.Email,
+        // Email: service?.Email? '' : service?.Email,
+        Email: service?.Email,
         Phone_Number: service?.Phone_Number,
         Service_Type: service?.Service_Type,
         Website: service?.Website,

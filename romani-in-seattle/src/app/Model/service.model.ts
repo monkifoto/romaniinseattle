@@ -1,3 +1,5 @@
+import { formatUrl } from "../utils/url.utils";
+
 export class Service {
   [x: string]: any;
   Name: string='';
@@ -12,6 +14,12 @@ export class Service {
   Date_Created: string ='';
   Image:string='';
   Approved: boolean = false;
+
+}
+export interface ServiceExt extends ServiceWithId {
+  getFormattedWebsite(): string;
+  getFormattedFacebook(): string;
+  getFormattedInstagram(): string;
 }
 export class ServiceWithId extends Service{
   id:string ='';

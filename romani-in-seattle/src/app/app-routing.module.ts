@@ -15,7 +15,8 @@ import { ServiceDetailComponent } from './components/Servicii/service-detail/ser
 import { adminAuthGuard } from './Guard/admin-auth.guard';
 import { AdminComponent } from './components/Admin/admin/admin.component';
 import { LoginComponent } from './components/Admin/login/login.component';
-import { ManageServicesComponent } from './components/Admin/manage-services/manage-services.component';
+import { ServicesManagementComponent } from './components/Admin/manage-services/manage-services.component';
+import { OfferManagementComponent } from './components/Admin/offer-management/offer-management.component';
 
 
 const routes: Routes = [
@@ -46,7 +47,8 @@ const routes: Routes = [
   canActivate: [adminAuthGuard],
   children: [
     { path: 'analytics', component: AnalyticsComponent },
-    { path: 'service-manager', component: ManageServicesComponent }
+    { path: 'service-manager', component: ServicesManagementComponent },
+    { path: 'offer-management', component: OfferManagementComponent }
   ]
 },
 { path: 'login', component: LoginComponent },

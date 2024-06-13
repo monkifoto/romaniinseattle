@@ -1,7 +1,7 @@
 .service-card {
   background-color: transparent;
   width: 400px;
-  min-height: 500px;
+  min-height: 550px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -16,7 +16,6 @@
 .service-card-image-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 15px;
 }
 
 .service-card-image {
