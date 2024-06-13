@@ -4,6 +4,7 @@ import { ServicesService } from 'src/app/Services/services.service';
 import { Service, ServiceWithId } from 'src/app/Model/service.model';
 import { Observable, of } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
+import { formatUrl } from 'src/app/utils/url.utils';
 
 @Component({
   selector: 'app-service-detail',
@@ -35,7 +36,7 @@ export class ServiceDetailComponent implements OnInit {
           this.service.Instagram = serviceDBItem.Instagram;
           this.service.Phone_Number = serviceDBItem.Phone_Number;
           this.service.Service_Type = serviceDBItem.Service_Type;
-          this.service.Website = serviceDBItem.Website;
+          this.service.Website = formatUrl(serviceDBItem.Website);
           this.service.Image = serviceDBItem.Image;
           if(this.serviceId){
             this.service.id = this.serviceId;

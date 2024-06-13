@@ -43,7 +43,7 @@ export class ServicesService {
   }
 
   getServiceById(id: string): Observable<Service | undefined> {
-    return this.firestore.doc<Service>(`services/${id}`).valueChanges().pipe(
+    return this.firestore.doc<Service>(`Services/${id}`).valueChanges().pipe(
       map(service => service ? { id, ...service } : undefined)
     );
   }
