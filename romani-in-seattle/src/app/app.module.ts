@@ -18,6 +18,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { provideStorage, getStorage} from '@angular/fire/storage';
 import { FooterComponent } from './components/footer/footer.component';
 import { AddServiceComponent } from './components/Servicii/add-service/add-service.component';
@@ -30,6 +31,8 @@ import { AnalyticsComponent } from './components/Admin/analytics/analytics.compo
 import { OfferDetailComponent } from './components/Oferte/offer-detail/offer-detail.component';
 import { ServiceDetailComponent } from './components/Servicii/service-detail/service-detail.component';
 import { ServiceCardComponent } from './components/Servicii/service-card/service-card.component';
+import { LoginComponent } from './components/Admin/login/login.component';
+import { AdminComponent } from './components/Admin/admin/admin.component';
 
 
 @NgModule({
@@ -50,7 +53,9 @@ import { ServiceCardComponent } from './components/Servicii/service-card/service
     AnalyticsComponent,
     OfferDetailComponent,
     ServiceDetailComponent,
-    ServiceCardComponent
+    ServiceCardComponent,
+    LoginComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +66,7 @@ import { ServiceCardComponent } from './components/Servicii/service-card/service
     MatGridListModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
+    AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(()=> initializeApp(environment.firebase)),
     provideFirestore(()=>getFirestore()),

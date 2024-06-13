@@ -12,6 +12,10 @@ import { EditServicesComponent } from './components/Servicii/edit-services/edit-
 import { AnalyticsComponent } from './components/Admin/analytics/analytics.component';
 import { OfferDetailComponent } from './components/Oferte/offer-detail/offer-detail.component';
 import { ServiceDetailComponent } from './components/Servicii/service-detail/service-detail.component';
+import { adminAuthGuard } from './Guard/admin-auth.guard';
+import { AdminComponent } from './components/Admin/admin/admin.component';
+import { LoginComponent } from './components/Admin/login/login.component';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -34,6 +38,15 @@ const routes: Routes = [
  // { path: '', redirectTo: '/services', pathMatch: 'full' },
   // { path: '', redirectTo: '/offers', pathMatch: 'full' },
  // { path: '**', redirectTo: '/offers' },
+ {
+  path: 'admin',
+  component: AdminComponent,
+  canMatch: [adminAuthGuard],
+  canActivate: [adminAuthGuard]
+},
+{ path: 'login', component: LoginComponent },
+{ path: '', redirectTo: '/login', pathMatch: 'full' }
+
 ];
 
 @NgModule({
