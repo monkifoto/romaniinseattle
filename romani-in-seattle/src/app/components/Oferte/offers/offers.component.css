@@ -44,9 +44,6 @@
   text-align: center;
 }
 
-
-
-
 .section-header {
   text-align: center;
   padding: 40px 20px;
@@ -80,57 +77,6 @@
   text-align: right;
   margin: 20px;
 }
-
-/*
-.offers {
-  text-align: center;
-  padding: 20px;
-}
-
-.offer-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.offer-card {
-  background-color: #f8f9fa;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 20px;
-  margin: 10px;
-  width: 300px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.offer-card h3 {
-  margin: 0;
-  font-size: 20px;
-}
-
-.offer-card h4 {
-  margin: 5px 0;
-  font-size: 16px;
-  color: #555;
-}
-
-.offer-card p {
-  margin: 10px 0;
-  color: #777;
-}
-
-.offer-footer {
-  text-align: right;
-  margin-top: 10px;
-}
-
-.featured {
-  color: #007bff;
-  font-weight: bold;
-} */
-
-
-/* src/app/offers/offers.component.css */
 
 .offer-list {
   display: flex;

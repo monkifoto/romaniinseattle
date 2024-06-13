@@ -96,7 +96,8 @@ export class AddServiceComponent implements OnInit {
         Instagram: this.serviceObj.Instagram,
         Description: this.serviceObj.Description,
         Date_Created: this.serviceObj.Date_Created,
-        Image: this.serviceObj.Image
+        Image: this.serviceObj.Image,
+        Approved: false
       };
 
       this.servicesService.addService(serviceJS).subscribe(ser =>{

@@ -1,8 +1,17 @@
-<!-- src/app/admin/admin.component.html -->
-<div>
-  <h2>Admin</h2>
 
-  <a href="" routerLink="analytics" >Analytics</a>
-  <button (click)="logout()">Logout</button>
+<div>
+  <div class="header-container">
+    <div class="title-container"> <h2>Admin Pannel</h2></div>
+    <div class="logout-container"> <button (click)="logout()">Logout</button></div>
+  </div>
+
+  <nav class="nav-pills">
+    <ul>
+      <li><a routerLink="analytics">Analytics</a></li>
+      <li><a routerLink="service-manager">Service Manager</a></li>
+    </ul>
+  </nav>
+  <router-outlet></router-outlet>
+
 </div>
 

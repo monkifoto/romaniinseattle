@@ -11,6 +11,7 @@ export class Service {
   Community_Sponsor!: boolean;
   Date_Created: string ='';
   Image:string='';
+  Approved: boolean = false;
 }
 export class ServiceWithId extends Service{
   id:string ='';

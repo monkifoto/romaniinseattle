@@ -33,6 +33,7 @@ import { ServiceDetailComponent } from './components/Servicii/service-detail/ser
 import { ServiceCardComponent } from './components/Servicii/service-card/service-card.component';
 import { LoginComponent } from './components/Admin/login/login.component';
 import { AdminComponent } from './components/Admin/admin/admin.component';
+import { ManageServicesComponent } from './components/Admin/manage-services/manage-services.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { AdminComponent } from './components/Admin/admin/admin.component';
     ServiceDetailComponent,
     ServiceCardComponent,
     LoginComponent,
-    AdminComponent
+    AdminComponent,
+    ManageServicesComponent
   ],
   imports: [
     BrowserModule,

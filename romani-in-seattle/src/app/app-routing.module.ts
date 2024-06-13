@@ -15,6 +15,7 @@ import { ServiceDetailComponent } from './components/Servicii/service-detail/ser
 import { adminAuthGuard } from './Guard/admin-auth.guard';
 import { AdminComponent } from './components/Admin/admin/admin.component';
 import { LoginComponent } from './components/Admin/login/login.component';
+import { ManageServicesComponent } from './components/Admin/manage-services/manage-services.component';
 
 
 const routes: Routes = [
@@ -42,7 +43,11 @@ const routes: Routes = [
   path: 'admin',
   component: AdminComponent,
   canMatch: [adminAuthGuard],
-  canActivate: [adminAuthGuard]
+  canActivate: [adminAuthGuard],
+  children: [
+    { path: 'analytics', component: AnalyticsComponent },
+    { path: 'service-manager', component: ManageServicesComponent }
+  ]
 },
 { path: 'login', component: LoginComponent },
 { path: '', redirectTo: '/login', pathMatch: 'full' }

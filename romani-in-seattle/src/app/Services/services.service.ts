@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable, map } from 'rxjs';
+import { Observable, from, map, mergeMap } from 'rxjs';
 import { Service, ServiceWithId } from '../Model/service.model';
 import { ServiceType } from '../Model/service-type.model';
 
@@ -11,6 +11,7 @@ import { ServiceType } from '../Model/service-type.model';
 export class ServicesService {
 
   constructor(private firestore: AngularFirestore) { }
+  private servicesCollection = this.firestore.collection('Services');
 
   // getServices(): Observable<Service[]> {
   //   return this.firestore.collection<Service>('Services',ref=>ref.orderBy('Community_Sponsor','desc')).valueChanges();
@@ -82,6 +83,24 @@ export class ServicesService {
     console.log("Update Service: " + id);
     console.log (service);
     return this.firestore.collection('Services').doc(id).update(service);
+  }
+
+  updateAllEntriesWithCurrentDate(): void {
+    const currentDate = new Date().toISOString();
+
+    this.servicesCollection.snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const id = a.payload.doc.id;
+        return { id };
+      })),
+      mergeMap(services => from(services)),
+      mergeMap(service => {
+        return this.firestore.doc(`Services/${service.id}`).update({ Date_Created: currentDate });
+      })
+    ).subscribe({
+      next: () => console.log('Update successful'),
+      error: err => console.error('Update failed', err)
+    });
   }
 }
 

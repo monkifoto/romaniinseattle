@@ -1,0 +1,41 @@
+<div class="admin-container">
+  <h2>Manage Services</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Service Type</th>
+        <th>Phone Number</th>
+        <th>Email</th>
+        <th>Description</th>
+        <th>Website</th>
+        <th>Facebook</th>
+        <th>Instagram</th>
+        <th>Community Sponsor</th>
+        <th>Date Created</th>
+        <th>Approved</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let service of services">
+        <td>{{ service.Name }}</td>
+        <td>{{ service.Service_Type }}</td>
+        <td>{{ service.Phone_Number }}</td>
+        <td>{{ service.Email }}</td>
+        <td>{{ service.Description }}</td>
+        <td>{{ service.Website }}</td>
+        <td>{{ service.Facebook }}</td>
+        <td>{{ service.Instagram }}</td>
+        <td>{{ service.Community_Sponsor }}</td>
+        <td>{{ service.Date_Created }}</td>
+        <td>
+          <input type="checkbox" [checked]="service.Approved" (change)="toggleApproval(service)" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- <div class="update-services-container">
+  <button (click)="updateDateCreated()">Update All Entries with Current Date</button>
+</div> -->
