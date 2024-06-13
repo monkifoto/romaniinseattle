@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ImageUploadService } from 'src/app/Services/image-upload.service';
 import { ServicesService } from 'src/app/Services/services.service';
 
 @Component({
@@ -12,12 +13,14 @@ export class EditServicesComponent implements OnInit {
   serviceForm: FormGroup;
   serviceId: string | null = null;
   serviceTypes: string[] = [];
+  selectedFile: File | null = null;
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private servicesService: ServicesService
+    private servicesService: ServicesService,
+    private imageUploadService: ImageUploadService,
   ) {
     this.serviceForm = this.fb.group({
       Name: ['', Validators.required],
@@ -30,6 +33,10 @@ export class EditServicesComponent implements OnInit {
       Service_Type: ['', Validators.required],
       Image:['']
     });
+  }
+
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0];
   }
 
   ngOnInit(): void {
@@ -60,13 +67,22 @@ export class EditServicesComponent implements OnInit {
 
 
   onSubmit(): void {
+
+    // if (this.selectedFile) {
+    //   this.imageUploadService.uploadImage(this.selectedFile, 'serviceImages').subscribe(downloadURL => {
+    //     this.serviceForm.value.Image = downloadURL;
+    //     console.log(downloadURL);
+
+    //   });
+    // } else {
+    //   this.serviceForm.value.Image =  'https://firebasestorage.googleapis.com/v0/b/romaniinseattle.appspot.com/o/serviceImages%2FdafaultImage.jpg?alt=media&token=3b0787df-12f0-444a-a426-013843534f1e';
+    // }
+
     if (this.serviceForm.valid && this.serviceId) {
-      console.log(this.serviceForm);
       this.serviceForm.value.Facebook = this.serviceForm.value.Facebook || '';
       this.serviceForm.value.Instagram = this.serviceForm.value.Instagram || '';
-      this.serviceForm.value.Image = this.serviceForm.value.Image || 'https://firebasestorage.googleapis.com/v0/b/romaniinseattle.appspot.com/o/serviceImages%2FdafaultImage.jpg?alt=media&token=3b0787df-12f0-444a-a426-013843534f1e';
       this.serviceForm.value.Email = this.serviceForm.value.Email || '';
-
+      this.serviceForm.value.Image =  this.serviceForm.value.Image || 'https://firebasestorage.googleapis.com/v0/b/romaniinseattle.appspot.com/o/serviceImages%2FdafaultImage.jpg?alt=media&token=3b0787df-12f0-444a-a426-013843534f1e';
       this.servicesService.updateService(this.serviceId, this.serviceForm.value).then(() => {
         console.log('Service updated successfully');
         this.router.navigate(['/services']);

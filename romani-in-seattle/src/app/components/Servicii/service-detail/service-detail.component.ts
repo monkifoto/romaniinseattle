@@ -37,8 +37,13 @@ export class ServiceDetailComponent implements OnInit {
           this.service.Service_Type = serviceDBItem.Service_Type;
           this.service.Website = serviceDBItem.Website;
           this.service.Image = serviceDBItem.Image;
-          if(this.serviceId)
-          this.service.id = this.serviceId;
+          if(this.serviceId){
+            this.service.id = this.serviceId;
+          }
+          console.log("Image", serviceDBItem?.Image);
+          if(serviceDBItem.Image == '' || serviceDBItem.Image ===undefined){
+            this.service.Image = 'https://firebasestorage.googleapis.com/v0/b/romaniinseattle.appspot.com/o/serviceImages%2FdafaultImage.jpg?alt=media&token=3b0787df-12f0-444a-a426-013843534f1e'
+          }
         }
 
 
