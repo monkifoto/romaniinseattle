@@ -75,16 +75,16 @@ export class ServicesComponent implements OnInit {
       if (!selectedServiceType|| selectedServiceType ==='') {
       //this.filteredServices = this.services;
       this.servicesService.getServices().subscribe(services => {
-        this.services = services;
-        this.filteredServices = services;
+        this.services = services.filter(ser => ser.Approved);;
+        this.filteredServices = services.filter(ser => ser.Approved);
         // this.extractServiceTypes();
         console.log("Number of Services returned by the Database :  " + this.services.length);
       });
     } else {
       this.servicesService.getServicesByType(selectedServiceType).subscribe(
         fi =>{
-          this.services = fi;
-          this.filteredServices = fi;
+          this.services = fi.filter(ser => ser.Approved);;
+          this.filteredServices = fi.filter(ser => ser.Approved);;
           console.log("Number of Services returned by the Database :  " + this.services.length);
         }
       )
