@@ -11,17 +11,17 @@
 <div class="form-container">
   <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label for="Name">Nume:</label>
+      <label class="required" for="Name">Nume:</label>
       <input id="Name" formControlName="Name" required>
     </div>
 
     <div class="form-group">
-      <label for="Email">Adresa Email:</label>
+      <label class="required" for="Email">Adresa Email:</label>
       <input id="Email" type="Email" formControlName="Email">
     </div>
 
     <div class="form-group">
-      <label for="Phone_Number">Numar de telefon:</label>
+      <label class="required" for="Phone_Number">Numar de telefon:</label>
       <input id="Phone_Number" formControlName="Phone_Number">
     </div>
 
@@ -42,7 +42,7 @@
     </div>
 
     <div class="form-group">
-      <label for="Description">Descriere a serviciile oferite:</label>
+      <label class="required" for="Description">Descriere a serviciile oferite:</label>
       <textarea id="Description" formControlName="Description" ></textarea>
     </div>
 
@@ -55,12 +55,18 @@
     </div>
 
     <div class="form-group">
-      <label for="Service_Type">Categoria de serviciului:</label>
+      <label class="required" for="Service_Type">Categoria de serviciului:</label>
       <select id="Service_Type" formControlName="Service_Type" required>
         <option *ngFor="let type of serviceTypes" [value]="type">{{ type }}</option>
       </select>
     </div>
 
     <button type="submit" [disabled]="serviceForm.invalid">Salvati Serviciu</button>
+    <div style="display: none;">
+      <div><label for="Approved">Approved:</label>
+        <input id="Approved" formControlName="Approved" >
+      </div>
+
+    </div>
   </form>
 </div>

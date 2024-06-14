@@ -36,7 +36,8 @@ export class EditServicesComponent implements OnInit {
       Service_Type: ['', Validators.required],
       Image:[''],
       Date_Created:[''],
-      Date_Updated:['']
+      Date_Updated:[''],
+      Approved:['']
     });
   }
 
@@ -60,7 +61,8 @@ export class EditServicesComponent implements OnInit {
         Description: service?.Description,
         //Image: service?.Image,
         Date_Created: service?.Date_Created,
-        Date_Updated: service?.Date_Updated
+        Date_Updated: service?.Date_Updated,
+        Approved: service?.Approved
       });
       if(service?.Image){
         this.oldImage = service?.Image;
@@ -94,6 +96,7 @@ export class EditServicesComponent implements OnInit {
       this.serviceObj.Description= this.serviceForm.value.Description;
       this.serviceObj.Date_Created= this.serviceForm.value.Date_Created;
       this.serviceObj.Date_Updated= this.serviceForm.value.Date_Updated;
+      this.serviceObj.Approved = this.serviceForm.value.Approved;
       this.serviceObj.Image= this.serviceForm.value.Image;
       if (this.selectedFile) {
         console.log(this.selectedFile);

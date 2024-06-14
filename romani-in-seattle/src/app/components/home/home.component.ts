@@ -3,25 +3,25 @@ import { Router } from '@angular/router';
 import { OffersWithId } from 'src/app/Model/offers.model';
 import { EventsService } from 'src/app/Services/events.service';
 import { OffersService } from 'src/app/Services/offers.service';
-// import { Event } from 'src/app/Model/event.model';
+import { Event } from 'src/app/Model/event.model';
 interface ResourceLink {
   name: string;
   url: string;
 }
 
-interface Event {
-  Name: string;
-  Approved: boolean;
-  Contact: string;
-  Event_date: Date;
-  Location: string;
-  Phone_Number: string;
-  Poster_Image:string;
-  Price:string;
-  Website:string;
-  Community_Sponsor: boolean;
-  Description: string;
-}
+// interface Event {
+//   Name: string;
+//   Approved: boolean;
+//   Contact: string;
+//   Event_date: Date;
+//   Location: string;
+//   Phone_Number: string;
+//   Poster_Image:string;
+//   Price:string;
+//   Website:string;
+//   Community_Sponsor: boolean;
+//   Description: string;
+// }
 
 @Component({
   selector: 'app-home',
@@ -32,8 +32,10 @@ export class HomeComponent implements OnInit  {
 
   resourceLinks: ResourceLink[] = [
     { name: 'Ambasada Romaniei in SUA', url: 'https://washington.mae.ro/' },
+    { name: 'Ambasada SUA in Romania', url: 'https://ro.usembassy.gov/' },
     { name: 'American Romanian Cultural Society', url: 'www.arcsproject.org' },
-    { name: 'Biserica Sfintii Trei Ierarhi', url: 'http://www.ortodox.org/'}
+    { name: 'Biserica Sfintii Trei Ierarhi', url: 'http://www.ortodox.org/'},
+    { name: 'Romanian United Foundation', url: 'https://www.romanianunitedfund.org/'}
   ];
 
   events: Event[] = [];

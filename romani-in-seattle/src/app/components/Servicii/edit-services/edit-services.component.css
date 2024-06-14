@@ -121,3 +121,10 @@ button:focus, select:focus {
   object-fit: cover;
   border: 2px solid #ddd;
 }
+
+
+.form-group label.required::after {
+  content: " *";
+  color: red;
+  margin-left: 5px;
+}

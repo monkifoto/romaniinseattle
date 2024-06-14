@@ -1,0 +1,40 @@
+<!-- src/app/admin/event-manager/event-manager.component.html -->
+<div class="event-management-container">
+  <h2>Manage Events</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Location</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Organizer</th>
+        <th>Website</th>
+        <th>Facebook</th>
+        <th>Instagram</th>
+        <th>Approved</th>
+        <th>Date Created</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let event of events">
+        <td>{{ event.Name }}</td>
+        <td>{{ event.Description }}</td>
+        <td>{{ event.Location }}</td>
+        <td>{{ event.Date }}</td>
+        <td>{{ event.Time }}</td>
+        <td>{{ event.Contact }}</td>
+        <td><a [href]="event.Website" target="_blank">{{ event.Website }}</a></td>
+        <td><a [href]="event.Facebook" target="_blank">{{ event.Facebook }}</a></td>
+        <td><a [href]="event.Instagram" target="_blank">{{ event.Instagram }}</a></td>
+        <td>
+          <input type="checkbox" [(ngModel)]="event.Approved" (change)="toggleApproval(event)" />
+        </td>
+        <td>{{ event.Date_Created }}</td>
+        <td><!-- Actions if any --></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

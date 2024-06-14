@@ -17,6 +17,7 @@ import { AdminComponent } from './components/Admin/admin/admin.component';
 import { LoginComponent } from './components/Admin/login/login.component';
 import { ServicesManagementComponent } from './components/Admin/manage-services/manage-services.component';
 import { OfferManagementComponent } from './components/Admin/offer-management/offer-management.component';
+import { EventManagementComponent } from './components/Admin/event-management/event-management.component';
 
 
 const routes: Routes = [
@@ -48,7 +49,8 @@ const routes: Routes = [
   children: [
     { path: 'analytics', component: AnalyticsComponent },
     { path: 'service-manager', component: ServicesManagementComponent },
-    { path: 'offer-management', component: OfferManagementComponent }
+    { path: 'offer-management', component: OfferManagementComponent },
+    { path: 'event-management', component: EventManagementComponent }
   ]
 },
 { path: 'login', component: LoginComponent },

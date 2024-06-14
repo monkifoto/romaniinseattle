@@ -35,6 +35,7 @@ import { LoginComponent } from './components/Admin/login/login.component';
 import { AdminComponent } from './components/Admin/admin/admin.component';
 import { ServicesManagementComponent } from './components/Admin/manage-services/manage-services.component';
 import { OfferManagementComponent } from './components/Admin/offer-management/offer-management.component';
+import { EventManagementComponent } from './components/Admin/event-management/event-management.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { OfferManagementComponent } from './components/Admin/offer-management/of
     LoginComponent,
     AdminComponent,
     ServicesManagementComponent,
-    OfferManagementComponent
+    OfferManagementComponent,
+    EventManagementComponent
   ],
   imports: [
     BrowserModule,
