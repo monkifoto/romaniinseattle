@@ -12,11 +12,14 @@
 
 <nav class="navbar">
   <div class="navbar-container">
-    <div class="navbar-logo">
+    <div class="logo">
       <a routerLink="/">Romani in Seattle</a>
     </div>
     <div class="menu-icon" (click)="toggleMenu()">
-      <i class="fa" [ngClass]="{'fa-bars': !menuOpen, 'fa-times': menuOpen}"></i>
+      <!-- <i class="fa" [ngClass]="{'fa-bars': !menuOpen, 'fa-times': menuOpen}"></i> -->
+      <div class="bar1" [ngClass]="{'open-bar1': menuOpen}"></div>
+      <div class="bar2" [ngClass]="{'open-bar2': menuOpen}"></div>
+      <div class="bar3" [ngClass]="{'open-bar3': menuOpen}"></div>
     </div>
     <ul class="nav-menu" [ngClass]="{'active': menuOpen}">
       <li class="nav-item">

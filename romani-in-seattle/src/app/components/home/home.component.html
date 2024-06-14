@@ -4,12 +4,16 @@
       <h1>Bine ati venit in comunitatea <a href="https://www.facebook.com/groups/RomaniinSeattle">Romani in Seattle</a></h1>
     </div>
   </div>
-  <p>
+  <div class="button-container">
+    <a href="https://www.facebook.com/groups/RomaniinSeattle" class="fb-button" target="_blank">
+      <i class="fab fa-facebook"></i> Join Romani in Seattle Group
+    </a>
+  </div>
     <div class = "community-descriptions">
       <div class="description-card-group">
         <h2>Discutii si evenimente pentru persoanele care locuiesc in zona Seattle.</h2>
         <p> Bun venit în grupul românilor din Seattle!
-          Comunitatea noastra se bazeaza în primul rând pe respectul reciproc. Pentru armonia grupului si buna desfasurarea a activitatilor, va rugam sa respectati conduita recomandata.</p>
+          Scopul al acestui website este de a beneficia Romani în Seattle, prin schimbul de informații utile si in același timp promovând Companiile Romanești din zona Seattle la  Comunitatea Romaneasca de aici. Acesta  a început pe facebook prin grupul "Romani în Seattle”  care acum conține peste 3700 de membri.</p>
       </div>
     </div>
     <div class="community-descriptions">
@@ -22,7 +26,7 @@
         <p>Sprijiniți-ne afacerile locale și descoperiți produse și servicii unice oferite de membrii comunității.</p>
       </div>
       <div class="description-card">
-        <h2>Oportunități</h2>
+        <h2>Oportunități si Oferte</h2>
         <p>Implicați-vă și faceți o diferență prin voluntariat pentru diverse proiecte și inițiative comunitare.</p>
       </div>
       <div class="description-card">
@@ -30,62 +34,24 @@
         <p>Accesați resurse și servicii valoroase oferite de comunitate atât pentru rezidenți, cât și pentru vizitatori.</p>
       </div>
     </div>
-<h1>Evenimente</h1>
-    <div class="services-container">
-      <div class="service-card" *ngFor="let event of events">
-        <div class="card-header">
-          <div class="card-title">{{ event.Name }}</div>
-          <div class="card-image"><img src='{{ event.Poster_Image}}'></div>
-          <div class="card-subtitle">{{ event.Location}}</div>
-          <div class="card-subtitle">{{ event.Date}}</div>
-          <div class="card-subtitle">{{ event.Price}}</div>
-          <div class="card-subtitle">{{ event.Phone_Number}}</div>
-          <div class="card-subtitle"><a href='mailto:{{ event.Contact }}'>{{ event.Contact }}</a></div>
-          <div class="card-subtitle"><a href='{{ event.Website }}'>{{ event.Website }}</a></div>
-          <div class="card-subtitle">{{ event.Description }}</div>
-        </div>
-        <div class="card-footer" *ngIf="event.Community_Sponsor">
-          <span class="sponsor-text">Sponsor al Comunitatii</span>
-          <span class="sponsor-icon">★</span>
-        </div>
+
+    <div class="sharedContent-Section ">
+      <h1>Evenimente</h1>
+      <div class="services-container">
+        <app-event-card *ngFor="let event of events" [event]="event"></app-event-card>
       </div>
+
     </div>
 
-    <h1>Oferte</h1>
+    <div class="sharedContent-Section ">
+    <h1>Oportunități si Oferte</h1>
 
     <div class="offer-list">
       <app-offer-card *ngFor="let offer of offers" [offer]="offer"></app-offer-card>
     </div>
-
-    <!-- <div class="offers">
-      <div class="services-container">
-        <div *ngFor="let offer of offers" class="offers-card">
-          <div class="offers-card-image">
-            <img src="http://source.unsplash.com/800x600/?Caregiver" alt="{{ offer.Title }}">
-          </div>
-          <div class="offers-card-content">
-            <h3>{{ offer.Title }}</h3>
-            <h4>{{ offer.Company_Name }}</h4>
-            <p>{{ offer.Contact_Name }}</p>
-            <hr>
-            <p>{{ offer.Location }}</p>
-            <p>{{ offer.Phone_Number }}</p>
-            <p>{{ offer.Email }}</p>
-            <p>{{ offer.Website }}</p>
-            <p>{{ offer.Description }}</p>
-            <p>{{ offer.Image1 }}</p>
-            <p>{{ offer.Image2 }}</p>
-            <p>{{ offer.Image3 }}</p>
-            <p>{{ offer.Image4 }}</p>
-            <p>{{ offer.Image5 }}</p>
-            <div class="offers-footer" *ngIf="offer.Filled">
-              <span class="featured">Expired</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
+    </div>
+    <div class="sharedContent-Section ">
+    <h1>Resurse</h1>
 <section class="resource-consulate">
   <div class="community-descriptions">
     <div class="description-card">
@@ -114,7 +80,7 @@
     </div>
   </div>
 </section>
-
+  </div>
     <section class="resources-section">
       <h2 class="section-header">Resurse utile pentru comunitate</h2>
       <ul class="resource-list">

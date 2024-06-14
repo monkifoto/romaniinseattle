@@ -8,6 +8,7 @@
   height: 800px;
   /* border: solid 1px black; */
   position: relative;
+  background-color: #FAFAFA;
 }
 
 .offer-card:hover {

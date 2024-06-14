@@ -8,7 +8,7 @@ export class Event {
 
   Description: string ='';
   Location:string ='';
-  Date:string ='';
+  Event_Date:string ='';
   Time: string =''
   Price:string ='';
 

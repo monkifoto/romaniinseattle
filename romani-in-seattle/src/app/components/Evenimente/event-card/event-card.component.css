@@ -1,0 +1,159 @@
+/* src/app/shared/event-card/event-card.component.css */
+.event-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  background-color: #FAFAFA;
+}
+
+.event-image img {
+  width: 100%;
+  height: auto;
+}
+
+.event-details {
+  padding: 16px;
+}
+
+.event-details h3 {
+  margin-top: 0;
+}
+
+.event-details p {
+  margin: 4px 0;
+}
+
+.event-details a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.event-details a:hover {
+  text-decoration: underline;
+}
+
+
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  padding: 40px;
+  width: calc(25% - 32px);
+  box-sizing: border-box;
+  position: relative;
+  min-width: 400px;
+}
+
+.card-header {
+  text-align: center;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.card-subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-top: 4px;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: gold;
+}
+
+.card-image img{
+  max-width: 300px;
+}
+
+.services-filter {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ margin: 30px;
+ padding: 30px;
+}
+
+.services-filter label {
+  margin-right: 10px;
+}
+
+.services-filter select {
+  padding: 5px;
+  font-size: 1rem;
+}
+
+
+.sponsor-icon {
+  font-size: 1.5rem;
+  margin-right: 4px;
+}
+
+.sponsor-text {
+  font-size: 1rem;
+  color: gold;
+}
+
+
+.add-service-container {
+  text-align: right;
+  margin: 20px;
+}
+
+
+
+@media (max-width: 1024px) {
+  .service-card {
+    width: calc(50% - 32px);
+    min-width: 350px;
+  }
+}
+
+@media (max-width: 600px) {
+  .service-card {
+    width: calc(90% - 100px);
+    min-width: 350px;
+  }
+
+  .services-control  {
+    flex-direction: column;
+}
+
+  @media screen and (max-width: 960px) {
+    .service-card {
+      width: calc(90% - 100px);
+      min-width: 350px;
+    }
+
+    .hero-overlay h1 {
+      color: white;
+      font-size: 2.5rem;
+      text-align: center;
+    }
+
+    .overlay_subtitle h2 {
+      color: white;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+  }
+}
+

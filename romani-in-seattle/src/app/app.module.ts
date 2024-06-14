@@ -36,6 +36,7 @@ import { AdminComponent } from './components/Admin/admin/admin.component';
 import { ServicesManagementComponent } from './components/Admin/manage-services/manage-services.component';
 import { OfferManagementComponent } from './components/Admin/offer-management/offer-management.component';
 import { EventManagementComponent } from './components/Admin/event-management/event-management.component';
+import { EventCardComponent } from './components/Evenimente/event-card/event-card.component';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { EventManagementComponent } from './components/Admin/event-management/ev
     AdminComponent,
     ServicesManagementComponent,
     OfferManagementComponent,
-    EventManagementComponent
+    EventManagementComponent,
+    EventCardComponent
   ],
   imports: [
     BrowserModule,

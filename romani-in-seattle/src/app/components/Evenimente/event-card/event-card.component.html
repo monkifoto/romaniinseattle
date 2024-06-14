@@ -1,0 +1,21 @@
+
+<div class="event-card">
+  <div class="event-image" *ngIf="event.Poster_Image">
+    <img [src]="event.Poster_Image" alt="{{ event.Name }}">
+  </div>
+  <div class="event-details">
+    <div class="card-title">{{ event.Name }}</div>
+    <p><strong>Location:</strong> {{ event.Location }}</p>
+    <p><strong>Date:</strong> {{ event.Event_Date | date:'longDate' }}</p>
+    <p><strong>Time:</strong> {{ event.Time }}</p>
+    <p><strong>Price:</strong> {{ event.Price }}</p>
+    <p><strong>Contact:</strong> {{ event.Contact }} - {{ event.Phone_Number }}</p>
+    <p><strong>Website:</strong> <a [href]="event.Website" target="_blank">{{ event.Website }}</a></p>
+    <p><strong>Facebook:</strong> <a [href]="event.Facebook" target="_blank">{{ event.Facebook }}</a></p>
+    <p><strong>Instagram:</strong> <a [href]="event.Instagram" target="_blank">{{ event.Instagram }}</a></p>
+    <div class="card-subtitle">{{ event.Description }}</div>
+    <div class="card-expired" *ngIf="event.Expired">
+      <span class="">Event Expired</span>
+    </div>
+  </div>
+</div>

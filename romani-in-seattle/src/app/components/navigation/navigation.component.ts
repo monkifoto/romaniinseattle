@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
 export class NavigationComponent {
   menuOpen: boolean = false;
 
+
+
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }

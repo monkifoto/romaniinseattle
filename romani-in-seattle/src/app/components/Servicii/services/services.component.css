@@ -69,6 +69,7 @@
   justify-content: center;
   gap: 16px;
   padding: 20px;
+  flex-wrap: wrap;
 }
 
 .services-control {
@@ -77,6 +78,7 @@
  align-items: center;
  margin: 20px;
  padding: 20px;
+ flex-wrap: wrap;
 }
 
 .service-control-container{

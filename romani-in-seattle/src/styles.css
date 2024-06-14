@@ -6,13 +6,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@100..900&display=swap');
 
 
+:root{
+  --primary-color: #C8E4FF;
+  --secondary-color: #FFF9D0;
+  --accent-color: #FFB4B4;
+  --background-color: #ecf0f1;
+  --text-color: #2c3e50;
+  --button-color:#065A82;
+  --nav-background-color: white;
+  --nav-text-color: black;
+  --nav-active-background: black;
+  --nav-active-text: white;
+}
 
-
+.blue{
+  background-color: var(--primary-color);
+}
+.yellow{
+  background-color: var(--secondary-color);
+}
+.red{
+  background-color: var(--accent-color);
+}
 
 body {
   margin: 0;
    font-family: Roboto, "Helvetica Neue", sans-serif;
    margin-bottom: 150px;
+   color: var(--text-color);
+   background-color: var(--background-color);
   }
 
   h1{
@@ -40,7 +62,7 @@ body {
 
 
 button, select {
-  background-color: #007bff; /* Primary button color */
+  background-color: var(--button-color);
   color: white;
   border: none;
   padding: 10px 20px;
