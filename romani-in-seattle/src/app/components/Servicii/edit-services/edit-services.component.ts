@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ServiceWithId } from 'src/app/Model/service.model';
 import { ImageUploadService } from 'src/app/Services/image-upload.service';
 import { ServicesService } from 'src/app/Services/services.service';
 
@@ -14,6 +15,8 @@ export class EditServicesComponent implements OnInit {
   serviceId: string | null = null;
   serviceTypes: string[] = [];
   selectedFile: File | null = null;
+  serviceObj: ServiceWithId = new ServiceWithId();
+  oldImage: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -31,7 +34,9 @@ export class EditServicesComponent implements OnInit {
       Instagram: [''],
       Description: ['', Validators.required],
       Service_Type: ['', Validators.required],
-      Image:['']
+      Image:[''],
+      Date_Created:[''],
+      Date_Updated:['']
     });
   }
 
@@ -43,6 +48,7 @@ export class EditServicesComponent implements OnInit {
     this.serviceId = this.route.snapshot.paramMap.get('id')!;
     this.servicesService.getServiceById(this.serviceId).subscribe(service => {
       this.serviceForm.patchValue({
+        Id : this.serviceId,
         Name: service?.Name,
         // Email: service?.Email? '' : service?.Email,
         Email: service?.Email,
@@ -52,9 +58,14 @@ export class EditServicesComponent implements OnInit {
         Facebook: service?.Facebook,
         Instagram: service?.Instagram,
         Description: service?.Description,
-        Image: service?.Image
-
+        //Image: service?.Image,
+        Date_Created: service?.Date_Created,
+        Date_Updated: service?.Date_Updated
       });
+      if(service?.Image){
+        this.oldImage = service?.Image;
+      }
+
     });
 
     this.fetchServiceTypes();
@@ -69,27 +80,63 @@ export class EditServicesComponent implements OnInit {
 
   onSubmit(): void {
 
-    // if (this.selectedFile) {
-    //   this.imageUploadService.uploadImage(this.selectedFile, 'serviceImages').subscribe(downloadURL => {
-    //     this.serviceForm.value.Image = downloadURL;
-    //     console.log(downloadURL);
+    if (this.serviceForm.valid) {
 
-    //   });
-    // } else {
-    //   this.serviceForm.value.Image =  'https://firebasestorage.googleapis.com/v0/b/romaniinseattle.appspot.com/o/serviceImages%2FdafaultImage.jpg?alt=media&token=3b0787df-12f0-444a-a426-013843534f1e';
-    // }
-
-    if (this.serviceForm.valid && this.serviceId) {
-      this.serviceForm.value.Facebook = this.serviceForm.value.Facebook || '';
-      this.serviceForm.value.Instagram = this.serviceForm.value.Instagram || '';
-      this.serviceForm.value.Email = this.serviceForm.value.Email || '';
-      this.serviceForm.value.Image =  this.serviceForm.value.Image || 'https://firebasestorage.googleapis.com/v0/b/romaniinseattle.appspot.com/o/serviceImages%2FdafaultImage.jpg?alt=media&token=3b0787df-12f0-444a-a426-013843534f1e';
-      this.servicesService.updateService(this.serviceId, this.serviceForm.value).then(() => {
-        console.log('Service updated successfully');
-        this.router.navigate(['/services']);
-      }).catch(error => {
-        console.error('Error updating service: ', error);
-      });
+      this.serviceObj.id = this.serviceId? this.serviceId : '0';
+      this.serviceObj.Name = this.serviceForm.value.Name;
+      this.serviceObj.Phone_Number= this.serviceForm.value.Phone_Number;
+      this.serviceObj.Service_Type= this.serviceForm.value.Service_Type;
+      this.serviceObj.Community_Sponsor= false;
+      this.serviceObj.Email= this.serviceForm.value.Email;
+      this.serviceObj.Website= this.serviceForm.value.Website;
+      this.serviceObj.Facebook= this.serviceForm.value.Facebook;
+      this.serviceObj.Instagram= this.serviceForm.value.Instagram;
+      this.serviceObj.Description= this.serviceForm.value.Description;
+      this.serviceObj.Date_Created= this.serviceForm.value.Date_Created;
+      this.serviceObj.Date_Updated= this.serviceForm.value.Date_Updated;
+      this.serviceObj.Image= this.serviceForm.value.Image;
+      if (this.selectedFile) {
+        console.log(this.selectedFile);
+        this.imageUploadService.uploadImage(this.selectedFile, 'serviceImages').subscribe(downloadURL => {
+          this.serviceObj.Image = downloadURL;
+          this.saveService();
+        });
+      } else {
+        if(this.oldImage){
+          this.serviceObj.Image = this.oldImage;
+        }
+        this.saveService();
+      }
     }
+
+  }
+
+  private saveService(): void {
+
+     const serviceJS = {
+        id: this.serviceObj.id,
+        Name: this.serviceObj.Name,
+        Phone_Number: this.serviceObj.Phone_Number,
+        Service_Type: this.serviceObj.Service_Type,
+        Community_Sponsor: false,
+        Email: this.serviceObj.Email,
+        Website: this.serviceObj.Website,
+        Facebook: this.serviceObj.Facebook,
+        Instagram: this.serviceObj.Instagram,
+        Description: this.serviceObj.Description,
+        Date_Created: this.serviceObj.Date_Created,
+        Date_Updated: new Date().getDate.toString(),
+        Image: this.serviceObj.Image,
+        Approved: false,
+        OpenHour: '',
+        CloseHour:''
+      };
+  console.log(serviceJS);
+  let id = this.route.snapshot.paramMap.get('id')!;
+      this.servicesService.updateService(id, serviceJS).subscribe(ser =>{
+        console.log('Service updated successfully  ID:', ser?.id);
+        this.serviceForm.reset();
+        this.router.navigate(['/services', ser?.id]);
+      })
   }
 }

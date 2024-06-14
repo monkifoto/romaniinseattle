@@ -18,12 +18,12 @@
     </div>
 
     <div class="form-group">
-      <label for="Email">Adresa Email:</label>
+      <label  class="required" for="Email">Adresa Email:</label>
       <input id="Email" type="Email" formControlName="Email">
     </div>
 
     <div class="form-group">
-      <label for="Phone_Number">Numar de telefon:</label>
+      <label  for="Phone_Number">Numar de telefon:</label>
       <input id="Phone_Number" formControlName="Phone_Number">
     </div>
 
@@ -43,7 +43,7 @@
     </div>
 
     <div class="form-group">
-      <label for="Description">Descriere a serviciile oferite:</label>
+      <label  class="required" for="Description">Descriere a serviciile oferite:</label>
       <textarea id="Description" formControlName="Description" ></textarea>
     </div>
 
@@ -56,7 +56,8 @@
     </div>
 
     <div class="form-group">
-      <label  for="Image">Categoria de serviciului:</label>
+      <label for="Image">Imagine:</label>
+      <!-- <input id="Image" formControlName="Image" > -->
       <input type="file" formControlName="Image" (change)="onFileSelected($event)">
     </div>
 

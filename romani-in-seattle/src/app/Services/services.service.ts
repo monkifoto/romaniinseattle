@@ -64,10 +64,15 @@ export class ServicesService {
     );
   }
 
-  updateService(id: string, service: Service): Promise<void> {
-    console.log("Update Service: " + id);
-    console.log (service);
-    return this.firestore.collection('Services').doc(id).update(service);
+  updateService(id: string, service: Service):Observable<ServiceWithId | undefined> {
+    console.log('update', id)
+    service.Date_Updated = new Date().toISOString();
+    this.firestore.collection('Services').doc(id).update(service);
+   // console.log("Update Service: " + id);
+    //console.log (service);
+    return this.firestore.doc<Service>(`Services/${id}`).valueChanges().pipe(
+      map(service => service ? { id, ...service } : undefined)
+    );
   }
 
   // updateAllEntriesWithCurrentDate(): void {

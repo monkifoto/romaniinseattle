@@ -95,9 +95,12 @@ export class AddServiceComponent implements OnInit {
         Facebook: this.serviceObj.Facebook,
         Instagram: this.serviceObj.Instagram,
         Description: this.serviceObj.Description,
-        Date_Created: this.serviceObj.Date_Created,
+        Date_Created: new Date().getDate.toString(),
+        Date_Updated: new Date().getDate.toString(),
         Image: this.serviceObj.Image,
-        Approved: false
+        Approved: false,
+        OpenHour: '',
+        CloseHour:''
       };
 
       this.servicesService.addService(serviceJS).subscribe(ser =>{

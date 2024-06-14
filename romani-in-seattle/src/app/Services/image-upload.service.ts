@@ -14,6 +14,10 @@ export class ImageUploadService {
     const storageRef = this.storage.ref(filePath);
     const uploadTask = this.storage.upload(filePath, file);
 
+    // console.log(filePath);
+    // console.log(storageRef);
+    // console.log(uploadTask);
+
     return new Observable<string>((observer) => {
       uploadTask.snapshotChanges().pipe(
         finalize(() => {

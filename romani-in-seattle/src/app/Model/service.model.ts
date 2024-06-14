@@ -12,8 +12,11 @@ export class Service {
   Instagram: string='';
   Community_Sponsor!: boolean;
   Date_Created: string ='';
+  Date_Updated: string='';
   Image:string='';
   Approved: boolean = false;
+  OpenHour: string ='';
+  CloseHour: string = ''
 
 }
 export interface ServiceExt extends ServiceWithId {
