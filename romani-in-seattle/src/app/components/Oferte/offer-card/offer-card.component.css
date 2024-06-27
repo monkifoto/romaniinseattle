@@ -1,10 +1,11 @@
 .offer-card {
-  border: 1px solid #ddd;
+  background-color: #FAFAFA;
+  width: 400px;
+  min-height: 550px;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s;
-  max-width: 400px;
   height: 800px;
   /* border: solid 1px black; */
   position: relative;

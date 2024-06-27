@@ -3,41 +3,41 @@
 <div class="form-container">
   <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label class="required" for="Name">Event Name:</label>
+      <label class="required" for="Name">Titlu:</label>
       <input id="Name" formControlName="Name" required>
     </div>
     <div class="form-group">
-      <label for="Contact">Contatct Name:</label>
+      <label for="Contact">Persoana de contact:</label>
       <input id="Contact" formControlName="Contact" required>
     </div>
 
     <div class="form-group">
-      <label class="required" for="Poster_Image">Poster Image:</label>
+      <label class="required" for="Poster_Image">Imagine poster:</label>
       <input id="Poster_Image" formControlName="Poster_Image" required>
     </div>
 
     <div class="form-group">
-      <label for="Phone_Number">Phone Number:</label>
+      <label for="Phone_Number">Numar de Telefon:</label>
       <input id="Phone_Number" formControlName="Phone_Number" >
     </div>
 
 
     <div class="form-group">
-      <label class="required" for="Event_date">Date:</label>
+      <label class="required" for="Event_date">Data Evenimentului:</label>
       <input id="Event_date" type="date" formControlName="Event_date" required>
     </div>
 
     <div class="form-group">
-      <label class="required" for="Location">Location:</label>
+      <label class="required" for="Location">Locatie:</label>
       <input id="Location" formControlName="Location" required>
     </div>
 
     <div class="form-group">
-      <label class="required" for="Description">Description:</label>
+      <label class="required" for="Description">Descriere:</label>
       <textarea id="Description" formControlName="Description" required></textarea>
     </div>
     <div class="form-group">
-      <label class="required" for="Price">Price:</label>
+      <label class="required" for="Price">Pret:</label>
       <input id="Price" formControlName="Price" required>
     </div>
     <div class="form-group">
@@ -45,6 +45,6 @@
       <input id="Website" formControlName="Website" >
     </div>
 
-    <button type="submit" [disabled]="eventForm.invalid">Add Event</button>
+    <button type="submit" [disabled]="eventForm.invalid">Adauga Eveniment</button>
   </form>
 </div>

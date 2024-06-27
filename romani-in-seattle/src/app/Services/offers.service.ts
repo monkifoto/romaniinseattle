@@ -13,7 +13,7 @@ export class OffersService {
   constructor(private firestore: AngularFirestore) { }
 
 
-  getOffers(): Observable<Offers[]> {
+  getAllOffers(): Observable<Offers[]> {
     return this.firestore.collection('Offers',ref=>ref.orderBy('Community_Sponsor','desc')).snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Offers;
@@ -23,15 +23,27 @@ export class OffersService {
     );
   }
 
-  getOffersWithId(): Observable<Offers[]> {
-    return this.firestore.collection<Offers>('Offers',ref=>ref.orderBy('Community_Sponsor','desc')).snapshotChanges().pipe(
+  getOffers(): Observable<Offers[]> {
+    return this.firestore.collection('Offers',ref=>ref.orderBy('Community_Sponsor','desc')).snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Offers;
         const id = a.payload.doc.id;
         return { id, ...data };
       }))
-    );
+    ).pipe(map(ser => ser.filter(se => se.Approved == true)));
   }
+
+
+
+  // getOffersWithId(): Observable<Offers[]> {
+  //   return this.firestore.collection<Offers>('Offers',ref=>ref.orderBy('Community_Sponsor','desc')).snapshotChanges().pipe(
+  //     map(actions => actions.map(a => {
+  //       const data = a.payload.doc.data() as Offers;
+  //       const id = a.payload.doc.id;
+  //       return { id, ...data };
+  //     }))
+  //   );
+  // }
 
   addOffer(offer: Offers): Promise<void> {
     offer.id = this.firestore.createId();

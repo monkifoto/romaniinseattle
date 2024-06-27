@@ -69,7 +69,6 @@
   justify-content: center;
   gap: 16px;
   padding: 20px;
-  flex-wrap: wrap;
 }
 
 .services-control {
@@ -87,6 +86,7 @@
   align-items: center;
   margin: 5px;
   padding: 5px;
+
 
 }
 
@@ -115,4 +115,34 @@ label{
   font-size: 16px;
   text-transform: uppercase; /* Transform text to uppercase */
   cursor: pointer;
+}
+
+@media (max-width: 480px) {
+
+  .services-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns per row */
+    gap: 1rem;
+    padding: 1rem;
+
+    /* max-width: 450px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1px;
+    padding: 0px;
+    background-color: red; */
+  }
+
+  .hero-overlay h1 {
+    color: white;
+    font-size: 3rem;
+    text-align: center;
+  }
+  .overlay_subtitle h2 {
+    color: white;
+    font-size: 1rem;
+    text-align: center;
+  }
 }

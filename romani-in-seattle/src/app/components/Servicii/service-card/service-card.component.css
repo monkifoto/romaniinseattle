@@ -16,6 +16,7 @@
 .service-card-image-container {
   display: flex;
   justify-content: center;
+  padding-top: 5px;
 }
 
 .service-card-image {
@@ -105,17 +106,82 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   .service-card {
-    width: calc(90% - 100px);
-    min-width: 350px;
+    width: calc(50% - 100px);
+    min-width: 175px;
+    margin: 2px;
+    padding: 2px;
+    min-height: 150px;
+    min-height: 330px;
   }
+
+  .card-title{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: bold;
+  font-size: .9rem;
+  font-weight: normal;
+  color: #333;
+  line-height: 1;
+  padding: 0;
+  margin: 0;
+  }
+
+  .card-subtitle {
+    font-family: "Catamaran", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 100;
+      font-style: normal;
+
+    color: #666;
+    margin-top: 1px;
+  }
+  .card-description{
+    display: none;
+  }
+
+  .service_type{
+    text-transform: uppercase;
+    padding:  0;
+    font-size: .5rem;
+  }
+  .card-button{
+
+  }
+  .contact_info{
+
+  }
+
+  .card-footer{
+    display: none;
+  }
+  .social-icons {
+    display: flex;
+    justify-content: space-around;
+    width: 175px;
+  }
+
+  .service-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: #666;
+    font-size: .6rem;
+  }
+
+
 
   .services-control  {
     flex-direction: column;
 }
 
-  @media screen and (max-width: 960px) {
+  @media screen and (max-width: 960px) and(min-width:480px) {
     .service-card {
       width: calc(90% - 100px);
       min-width: 350px;
@@ -134,6 +200,25 @@
     }
   }
 }
+/*
+@media (min-width: 400px )  and(max-width:600px){
+  .services-container {
+    grid-template-columns: repeat(4, 1fr);
+    background-color: red;
+  }
+
+  .hero-overlay h1 {
+    color: white;
+    font-size: 3rem;
+    text-align: center;
+  }
+  .overlay_subtitle h2 {
+    color: white;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+} */
 
 
 

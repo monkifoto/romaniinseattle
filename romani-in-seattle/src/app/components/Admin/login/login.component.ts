@@ -1,5 +1,6 @@
 // src/app/login/login.component.ts
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
@@ -10,10 +11,31 @@ import { AuthService } from 'src/app/Services/auth.service';
 export class LoginComponent {
   email: string = '';
   password: string = '';
+  errorMessage: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
-  login() {
-    this.authService.login(this.email, this.password);
+
+  login(): void {
+     this.authService.login(this.email, this.password).subscribe({
+      next: () => this.router.navigate(['/admin/']),
+      error: (error: any) => this.handleLoginError(error)
+    });
+  }
+
+  handleLoginError(error: any): void {
+    switch (error.code) {
+      case 'auth/user-not-found':
+        this.errorMessage = 'No user found with this email.';
+        break;
+      case 'auth/wrong-password':
+        this.errorMessage = 'Incorrect password.';
+        break;
+      case 'auth/invalid-email':
+        this.errorMessage = 'Invalid email format.';
+        break;
+      default:
+        this.errorMessage = 'Login failed. Please try again.';
+    }
   }
 }

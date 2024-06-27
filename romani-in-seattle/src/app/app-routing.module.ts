@@ -13,11 +13,12 @@ import { AnalyticsComponent } from './components/Admin/analytics/analytics.compo
 import { OfferDetailComponent } from './components/Oferte/offer-detail/offer-detail.component';
 import { ServiceDetailComponent } from './components/Servicii/service-detail/service-detail.component';
 import { adminAuthGuard } from './Guard/admin-auth.guard';
-import { AdminComponent } from './components/Admin/admin/admin.component';
+// import { AdminComponent } from './components/Admin/admin/admin.component';
 import { LoginComponent } from './components/Admin/login/login.component';
 import { ServicesManagementComponent } from './components/Admin/manage-services/manage-services.component';
 import { OfferManagementComponent } from './components/Admin/offer-management/offer-management.component';
 import { EventManagementComponent } from './components/Admin/event-management/event-management.component';
+import { TestComponent } from './components/Admin/test/test/test.component';
 
 
 const routes: Routes = [
@@ -41,9 +42,10 @@ const routes: Routes = [
  // { path: '', redirectTo: '/services', pathMatch: 'full' },
   // { path: '', redirectTo: '/offers', pathMatch: 'full' },
  // { path: '**', redirectTo: '/offers' },
+ { path: 'test', component: TestComponent},
  {
   path: 'admin',
-  component: AdminComponent,
+  // component: AdminComponent,
   canMatch: [adminAuthGuard],
   canActivate: [adminAuthGuard],
   children: [

@@ -1,11 +1,12 @@
 /* src/app/shared/event-card/event-card.component.css */
 .event-card {
-  border: 1px solid #ddd;
+  background-color: #FAFAFA;
+  width: 400px;
+  min-height: 550px;
   border-radius: 8px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  max-width: 300px;
   margin: 16px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   background-color: #FAFAFA;

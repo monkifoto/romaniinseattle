@@ -5,6 +5,7 @@ import { Service, ServiceWithId } from 'src/app/Model/service.model';
 import { Observable, of } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 import { formatUrl } from 'src/app/utils/url.utils';
+import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
   selector: 'app-service-detail',
@@ -16,12 +17,16 @@ export class ServiceDetailComponent implements OnInit {
   // service$!: Observable<Service>;
   // ser: Service | undefined;
   serviceId: string | null = null;
+  isLoggedIn$!: Observable<boolean>;
 
   constructor(
     private route: ActivatedRoute,
     private servicesService: ServicesService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private authService: AuthService
+  ) {
+    this.isLoggedIn$ = this.authService.isLoggedIn();
+  }
 
   ngOnInit(): void {
     this.serviceId = this.route.snapshot.paramMap.get('id')!;

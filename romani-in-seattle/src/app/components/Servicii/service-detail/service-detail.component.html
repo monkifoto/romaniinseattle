@@ -42,7 +42,7 @@
     </div>
   </div>
   <div class="service-actions">
-    <button class="editButton" (click)="navigateToEditService(service.id)">Edit</button> &nbsp;
+    <button class="editButton" *ngIf="(isLoggedIn$ | async)" (click)="navigateToEditService(service.id)">Edit</button> &nbsp;
     <button (click)="goBack()">Inapoi la Servicii</button>
   </div>
 </div>

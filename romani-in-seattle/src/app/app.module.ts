@@ -32,11 +32,13 @@ import { OfferDetailComponent } from './components/Oferte/offer-detail/offer-det
 import { ServiceDetailComponent } from './components/Servicii/service-detail/service-detail.component';
 import { ServiceCardComponent } from './components/Servicii/service-card/service-card.component';
 import { LoginComponent } from './components/Admin/login/login.component';
-import { AdminComponent } from './components/Admin/admin/admin.component';
+
 import { ServicesManagementComponent } from './components/Admin/manage-services/manage-services.component';
 import { OfferManagementComponent } from './components/Admin/offer-management/offer-management.component';
 import { EventManagementComponent } from './components/Admin/event-management/event-management.component';
 import { EventCardComponent } from './components/Evenimente/event-card/event-card.component';
+import { TestComponent } from './components/Admin/test/test/test.component';
+
 
 
 @NgModule({
@@ -59,11 +61,11 @@ import { EventCardComponent } from './components/Evenimente/event-card/event-car
     ServiceDetailComponent,
     ServiceCardComponent,
     LoginComponent,
-    AdminComponent,
     ServicesManagementComponent,
     OfferManagementComponent,
     EventManagementComponent,
-    EventCardComponent
+    EventCardComponent,
+    TestComponent,
   ],
   imports: [
     BrowserModule,

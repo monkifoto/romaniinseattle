@@ -14,7 +14,7 @@ export class OfferManagementComponent implements OnInit {
   constructor(private offerService: OffersService) {}
 
   ngOnInit(): void {
-    this.offerService.getOffers().subscribe((data) => {
+    this.offerService.getAllOffers().subscribe((data) => {
       this.offers = data.sort((a, b) => {
         if (a.Approved === b.Approved) {
           return new Date(b.Date_Created).getTime() - new Date(a.Date_Created).getTime();
