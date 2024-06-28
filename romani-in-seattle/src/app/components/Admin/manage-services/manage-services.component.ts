@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicesService } from 'src/app/Services/services.service';
 import { Service, ServiceWithId } from 'src/app/Model/service.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-services',
@@ -12,7 +13,7 @@ export class ServicesManagementComponent implements OnInit  {
 
   services: ServiceWithId[] = [];
 
-  constructor(private serviceManagementService: ServicesService) { }
+  constructor(private serviceManagementService: ServicesService, private router: Router) { }
 
   ngOnInit(): void {
     this.serviceManagementService.getAllServices().subscribe(services => {
@@ -29,7 +30,9 @@ export class ServicesManagementComponent implements OnInit  {
     service.Approved = !service.Approved;
     this.serviceManagementService.updateService(service.id, service);
   }
-
+  navigateToEditService(id: string): void {
+    this.router.navigate(['/edit-service', id]);
+  }
   // updateDateCreated(): void {
   //   this.serviceManagementService.updateAllEntriesWithCurrentDate();
   // }

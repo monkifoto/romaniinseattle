@@ -14,6 +14,7 @@
         <th>Community Sponsor</th>
         <th>Date Created</th>
         <th>Approved</th>
+        <th>Edit</th>
       </tr>
     </thead>
     <tbody>
@@ -32,6 +33,7 @@
         <td>
           <input type="checkbox" [checked]="service.Approved" (change)="toggleApproval(service)" />
         </td>
+        <td><button class="editButton"  (click)="navigateToEditService(service.id)">Edit</button> </td>
       </tr>
     </tbody>
   </table>

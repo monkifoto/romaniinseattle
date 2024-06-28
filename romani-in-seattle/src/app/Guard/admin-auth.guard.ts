@@ -1,23 +1,42 @@
 
-
-// src/app/guards/admin-auth.guard.ts
 import { inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from '../Services/auth.service';
 import { map, take } from 'rxjs/operators';
 
-export const adminAuthGuard = () => {
+export const adminAuthGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
-  return authService.isLoggedIn().pipe(
+  return authService.user$.pipe(
     take(1),
-    map((isLoggedIn: boolean) => {
-      if (!isLoggedIn) {
-        router.navigate(['/login']);
-        return false;
+    map(user => {
+      if (user) {
+        return true;
+      } else {
+        return router.createUrlTree(['/login']);
       }
-      return true;
     })
   );
 };
+
+// import { inject } from '@angular/core';
+// import { Router } from '@angular/router';
+// import { AuthService } from '../Services/auth.service';
+// import { map, take } from 'rxjs/operators';
+
+// export const adminAuthGuard = () => {
+//   const authService = inject(AuthService);
+//   const router = inject(Router);
+
+//   return authService.isLoggedIn().pipe(
+//     take(1),
+//     map((isLoggedIn: boolean) => {
+//       if (!isLoggedIn) {
+//         router.navigate(['/login']);
+//         return false;
+//       }
+//       return true;
+//     })
+//   );
+// };

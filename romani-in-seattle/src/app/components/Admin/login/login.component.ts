@@ -18,7 +18,7 @@ export class LoginComponent {
 
   login(): void {
      this.authService.login(this.email, this.password).subscribe({
-      next: () => this.router.navigate(['/admin/']),
+      next: () => this.router.navigate(['/admin']),
       error: (error: any) => this.handleLoginError(error)
     });
   }
@@ -27,6 +27,7 @@ export class LoginComponent {
     switch (error.code) {
       case 'auth/user-not-found':
         this.errorMessage = 'No user found with this email.';
+
         break;
       case 'auth/wrong-password':
         this.errorMessage = 'Incorrect password.';
@@ -37,5 +38,6 @@ export class LoginComponent {
       default:
         this.errorMessage = 'Login failed. Please try again.';
     }
+     console.log(this.errorMessage);
   }
 }

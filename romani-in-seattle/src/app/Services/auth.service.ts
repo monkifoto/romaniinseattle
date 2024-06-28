@@ -25,9 +25,21 @@ export class AuthService {
   //   }
   // }
 
+  // async login(email: string, password: string) {
+  //   try {
+  //     await this.afAuth.signInWithEmailAndPassword(email, password);
+  //     this.router.navigate(['/admin']);
+  //   } catch (error) {
+  //     console.error('Login error: ', error);
+  //   }
+  // }
+
+
   login(email: string, password: string): Observable<firebase.auth.UserCredential> {
+    this.router.navigate(['/admin']);
     return from(this.afAuth.signInWithEmailAndPassword(email, password)).pipe(
       catchError(error => {
+        console.error('Login error: ', error);
         throw error;
       })
     );

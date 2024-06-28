@@ -27,17 +27,13 @@ import { AddEventComponent } from './components/Evenimente/add-event/add-event.c
 import { AddOffersComponent } from './components/Oferte/add-offers/add-offers.component';
 import { EditServicesComponent } from './components/Servicii/edit-services/edit-services.component';
 import { OfferCardComponent } from './components/Oferte/offer-card/offer-card.component';
-import { AnalyticsComponent } from './components/Admin/analytics/analytics.component';
 import { OfferDetailComponent } from './components/Oferte/offer-detail/offer-detail.component';
 import { ServiceDetailComponent } from './components/Servicii/service-detail/service-detail.component';
 import { ServiceCardComponent } from './components/Servicii/service-card/service-card.component';
 import { LoginComponent } from './components/Admin/login/login.component';
-
-import { ServicesManagementComponent } from './components/Admin/manage-services/manage-services.component';
-import { OfferManagementComponent } from './components/Admin/offer-management/offer-management.component';
-import { EventManagementComponent } from './components/Admin/event-management/event-management.component';
 import { EventCardComponent } from './components/Evenimente/event-card/event-card.component';
 import { TestComponent } from './components/Admin/test/test/test.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -56,14 +52,10 @@ import { TestComponent } from './components/Admin/test/test/test.component';
     AddOffersComponent,
     EditServicesComponent,
     OfferCardComponent,
-    AnalyticsComponent,
     OfferDetailComponent,
     ServiceDetailComponent,
     ServiceCardComponent,
     LoginComponent,
-    ServicesManagementComponent,
-    OfferManagementComponent,
-    EventManagementComponent,
     EventCardComponent,
     TestComponent,
   ],
@@ -82,10 +74,12 @@ import { TestComponent } from './components/Admin/test/test/test.component';
     provideFirestore(()=>getFirestore()),
     provideStorage(()=> getStorage()),
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    RouterModule
 
 
   ],
+  exports: [RouterModule],
   providers: [],
   bootstrap: [AppComponent]
 })
