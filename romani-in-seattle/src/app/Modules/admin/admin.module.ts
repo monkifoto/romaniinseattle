@@ -7,6 +7,7 @@ import { AnalyticsComponent } from 'src/app/components/Admin/analytics/analytics
 import { ServicesManagementComponent } from 'src/app/components/Admin/manage-services/manage-services.component';
 import { OfferManagementComponent } from 'src/app/components/Admin/offer-management/offer-management.component';
 import { EventManagementComponent } from 'src/app/components/Admin/event-management/event-management.component';
+import { FormsModule } from '@angular/forms';
 
 const adminRoutes: Routes = [
   { path: '', component: AdminComponent },
@@ -23,7 +24,8 @@ const adminRoutes: Routes = [
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    FormsModule
   ],
   exports: [
     RouterModule

@@ -1,4 +1,7 @@
 <div class="admin-container">
+  <div class="search-container">
+    <input type="text" placeholder="Search..." [(ngModel)]="searchText" (input)="filterServices()" />
+  </div>
   <h2>Manage Services</h2>
   <table>
     <thead>
@@ -15,7 +18,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let service of services">
+      <tr *ngFor="let service of filteredServices">
         <td><img class="service-card-image" src='{{service.Image}}'/></td>
         <td>{{ service.Name }}</td>
         <td>{{ service.Service_Type }}</td>
@@ -27,7 +30,8 @@
         <td>
           <input type="checkbox" [checked]="service.Approved" (change)="toggleApproval(service)" />
         </td>
-        <td><a href="#"  (click)="navigateToEditService(service.id)">Edit</a></td>
+        <!-- <td><a href="#"  (click)="navigateToEditService(service.id)">Edit</a></td> -->
+         <td><button class="editButton"  (click)="navigateToEditService(service.id)">Edit</button></td>
       </tr>
     </tbody>
   </table>

@@ -9,7 +9,7 @@ body, html {
 .hero-section {
   position: relative;
   height: 100vh;
-  background: url('http://source.unsplash.com/800x600/?Seattle') no-repeat center center/cover;
+  background: url('../../../assets/images/Seattle-Romania.png') no-repeat center center/cover;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,7 +48,7 @@ p {
   margin-top: 1em;
   font-size: 1.2em;
   color: white;
-  background-color: #ff6600; /* Adjust button color as needed */
+  background-color: var(--button-color); /* Adjust button color as needed */
   border: none;
   border-radius: 5px;
   text-decoration: none;
@@ -58,4 +58,38 @@ p {
 
 .cta-button:hover {
   background-color: #e65c00; /* Adjust hover color as needed */
+}
+
+
+
+.rules-section {
+  padding: 40px 20px;
+  background: #f4f4f4;
+}
+
+.rules-section .container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.rules-section h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 32px;
+}
+
+.rules-list {
+  list-style: none;
+}
+
+.rules-list li {
+  background: #fff;
+  padding: 20px;
+  margin-bottom: 10px;
+  border-left: 5px solid #007BFF;
+}
+
+.rules-list span {
+  font-weight: bold;
+  color: #333;
 }

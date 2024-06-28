@@ -42,10 +42,10 @@ header h1 {
 .nav-pills ul li a {
   display: block;
   padding: 10px 20px;
-  border-radius: 20px;
+  border-radius: 5px;
   text-decoration: none;
   color: #fff;
-  background: #007bff;
+  background: var(--button-color);
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -62,4 +62,8 @@ main {
 
 main h2 {
   margin-top: 0;
+}
+
+button{
+  margin:0;
 }
