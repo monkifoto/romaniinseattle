@@ -19,6 +19,7 @@
 
 .event-details {
   padding: 16px;
+  text-align: left;
 }
 
 .event-details h3 {
@@ -118,7 +119,13 @@
   text-align: right;
   margin: 20px;
 }
-
+.card-expired{
+  padding: 10px;
+  text-align: center;
+}
+.expired{
+  color: red;
+}
 
 
 @media (max-width: 1024px) {

@@ -56,7 +56,8 @@ export class EditServicesComponent implements OnInit {
         Phone_Number: service?.Phone_Number,
         Service_Type: service?.Service_Type,
         Website: service?.Website,
-        Facebook: service?.Facebook? ' ': service?.Facebook,
+        //BUG: will not update without information in facebook/instagra
+        Facebook: service?.Facebook? ' ' : service?.Facebook,
         Instagram: service?.Instagram? ' ' : service?.Instagram,
         Description: service?.Description,
         //Image: service?.Image,
