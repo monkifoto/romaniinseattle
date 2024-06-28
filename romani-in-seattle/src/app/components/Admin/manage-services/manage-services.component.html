@@ -5,12 +5,9 @@
       <tr><th>Image</th>
         <th>Name</th>
         <th>Service Type</th>
-        <th>Phone Number</th>
-        <th>Email</th>
+        <th>Contact</th>
         <th>Description</th>
-        <th>Website</th>
-        <th>Facebook</th>
-        <th>Instagram</th>
+        <th>Online Presence</th>
         <th>Community Sponsor</th>
         <th>Date Created</th>
         <th>Approved</th>
@@ -22,18 +19,15 @@
         <td><img class="service-card-image" src='{{service.Image}}'/></td>
         <td>{{ service.Name }}</td>
         <td>{{ service.Service_Type }}</td>
-        <td>{{ service.Phone_Number }}</td>
-        <td>{{ service.Email }}</td>
+        <td>{{ service.Phone_Number }} <br />{{ service.Email }}</td>
         <td>{{ service.Description }}</td>
-        <td>{{ service.Website }}</td>
-        <td>{{ service.Facebook }}</td>
-        <td>{{ service.Instagram }}</td>
+        <td>{{ service.Website }}<br/> {{ service.Facebook }}<br/>{{ service.Instagram }}</td>
         <td>{{ service.Community_Sponsor }}</td>
         <td>{{ service.Date_Created }}</td>
         <td>
           <input type="checkbox" [checked]="service.Approved" (change)="toggleApproval(service)" />
         </td>
-        <td><button class="editButton"  (click)="navigateToEditService(service.id)">Edit</button> </td>
+        <td><a href="#"  (click)="navigateToEditService(service.id)">Edit</a></td>
       </tr>
     </tbody>
   </table>

@@ -30,7 +30,8 @@
         <td><a [href]="event.Facebook" target="_blank">{{ event.Facebook }}</a></td>
         <td><a [href]="event.Instagram" target="_blank">{{ event.Instagram }}</a></td>
         <td>
-          <input type="checkbox" [(ngModel)]="event.Approved" (change)="toggleApproval(event)" />
+          <!-- <input type="checkbox" [(ngModel)]="event.Approved" (change)="toggleApproval(event)" /> -->
+          <input type="checkbox" [checked]="event.Approved" (change)="toggleApproval(event)" />
         </td>
         <td>{{ event.Date_Created }}</td>
         <td><!-- Actions if any --></td>
