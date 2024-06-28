@@ -56,13 +56,13 @@ export class EditServicesComponent implements OnInit {
         Phone_Number: service?.Phone_Number,
         Service_Type: service?.Service_Type,
         Website: service?.Website,
-        Facebook: service?.Facebook,
-        Instagram: service?.Instagram,
+        Facebook: service?.Facebook? ' ': service?.Facebook,
+        Instagram: service?.Instagram? ' ' : service?.Instagram,
         Description: service?.Description,
         //Image: service?.Image,
         Date_Created: service?.Date_Created,
         Date_Updated: service?.Date_Updated,
-        Approved: service?.Approved
+        Approved: true//service?.Approved
       });
       if(service?.Image){
         this.oldImage = service?.Image;
