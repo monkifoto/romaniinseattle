@@ -11,10 +11,11 @@
         <th>Contact</th>
         <th>Description</th>
         <th>Online Presence</th>
-        <th>Community Sponsor</th>
+        <th>Sponsor</th>
         <th>Date Created</th>
         <th>Approved</th>
         <th>Edit</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -22,16 +23,17 @@
         <td><img class="service-card-image" src='{{service.Image}}'/></td>
         <td>{{ service.Name }}</td>
         <td>{{ service.Service_Type }}</td>
-        <td>{{ service.Phone_Number }} <br />{{ service.Email }}</td>
+        <td>{{ service.Phone_Number }} <br /><div *ngIf="service.Email"><a href='mailto:{{service.Email }}'>{{ service.Email }}</a></div></td>
         <td>{{ service.Description }}</td>
         <td>{{ service.Website }}<br/> {{ service.Facebook }}<br/>{{ service.Instagram }}</td>
         <td>{{ service.Community_Sponsor }}</td>
-        <td>{{ service.Date_Created }}</td>
+        <td>{{ service.Date_Created | date: 'dd/MM/yyyy'}}</td>
         <td>
           <input type="checkbox" [checked]="service.Approved" (change)="toggleApproval(service)" />
         </td>
         <!-- <td><a href="#"  (click)="navigateToEditService(service.id)">Edit</a></td> -->
          <td><button class="editButton"  (click)="navigateToEditService(service.id)">Edit</button></td>
+         <td><button class="editButton"  (click)="deleteService(service.id)">Delete</button></td>
       </tr>
     </tbody>
   </table>

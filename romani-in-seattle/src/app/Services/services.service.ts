@@ -35,7 +35,7 @@ export class ServicesService {
   }
 
   getServiceById(id: string): Observable<Service | undefined >  {
-    return this.firestore.collection('Services').doc<Service>(id).valueChanges();
+    return this.servicesCollection.doc<Service>(id).valueChanges();
   }
 
 
@@ -58,7 +58,7 @@ export class ServicesService {
     const id = this.firestore.createId();
     service['id'] = id;
     service.Date_Created = new Date().toISOString();
-    this.firestore.collection('Services').doc(id).set(service);
+    this.servicesCollection.doc(id).set(service);
     return this.firestore.doc<Service>(`Services/${id}`).valueChanges().pipe(
       map(service => service ? { id, ...service } : undefined)
     );
@@ -67,7 +67,7 @@ export class ServicesService {
   updateService(id: string, service: Service):Observable<ServiceWithId | undefined> {
     console.log('update', id)
     service.Date_Updated = new Date().toISOString();
-    this.firestore.collection('Services').doc(id).update(service);
+    this.servicesCollection.doc(id).update(service);
    // console.log("Update Service: " + id);
     //console.log (service);
     return this.firestore.doc<Service>(`Services/${id}`).valueChanges().pipe(
@@ -118,6 +118,9 @@ export class ServicesService {
   //     }))
   //   );
   // }
+  deleteService(serviceId: string): Promise<void> {
+    return this.servicesCollection.doc(serviceId).delete();
+  }
 }
 
 

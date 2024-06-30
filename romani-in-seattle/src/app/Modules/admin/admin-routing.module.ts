@@ -30,11 +30,11 @@ const routes: Routes = [
     component: AdminComponent,
     canActivate: [adminAuthGuard],
     children: [
-      { path: '', redirectTo: 'analytics', pathMatch: 'full' },
-      { path: 'analytics', component: AnalyticsComponent },
+      { path: '', redirectTo: 'service-manager', pathMatch: 'full' },
       { path: 'service-manager', component: ServicesManagementComponent },
       { path: 'offer-management', component: OfferManagementComponent },
       { path: 'event-management', component: EventManagementComponent },
+      { path: 'analytics', component: AnalyticsComponent },
     ]
   }
 ];

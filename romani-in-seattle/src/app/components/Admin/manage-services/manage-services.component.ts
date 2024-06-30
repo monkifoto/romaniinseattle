@@ -65,6 +65,11 @@ export class ServicesManagementComponent implements OnInit  {
 
   }
 
+  deleteService(id: string): void {
+    if (confirm('Are you sure you want to delete this service?')) {
+      this.serviceManagementService.deleteService(id);
+    }
+  }
   // updateDateCreated(): void {
   //   this.serviceManagementService.updateAllEntriesWithCurrentDate();
   // }
