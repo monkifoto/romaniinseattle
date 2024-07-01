@@ -19,7 +19,7 @@ export class AddServiceComponent implements OnInit {
   constructor(private fb: FormBuilder, private servicesService: ServicesService, private imageUploadService: ImageUploadService, private router: Router) {
     this.serviceForm = this.fb.group({
       Name: ['', Validators.required],
-      Email: ['', [Validators.required, Validators.email]],
+      Email: ['', [Validators.email]],
       Phone_Number: [''],
       Website: [''],
       Facebook: [''],
@@ -61,6 +61,7 @@ export class AddServiceComponent implements OnInit {
       this.serviceObj.Description= this.serviceForm.value.Description;
       this.serviceObj.Date_Created= this.serviceForm.value.Date_Created;
       this.serviceObj.Image= this.serviceForm.value.Image;
+      this.serviceObj.Approved = true;
 
       if (this.selectedFile) {
         this.imageUploadService.uploadImage(this.selectedFile, 'serviceImages').subscribe(downloadURL => {

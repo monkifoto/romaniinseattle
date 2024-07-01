@@ -7,45 +7,36 @@
     <h2>Adaugati serviciile oferite pentru membrii comunității</h2>
   </div>
 </div>
-
 <div class="form-container">
   <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label class="required" for="Name">Nume:</label>
-      <input id="Name" formControlName="Name" required>
+      <input id="Name" placeholder="Ion Dumitrescu" formControlName="Name" required>
     </div>
-
     <div class="form-group">
-      <label class="required" for="Email">Adresa Email:</label>
-      <input id="Email" type="Email" formControlName="Email">
+      <label for="Email">Adresa Email:</label>
+      <input id="Email" placeholder="info@website.com" type="Email" formControlName="Email">
     </div>
-
     <div class="form-group">
-      <label class="required" for="Phone_Number">Numar de telefon:</label>
-      <input id="Phone_Number" formControlName="Phone_Number">
+      <label for="Phone_Number">Numar de telefon:</label>
+      <input id="Phone_Number" laceholder="(425) 444-5555"formControlName="Phone_Number">
     </div>
-
     <div class="form-group">
       <label for="Website">Pagina Web:</label>
-      <input id="Website" formControlName="Website" >
+      <input id="Website" placeholder="https://www.website.com" formControlName="Website" >
     </div>
-
-
     <div class="form-group">
       <label for="Facebook">Pagina Facebook:</label>
-      <input id="Facebook" formControlName="Facebook" >
+      <input id="Facebook" placeholder="https://www.facebook.com/yourname" formControlName="Facebook" >
     </div>
-
     <div class="form-group">
       <label for="Instagram">Instagram: (doar numele contului)</label>
       <input id="Instagram" type="text" placeholder="instaHandle.."  formControlName="Instagram" >
     </div>
-
     <div class="form-group">
       <label class="required" for="Description">Descriere a serviciile oferite:</label>
       <textarea id="Description" formControlName="Description" ></textarea>
     </div>
-
     <div class="form-group">
       <label for="Image">Imagine:</label>
       <div class="service-card-image-container">
@@ -53,20 +44,17 @@
       </div>
       <input type="file" formControlName="Image" (change)="onFileSelected($event)">
     </div>
-
     <div class="form-group">
       <label class="required" for="Service_Type">Categoria de serviciului:</label>
       <select id="Service_Type" formControlName="Service_Type" required>
         <option *ngFor="let type of serviceTypes" [value]="type">{{ type }}</option>
       </select>
     </div>
-
     <button type="submit" [disabled]="serviceForm.invalid">Salvati Serviciu</button>
     <div style="display: none;">
       <div><label for="Approved">Approved:</label>
         <input id="Approved" formControlName="Approved" >
       </div>
-
     </div>
   </form>
 </div>

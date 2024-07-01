@@ -27,7 +27,10 @@
         <td>{{ service.Description }}</td>
         <td>{{ service.Website }}<br/> {{ service.Facebook }}<br/>{{ service.Instagram }}</td>
         <td>{{ service.Community_Sponsor }}</td>
-        <td>{{ service.Date_Created | date: 'dd/MM/yyyy'}}</td>
+        <td>{{ service.Date_Created | date: 'dd/MM/yyyy'}}
+          <br/>
+          {{ service.Date_Updated | date: 'dd/MM/yyyy'}}
+        </td>
         <td>
           <input type="checkbox" [checked]="service.Approved" (change)="toggleApproval(service)" />
         </td>

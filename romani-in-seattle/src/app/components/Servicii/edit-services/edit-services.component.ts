@@ -52,10 +52,10 @@ export class EditServicesComponent implements OnInit {
         Id : this.serviceId,
         Name: service?.Name,
         // Email: service?.Email? '' : service?.Email,
-        Email: service?.Email,
-        Phone_Number: service?.Phone_Number,
+        Email: service?.Email? service.Email:'',
+        Phone_Number: service?.Phone_Number? service.Phone_Number:'',
         Service_Type: service?.Service_Type,
-        Website: service?.Website,
+        Website: service?.Website? service.Website: '',
         //BUG: will not update without information in facebook/instagra
         Facebook: service?.Facebook? service?.Facebook: '',
         Instagram: service?.Instagram? service?.Instagram: '',
