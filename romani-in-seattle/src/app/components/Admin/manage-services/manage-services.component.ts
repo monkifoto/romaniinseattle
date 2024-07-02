@@ -33,7 +33,6 @@ export class ServicesManagementComponent implements OnInit  {
         return a.Approved ? 1 : -1;
       });
     });
-    //this.filteredServices = this.services;
 
   }
 

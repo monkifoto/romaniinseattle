@@ -1,6 +1,6 @@
 // src/app/admin/offer-management/offer-management.component.ts
 import { Component, OnInit } from '@angular/core';
-import { Offers } from 'src/app/Model/offers.model';
+import { Offers, OffersWithId } from 'src/app/Model/offers.model';
 import { OffersService } from 'src/app/Services/offers.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { OffersService } from 'src/app/Services/offers.service';
   styleUrls: ['./offer-management.component.css']
 })
 export class OfferManagementComponent implements OnInit {
-  offers: Offers[] = [];
+  offers: OffersWithId[] = [];
 
   constructor(private offerService: OffersService) {}
 
@@ -24,12 +24,16 @@ export class OfferManagementComponent implements OnInit {
     });
   }
 
-  toggleApproval(offer: Offers): void  {
+  toggleApproval(offer: OffersWithId): void  {
     offer.Approved = !offer.Approved;
     offer.ApprovedDate = new Date().toISOString()
     this.offerService.updateOffer(offer.id!, offer);
   }
-
+  deleteService(id: string): void {
+    if (confirm('Are you sure you want to delete this service?')) {
+      this.offerService.deleteOffer(id);
+    }
+  }
   // onApprovedChange(offer: Offers): void {
   //   offer.Approved = !offer.Approved;
   //   offer.ApprovedDate = new Date().toISOString()

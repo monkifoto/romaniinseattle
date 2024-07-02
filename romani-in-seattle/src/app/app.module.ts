@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -34,6 +35,10 @@ import { LoginComponent } from './components/Admin/login/login.component';
 import { EventCardComponent } from './components/Evenimente/event-card/event-card.component';
 import { TestComponent } from './components/Admin/test/test/test.component';
 import { RouterModule } from '@angular/router';
+import { GlobalErrorHandler } from './Error-handler/global-error-handler.service';
+import { ErrorLoggingService } from './Services/error-logging.service';
+import { ErrorLogComponent } from './components/Admin/error-log/error-log.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -58,6 +63,7 @@ import { RouterModule } from '@angular/router';
     LoginComponent,
     EventCardComponent,
     TestComponent,
+    ErrorLogComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,12 +81,16 @@ import { RouterModule } from '@angular/router';
     provideStorage(()=> getStorage()),
     ReactiveFormsModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule
 
 
   ],
   exports: [RouterModule],
-  providers: [],
+  providers: [
+    { provide: ErrorHandler, useClass: GlobalErrorHandler },
+    ErrorLoggingService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

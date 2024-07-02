@@ -1,0 +1,22 @@
+
+.error-log-container {
+  padding: 16px;
+}
+
+.error-log-container h2 {
+  margin-bottom: 16px;
+}
+
+.error-log-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.error-log-container th, .error-log-container td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.error-log-container th {
+  background-color: #f4f4f4;
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AnalyticsService } from 'src/app/Services/analytics.service';
 
 @Component({
@@ -7,13 +8,19 @@ import { AnalyticsService } from 'src/app/Services/analytics.service';
   styleUrls: ['./analytics.component.css']
 })
 export class AnalyticsComponent implements OnInit {
-  analyticsData: any[] = [];
+  analyticsLogs: any[] | undefined;
 
   constructor(private analyticsService: AnalyticsService) { }
 
   ngOnInit(): void {
-    this.analyticsService.getAnalytics().subscribe(data => {
-      this.analyticsData = data;
-    });
+    this.analyticsService.getAnalytics().subscribe(
+      data => {
+        this.analyticsLogs = data;
+      },
+      error => {
+        console.error('Error fetching analytics:', error);
+        // Handle error as needed
+      }
+    );
   }
 }

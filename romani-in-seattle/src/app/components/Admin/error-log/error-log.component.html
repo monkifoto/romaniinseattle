@@ -1,0 +1,17 @@
+<div class="error-log-container">
+  <h2>Error Logs</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Timestamp</th>
+        <th>Error</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let log of errorLogs$ | async">
+        <td>{{ log.timestamp }}</td>
+        <td>{{ log.error | json }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

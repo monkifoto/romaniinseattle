@@ -1,5 +1,7 @@
-export class Event {
+import { formatUrl } from "../utils/url.utils";
 
+export class Event {
+  [x: string]: any;
   Poster_Image:string ='';
 
   Name:string ='';
@@ -17,10 +19,16 @@ export class Event {
   Instagram?:string ='';
 
   Date_Created: string = '';
+  Date_Updated: string ='';
   Expired: boolean = false;
   ApprovedDate: string ='';
 
   Community_Sponsor: boolean = false;
   Approved: boolean = true;
-  id?: string;
+
 }
+
+export class EventWithId extends Event{
+  id:string ='';
+}
+

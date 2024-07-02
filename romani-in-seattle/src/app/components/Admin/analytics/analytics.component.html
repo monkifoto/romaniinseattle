@@ -1,18 +1,26 @@
-<div class="container">
-  <h2>Analytics Data</h2>
-  <table class="table">
+<div class="analytics-container">
+  <h2>Analytics Logs</h2>
+  <table>
     <thead>
       <tr>
+        <th>Timestamp</th>
+        <th>Event Type</th>
         <th>Page Path</th>
         <th>Query Params</th>
-        <th>Timestamp</th>
+        <th>Browser</th>
+        <th>Device</th>
+        <th>IP Address</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of analyticsData">
-        <td>{{ item.page_path }}</td>
-        <td>{{ item.query_params | json }}</td>
-        <td>{{ item.timestamp | date:'medium' }}</td>
+      <tr *ngFor="let log of analyticsLogs">
+        <td>{{ log.timestamp?.toDate() | date:'short' }}</td>
+        <td>{{ log.eventType }}</td>
+        <td>{{ log.pagePath }}</td>
+        <td>{{ log.queryParams | json }}</td>
+        <td>{{ log.browser }}</td>
+        <td>{{ log.isMobile ? 'Mobile' : 'Desktop' }}</td>
+        <td>{{ log.ipAddress }}</td>
       </tr>
     </tbody>
   </table>

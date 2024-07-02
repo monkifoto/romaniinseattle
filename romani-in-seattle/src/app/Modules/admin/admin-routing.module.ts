@@ -6,6 +6,7 @@ import { AnalyticsComponent } from 'src/app/components/Admin/analytics/analytics
 import { ServicesManagementComponent } from 'src/app/components/Admin/manage-services/manage-services.component';
 import { OfferManagementComponent } from 'src/app/components/Admin/offer-management/offer-management.component';
 import { EventManagementComponent } from 'src/app/components/Admin/event-management/event-management.component';
+import { ErrorLogComponent } from 'src/app/components/Admin/error-log/error-log.component';
 
 // const routes: Routes = [
 //   { path: '', component: AdminComponent },
@@ -35,6 +36,7 @@ const routes: Routes = [
       { path: 'offer-management', component: OfferManagementComponent },
       { path: 'event-management', component: EventManagementComponent },
       { path: 'analytics', component: AnalyticsComponent },
+      { path: 'error-log', component: ErrorLogComponent}
     ]
   }
 ];

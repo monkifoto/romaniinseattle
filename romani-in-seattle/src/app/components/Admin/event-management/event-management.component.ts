@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { EventsService } from 'src/app/Services/events.service';
-import { Event } from 'src/app/Model/event.model';
+import { Event, EventWithId } from 'src/app/Model/event.model';
 
 @Component({
   selector: 'app-event-management',
@@ -9,12 +9,12 @@ import { Event } from 'src/app/Model/event.model';
 })
 export class EventManagementComponent {
 
-  events: Event[] = [];
+  events: EventWithId[] = [];
 
   constructor(private eventService: EventsService) {}
 
   ngOnInit(): void {
-    this.eventService.getEvents().subscribe((data) => {
+    this.eventService.getAllEvents().subscribe((data) => {
       this.events = data.sort((a, b) => {
         if (a.Approved === b.Approved) {
           return new Date(b.Date_Created).getTime() - new Date(a.Date_Created).getTime();
@@ -24,10 +24,16 @@ export class EventManagementComponent {
     });
   }
 
-  toggleApproval(evnt: Event): void  {
+  toggleApproval(evnt: EventWithId): void  {
     evnt.Approved = !evnt.Approved;
     evnt.ApprovedDate = new Date().toISOString()
-    this.eventService.updateEvent(evnt.id!, evnt);
+    this.eventService.updateEvent(evnt.id, evnt);
+  }
+
+  deleteService(id: string): void {
+    if (confirm('Are you sure you want to delete this service?')) {
+      this.eventService.deleteService(id);
+    }
   }
 
 }

@@ -1,4 +1,3 @@
-<!-- src/app/admin/event-manager/event-manager.component.html -->
 <div class="event-management-container">
   <h2>Manage Events</h2>
   <table>
@@ -34,7 +33,7 @@
           <input type="checkbox" [checked]="event.Approved" (change)="toggleApproval(event)" />
         </td>
         <td>{{ event.Date_Created }}</td>
-        <td><!-- Actions if any --></td>
+        <td><button class="editButton"  (click)="deleteService(event.id)">Delete</button></td>
       </tr>
     </tbody>
   </table>

@@ -41,25 +41,10 @@ const routes: Routes = [
   { path: 'services/add', component: AddServiceComponent },
   { path: 'services/:id', component: ServiceDetailComponent },
   { path: 'edit-service/:id', component: EditServicesComponent },
- // { path: '', redirectTo: '/services', pathMatch: 'full' },
-  // { path: '', redirectTo: '/offers', pathMatch: 'full' },
- // { path: '**', redirectTo: '/offers' },
  { path: 'test', component: TestComponent},
 
 { path: 'login', component: LoginComponent },
 { path: '', redirectTo: '/login', pathMatch: 'full' },
-// {
-//   path: 'admin',
-//   component: AdminComponent,
-//   canMatch: [adminAuthGuard],
-//   canActivate: [adminAuthGuard],
-//   children: [
-//     { path: 'analytics', component: AnalyticsComponent },
-//     { path: 'service-manager', component: ServicesManagementComponent },
-//     { path: 'offer-management', component: OfferManagementComponent },
-//     { path: 'event-management', component: EventManagementComponent }
-//   ]
-// }
 {path: 'admin',loadChildren:() => import ('./Modules/admin/admin.module').then(m=>m.AdminModule)}
 
 ];

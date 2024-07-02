@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Offers } from 'src/app/Model/offers.model';
+import { Offers, OffersWithId } from 'src/app/Model/offers.model';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class OfferCardComponent implements OnInit {
   @Input()
-  offer!: Offers;
+  offer!: OffersWithId;
   currentImageIndex = 1;
 
   constructor(private router: Router) {}

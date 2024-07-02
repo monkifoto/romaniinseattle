@@ -31,6 +31,7 @@ export class AddOffersComponent implements OnInit {
     Website: '',
     Filled: false,
     Date_Created: new Date().toISOString(),
+    Date_Updated:'',
     Price: '',
     Image1: '',
     Image2: '',

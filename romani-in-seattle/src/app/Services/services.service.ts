@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable, from, map, mergeMap } from 'rxjs';
+import { Observable, catchError, from, map, mergeMap, throwError } from 'rxjs';
 import { Service, ServiceWithId } from '../Model/service.model';
 import { ServiceType } from '../Model/service-type.model';
+import { ErrorLoggingService } from './error-logging.service';
 
 
 @Injectable({
@@ -10,7 +11,7 @@ import { ServiceType } from '../Model/service-type.model';
 })
 export class ServicesService {
 
-  constructor(private firestore: AngularFirestore) { }
+  constructor(private firestore: AngularFirestore, private errorLoggingService: ErrorLoggingService) { }
   private servicesCollection = this.firestore.collection('Services');
 
 
@@ -21,7 +22,12 @@ export class ServicesService {
         const id = a.payload.doc.id;
         return { id, ...data };
       }))
-    ).pipe(map(ser => ser.filter(se => se.Approved == true)));
+    ).pipe(map(ser => ser.filter(se => se.Approved == true))).pipe(
+      catchError(error => {
+        this.errorLoggingService.logError(error, 'getApprovedServices');
+        return throwError(() => new Error(error));
+      })
+    );
   }
 
   getAllServices(): Observable<ServiceWithId[]> {
@@ -31,16 +37,31 @@ export class ServicesService {
         const id = a.payload.doc.id;
         return { id, ...data };
       }))
+    ).pipe(
+      catchError(error => {
+        this.errorLoggingService.logError(error, 'getAllServices');
+        return throwError(() => new Error(error));
+      })
     );
   }
 
   getServiceById(id: string): Observable<Service | undefined >  {
-    return this.servicesCollection.doc<Service>(id).valueChanges();
+    return this.servicesCollection.doc<Service>(id).valueChanges().pipe(
+      catchError(error => {
+        this.errorLoggingService.logError(error, 'getGetServiceById: ' + id);
+        return throwError(() => new Error(error));
+      })
+    );
   }
 
 
   getServicesByType(serviceType: string): Observable<ServiceWithId[]> {
-    return this.firestore.collection<ServiceWithId>('Services', ref => ref.where('Service_Type', '==', serviceType)).valueChanges();
+    return this.firestore.collection<ServiceWithId>('Services', ref => ref.where('Service_Type', '==', serviceType).orderBy('Community_Sponsor','desc')).valueChanges().pipe(
+      catchError(error => {
+        this.errorLoggingService.logError(error, 'getServiceByServiceType: ' + serviceType);
+        return throwError(() => new Error(error));
+      })
+    );
   }
 
   getAllServiceTypes(): Observable<string[]> {
@@ -48,6 +69,11 @@ export class ServicesService {
       map(services => {
         const serviceTypes = services.map(svType => svType.Name);
         return Array.from(new Set(serviceTypes));
+      })
+    ).pipe(
+      catchError(error => {
+        this.errorLoggingService.logError(error, 'getServiceTypes');
+        return throwError(() => new Error(error));
       })
     );
   }
@@ -58,68 +84,33 @@ export class ServicesService {
     const id = this.firestore.createId();
     service['id'] = id;
     service.Date_Created = new Date().toISOString();
-    this.servicesCollection.doc(id).set(service);
+    service.Date_Updated = new Date().toISOString();
+    this.servicesCollection.doc(id).set(service).catch(error => {
+      this.errorLoggingService.logError(error, 'addService');
+      throw error;
+    });
     return this.firestore.doc<Service>(`Services/${id}`).valueChanges().pipe(
       map(service => service ? { id, ...service } : undefined)
     );
   }
 
   updateService(id: string, service: Service):Observable<ServiceWithId | undefined> {
-    console.log('update', id)
     service.Date_Updated = new Date().toISOString();
-    this.servicesCollection.doc(id).update(service);
-   // console.log("Update Service: " + id);
-    //console.log (service);
+    this.servicesCollection.doc(id).update(service).catch(error => {
+      this.errorLoggingService.logError(error, 'updateService');
+      throw error;
+    });
     return this.firestore.doc<Service>(`Services/${id}`).valueChanges().pipe(
       map(service => service ? { id, ...service } : undefined)
     );
   }
 
-  // updateAllEntriesWithCurrentDate(): void {
-  //   const currentDate = new Date().toISOString();
 
-  //   this.servicesCollection.snapshotChanges().pipe(
-  //     map(actions => actions.map(a => {
-  //       const id = a.payload.doc.id;
-  //       return { id };
-  //     })),
-  //     mergeMap(services => from(services)),
-  //     mergeMap(service => {
-  //       return this.firestore.doc(`Services/${service.id}`).update({ Date_Created: currentDate });
-  //     })
-  //   ).subscribe({
-  //     next: () => console.log('Update successful'),
-  //     error: err => console.error('Update failed', err)
-  //   });
-  // }
-
-   // addServiceWithDate(service: ServiceWithId) {
-  //    service.id = this.firestore.createId();
-  //    service.Date_Created = new Date().toISOString();
-  //   return this.firestore.collection('Services').doc(service.id).set(service);
-  // }
-
-  // getServiceById(id: string): Observable<Service | undefined> {
-  //   return this.firestore.doc<Service>(`Services/${id}`).valueChanges().pipe(
-  //     map(service => service ? { id, ...service } : undefined)
-  //   );
-  // }
-
-  // getServices(): Observable<Service[]> {
-  //   return this.firestore.collection<Service>('Services',ref=>ref.orderBy('Community_Sponsor','desc')).valueChanges();
-  // }
-
-  // getServices(): Observable<Ser[]> {
-  //   return this.firestore.collection('Services',ref=>ref.orderBy('Community_Sponsor','desc')).snapshotChanges().pipe(
-  //     map(actions => actions.map(a => {
-  //       const data = a.payload.doc.data() as Service;
-  //       const id = a.payload.doc.id;
-  //       return { id, ...data };
-  //     }))
-  //   );
-  // }
   deleteService(serviceId: string): Promise<void> {
-    return this.servicesCollection.doc(serviceId).delete();
+    return this.servicesCollection.doc(serviceId).delete().catch(error => {
+      this.errorLoggingService.logError(error, 'deleteService');
+      throw error;
+    });
   }
 }
 
