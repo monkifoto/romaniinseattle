@@ -1,5 +1,5 @@
 import { formatUrl } from "../utils/url.utils";
-
+import firebase from 'firebase/compat/app';
 export class Event {
   [x: string]: any;
   Poster_Image:string ='';
@@ -18,10 +18,10 @@ export class Event {
   Facebook?:string ='';
   Instagram?:string ='';
 
-  Date_Created: string = '';
-  Date_Updated: string ='';
+  Date_Created: Date = new Date();
+  Date_Updated: Date = new Date();
   Expired: boolean = false;
-  ApprovedDate: string ='';
+  ApprovedDate: Date = new Date();
 
   Community_Sponsor: boolean = false;
   Approved: boolean = true;

@@ -8,6 +8,5 @@ export class GlobalErrorHandler implements ErrorHandler {
   handleError(error: any): void {
     const errorLoggingService = this.injector.get(ErrorLoggingService);
     errorLoggingService.logError(error);
-    console.error('An error occurred:', error);
   }
 }

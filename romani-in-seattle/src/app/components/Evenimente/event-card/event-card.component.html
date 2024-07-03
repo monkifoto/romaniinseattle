@@ -6,7 +6,7 @@
   <div class="event-details">
     <div class="card-title">{{ event.Name }}</div>
     <p><strong>Locatie:</strong> <br/>{{ event.Location }}</p>
-    <p><strong>Data Evenimentului:</strong> {{ event.Event_Date }}</p>
+    <p><strong>Data Evenimentului:</strong> {{ event.Event_Date | date: 'short' }}</p>
     <p><strong>Ora:</strong> {{ event.Time }}</p>
     <p><strong>Pret:</strong> {{ event.Price }}</p>
     <p><strong>Persoana de contact:</strong> {{ event.Contact }} - {{ event.Phone_Number }}</p>

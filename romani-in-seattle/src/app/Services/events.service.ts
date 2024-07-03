@@ -10,7 +10,7 @@ import { ErrorLoggingService } from './error-logging.service';
 
 export class EventsService {
   constructor(private firestore: AngularFirestore, private errorLoggingService: ErrorLoggingService) { }
-  private eventsCollection!: AngularFirestoreCollection<Event>;
+  private eventsCollection = this.firestore.collection('Events');
 
 
   getEvents(): Observable<EventWithId[]> {
@@ -55,10 +55,10 @@ export class EventsService {
 
   addEvent(event: Event): Promise<void> {
     const id = this.firestore.createId();
-    event.Date_Created =  new Date().toISOString();
-    event.Date_Updated =  new Date().toISOString();
+    event.Date_Created =  new Date();
+    event.Date_Updated =  new Date();
+    event.ApprovedDate =  new Date();
     event.Approved =true;
-    event.ApprovedDate =  new Date().toISOString();
     return this.firestore.collection('Events').doc(id).set(event).catch(error => {
       this.errorLoggingService.logError(error, 'addEvent');
       throw error;
@@ -66,7 +66,7 @@ export class EventsService {
   }
 
   updateEvent(id: string, evnt: Event):Observable<EventWithId | undefined> {
-    evnt.Date_Updated = new Date().toISOString();
+    evnt.Date_Updated = new Date();
     this.eventsCollection.doc(id).update(evnt).catch(error => {
       this.errorLoggingService.logError(error, 'updateEvent');
       throw error;

@@ -4,13 +4,17 @@
     <thead>
       <tr>
         <th>Timestamp</th>
-        <th>Error</th>
+        <th>Message</th>
+        <th>Stack</th>
+        <th>Context</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let log of errorLogs$ | async">
         <td>{{ log.timestamp }}</td>
-        <td>{{ log.error | json }}</td>
+        <td>{{ log.message | json }}</td>
+        <td>{{ log.stack | json }}</td>
+        <td>{{ log.context | json }}</td>
       </tr>
     </tbody>
   </table>

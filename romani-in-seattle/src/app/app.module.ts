@@ -67,6 +67,8 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    RouterModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatCardModule,
@@ -81,10 +83,6 @@ import { HttpClientModule } from '@angular/common/http';
     provideStorage(()=> getStorage()),
     ReactiveFormsModule,
     FormsModule,
-    RouterModule,
-    HttpClientModule
-
-
   ],
   exports: [RouterModule],
   providers: [

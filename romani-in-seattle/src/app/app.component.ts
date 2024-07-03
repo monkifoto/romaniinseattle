@@ -15,36 +15,16 @@ export class AppComponent implements OnInit{
   title = 'romani-in-seattle';
 
   constructor(
-    private router: Router,
-    private analytics: AngularFireAnalytics,
-    private activatedRoute: ActivatedRoute,
-    private firestore: AngularFirestore,
     private analyticsService: AnalyticsService
   ) {}
 
   ngOnInit() {
-    // this.router.events.pipe(
-    //   filter(event => event instanceof NavigationEnd)
-    // ).subscribe((event: NavigationEnd|any) => {
-    //   const pagePath = event.urlAfterRedirects;
-    //   const queryParams = this.activatedRoute.snapshot.queryParams;
-    //   const timestamp = new Date().toISOString;
 
-    //   this.firestore.collection('analytics').add({
-    //     page_path: pagePath,
-    //     query_params: queryParams,
-    //     timestamp: timestamp
-    //   }).then(() => {
-    //     console.log('Analytics data saved');
-    //   }).catch(error => {
-    //     console.error('Error saving analytics data', error);
-    //   });
-    // });
-    this.analyticsService.logEvent('page_view');
+    //this.analyticsService.logEvent('page_view');
   }
 
   trackButtonClick(): void {
-    this.analyticsService.logEvent('button_click');
+    //this.analyticsService.logEvent('button_click');
   }
 
   // Example method to get a unique user ID

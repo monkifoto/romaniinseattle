@@ -26,7 +26,7 @@ export class EventManagementComponent {
 
   toggleApproval(evnt: EventWithId): void  {
     evnt.Approved = !evnt.Approved;
-    evnt.ApprovedDate = new Date().toISOString()
+    evnt.ApprovedDate = new Date()
     this.eventService.updateEvent(evnt.id, evnt);
   }
 

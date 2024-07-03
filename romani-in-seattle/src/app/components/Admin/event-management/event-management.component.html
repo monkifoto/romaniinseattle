@@ -22,7 +22,7 @@
         <td>{{ event.Name }}</td>
         <td>{{ event.Description }}</td>
         <td>{{ event.Location }}</td>
-        <td>{{ event.Event_Date }}</td>
+        <td>{{ event.Event_Date | date: 'short' }}</td>
         <td>{{ event.Time }}</td>
         <td>{{ event.Contact }}</td>
         <td><a [href]="event.Website" target="_blank">{{ event.Website }}</a></td>
@@ -32,7 +32,7 @@
           <!-- <input type="checkbox" [(ngModel)]="event.Approved" (change)="toggleApproval(event)" /> -->
           <input type="checkbox" [checked]="event.Approved" (change)="toggleApproval(event)" />
         </td>
-        <td>{{ event.Date_Created }}</td>
+        <td>{{ event.Date_Created  }}</td>
         <td><button class="editButton"  (click)="deleteService(event.id)">Delete</button></td>
       </tr>
     </tbody>
