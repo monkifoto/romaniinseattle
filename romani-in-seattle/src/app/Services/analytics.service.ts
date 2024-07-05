@@ -41,93 +41,28 @@ export class AnalyticsService {
         })
       ))
     ).subscribe(({ navigationEvent, queryParams }) => {
-      this.logAnalyticsData(navigationEvent.urlAfterRedirects, queryParams);
+      this.logAnalyticsData(navigationEvent.urlAfterRedirects, queryParams, navigationEvent.type);
     });
   }
 
-  private async logAnalyticsData(pagePath: string, queryParams: any) {
+  private async logAnalyticsData(pagePath: string, queryParams: any, event_type:any) {
     //const user = await this.afAuth.currentUser;
+    const userAgent = navigator.userAgent;
     const timestamp = new Date();
-    let metrics = this.getMetrics();
+    const browser = this.getBrowserType(userAgent);
+    const isMobile = /mobile/i.test(userAgent);
+
     const analyticsData = {
       pagePath,
       queryParams,
       timestamp,
-      metrics,
-
+      browser,
+      isMobile,
+      event_type
 
     };
 
     return this.firestore.collection('analytics').add(analyticsData);
-  }
-
-  // logEvent(eventType: string): void {
-
-  //   // this.router.events.pipe(
-  //   //   filter(event => event instanceof NavigationEnd)
-  //   // ).subscribe((event: NavigationEnd|any) => {
-  //   //   const pagePath = event.urlAfterRedirects;
-  //   //   const queryParams = this.activatedRoute.snapshot.queryParams;
-  //   //   const timestamp = new Date().toISOString;
-
-  //   //   this.firestore.collection('analytics').add({
-  //   //     page_path: pagePath,
-  //   //     query_params: queryParams,
-  //   //     timestamp: timestamp
-  //   //   }).then(() => {
-  //   //     console.log('Analytics data saved');
-  //   //   }).catch(error => {
-  //   //     console.error('Error saving analytics data', error);
-  //   //   });
-  //   // });
-
-
-  //   console.log('Log Event called', eventType);
-  //   console.log("Log Event :", eventType);
-  //   this.getIPAddress().subscribe(ipData => {
-  //     const metrics = this.getMetrics();
-  //     metrics.ipAddress = ipData.ip;
-  //     metrics.queryParams = this.getQueryParams();
-  //     metrics.pagePath = this.location.path();
-
-  //     this.analyticsCollection.add({ eventType, ...metrics, timestamp: new Date() }).catch(error => {
-  //       console.error('Error logging event: ', error);
-  //     });
-  //   });
-  // }
-
-
-  // private getQueryParams(): string  {
-  //    let queryParameterss: any = {};
-  //   // this.route.queryParams.subscribe(params => {
-  //   //   queryParams = { ...params };
-  //   // });
-  //   // return queryParams;
-  //   this.router.events.pipe(
-  //     filter(event => event instanceof NavigationEnd),
-  //     combineLatestWith(this.activatedRoute.queryParams)
-  //   ).subscribe(([navigationEnd, queryParams]) => {
-  //     const navigationEvent = navigationEnd as NavigationEnd;
-  //    //return ( navigationEvent.urlAfterRedirects, queryParams);
-  //    queryParameterss = queryParams;
-  //   });
-  //   return queryParameterss;
-  // }
-
-  private getMetrics() {
-    const userAgent = navigator.userAgent;
-    const isMobile = /mobile/i.test(userAgent);
-    const browser = this.getBrowserType(userAgent);
-    const ipAddress = this.getIPAddress();
-
-    return {
-      userAgent,
-      isMobile,
-      browser,
-      ipAddress: '',
-      queryParams: {},
-      pagePath: ''
-    };
   }
 
   private getBrowserType(userAgent: string): string {

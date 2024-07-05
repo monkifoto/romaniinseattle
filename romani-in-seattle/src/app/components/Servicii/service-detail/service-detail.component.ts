@@ -32,17 +32,19 @@ export class ServiceDetailComponent implements OnInit {
     this.serviceId = this.route.snapshot.paramMap.get('id')!;
     this.servicesService.getServiceById(this.serviceId).subscribe(serviceDBItem => {
         if(serviceDBItem){
-          this.service.Community_Sponsor = serviceDBItem?.Community_Sponsor;
-          this.service.Name = serviceDBItem.Name;
-          this.service.Date_Created = serviceDBItem.Date_Created;
-          this.service.Description = serviceDBItem.Description;
-          this.service.Email = serviceDBItem.Email;
-          this.service.Facebook = serviceDBItem.Facebook;
-          this.service.Instagram = serviceDBItem.Instagram;
-          this.service.Phone_Number = serviceDBItem.Phone_Number;
-          this.service.Service_Type = serviceDBItem.Service_Type;
-          this.service.Website = formatUrl(serviceDBItem.Website);
-          this.service.Image = serviceDBItem.Image;
+          this.service.Community_Sponsor = serviceDBItem?.Community_Sponsor ?? false;
+          this.service.Name = serviceDBItem.Name ?? '';
+          this.service.Date_Created = serviceDBItem.Date_Created?? '';
+          this.service.Description = serviceDBItem.Description?? '';
+          this.service.Email = serviceDBItem.Email?? '';
+          this.service.Facebook = serviceDBItem.Facebook?? '';
+          this.service.Instagram = serviceDBItem.Instagram?? '';
+          this.service.Phone_Number = serviceDBItem.Phone_Number?? '';
+          this.service.Service_Type = serviceDBItem.Service_Type?? '';
+          this.service.Website = formatUrl(serviceDBItem.Website)?? '';
+          this.service.Image = serviceDBItem.Image?? '';
+          this.service.Hours = serviceDBItem.Hours ?? {};
+
           if(this.serviceId){
             this.service.id = this.serviceId;
           }

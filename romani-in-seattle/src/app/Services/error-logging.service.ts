@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ErrorModel } from '../Model/error-model.model';
+import { Timestamp } from '@angular/fire/firestore';
 
 
 @Injectable({
@@ -17,7 +18,7 @@ export class ErrorLoggingService {
     const errorData = {
       message: error.message || error.toString(),
       stack: error.stack || '',
-      timestamp: new Date(),
+      timestamp: Timestamp.now(),
       context: context? context : '',
       // Add more fields as needed
     };
@@ -27,7 +28,22 @@ export class ErrorLoggingService {
   }
 
   getErrorLogs() {
-    return this.firestore.collection('errorLogs', ref => ref.orderBy('timestamp', 'desc')).valueChanges();
+   // return this.firestore.collection('errorLogs', ref => ref.orderBy('timestamp', 'desc')).valueChanges();
+    return this.firestore.collection<ErrorModel>('errorLogs', ref => ref.orderBy('timestamp', 'desc').limit(200)).valueChanges();
+  }
+
+
+  async clearErrorLogs(): Promise<void> {
+    const snapshot = await this.firestore.collection('errorLogs').get().toPromise();
+    if (snapshot && !snapshot.empty) {
+      const batch = this.firestore.firestore.batch();
+      snapshot.forEach(doc => {
+        batch.delete(doc.ref);
+      });
+      return batch.commit();
+    } else {
+      console.warn('No error logs to clear.');
+    }
   }
 
   // logError(error: any, context?: string): void {

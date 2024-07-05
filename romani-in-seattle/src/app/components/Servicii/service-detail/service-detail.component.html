@@ -37,8 +37,22 @@
         <div><label class="service-details-label">Facebook:</label> <a [href]="service.Facebook" target="_blank">{{ service.Facebook }}</a></div>
         <div><label class="service-details-label">Instagram:</label> <a [href]="service.Instagram" target="_blank">{{ service.Instagram }}</a></div>
         <div><label class="service-details-label">Sponsor:</label> {{ service.Community_Sponsor ? 'Yes' : 'No' }}</div>
-        <div><label class="service-details-label">Date Created:</label> {{ service.Date_Created | date:'shortDate' }}</div>
-        <div><label class="service-details-label">Description:</label>{{ service.Description}}</div>
+        <div><label class="service-details-label">Data:</label> {{ service.Date_Created | date:'shortDate' }}</div>
+        <div><label class="service-details-label">Descriere:</label>{{ service.Description}}</div>
+        <div>
+
+          <label class="service-details-label">Orele de contactare</label>
+
+  <ul>
+    <li><strong>Monday:</strong> {{ service.Hours.Luni?.open }} - {{ service.Hours.Luni?.close }}</li>
+    <li><strong>Tuesday:</strong> {{ service.Hours.Marti?.open }} - {{ service.Hours.Marti?.close }}</li>
+    <li><strong>Wednesday:</strong> {{ service.Hours.Miercuri?.open }} - {{ service.Hours.Miercuri?.close }}</li>
+    <li><strong>Thursday:</strong> {{ service.Hours.Joi?.open }} - {{ service.Hours.Joi?.close }}</li>
+    <li><strong>Friday:</strong> {{ service.Hours.Vineri?.open }} - {{ service.Hours.Vineri?.close }}</li>
+    <li><strong>Saturday:</strong> {{ service.Hours.Sambata?.open }} - {{ service.Hours.Sambata?.close }}</li>
+    <li><strong>Sunday:</strong> {{ service.Hours.Duminica?.open }} - {{ service.Hours.Duminica?.close }}</li>
+  </ul>
+        </div>
     </div>
   </div>
   <div class="service-actions">

@@ -16,8 +16,16 @@ export class Service {
   Image:string='';
   Approved: boolean = false;
   OpenHour: string ='';
-  CloseHour: string = ''
-
+  CloseHour: string = '';
+  Hours: {
+    Luni?: { open: string, close: string };
+    Marti?: { open: string, close: string };
+    Miercuri?: { open: string, close: string };
+    Joi?: { open: string, close: string };
+    Vineri?: { open: string, close: string };
+    Sambata?: { open: string, close: string };
+    Duminica?: { open: string, close: string };
+  } = {};
 }
 export interface ServiceExt extends ServiceWithId {
   getFormattedWebsite(): string;

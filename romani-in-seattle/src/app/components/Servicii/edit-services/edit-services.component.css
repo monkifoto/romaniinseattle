@@ -66,7 +66,8 @@
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select  {
   width: 100%;
   padding: 10px;
   font-size: 1rem;
@@ -80,11 +81,20 @@
 }
 
 
+.day-container {
+  display: flex;
+  flex-wrap: wrap;
+}
 
+.day {
+  width: 20%; /* Two days per row, adjust as needed */
+  padding: 10px;
+  box-sizing: border-box;
+}
 
 
 button, select {
-  background-color: #007bff; /* Primary button color */
+  background-color: var(--button-color); /* Primary button color */
   color: white;
   border: none;
   padding: 10px 20px;

@@ -85,7 +85,7 @@ export class ServicesService {
     service['id'] = id;
     service.Date_Created = new Date().toISOString();
     service.Date_Updated = new Date().toISOString();
-    this.servicesCollection.doc(id).set(service).catch(error => {
+    this.servicesCollection.doc(id).set(Object.assign({},service)).catch(error => {
       this.errorLoggingService.logError(error, 'addService');
       throw error;
     });
@@ -96,7 +96,7 @@ export class ServicesService {
 
   updateService(id: string, service: Service):Observable<ServiceWithId | undefined> {
     service.Date_Updated = new Date().toISOString();
-    this.servicesCollection.doc(id).update(service).catch(error => {
+    this.servicesCollection.doc(id).update(Object.assign({},service)).catch(error => {
       this.errorLoggingService.logError(error, 'updateService');
       throw error;
     });

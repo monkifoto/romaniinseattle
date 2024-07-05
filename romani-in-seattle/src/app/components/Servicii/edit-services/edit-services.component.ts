@@ -17,6 +17,7 @@ export class EditServicesComponent implements OnInit {
   selectedFile: File | null = null;
   serviceObj: ServiceWithId = new ServiceWithId();
   oldImage: string | null = null;
+  hoursOptions: string[] = ['Closed', '7:00 AM', '8:00 AM', '9:00 AM','10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM','2:00 PM','3:00 PM','4:00 PM','5:00 PM','6:00 PM','7:00 PM','8:00 PM','9:00 PM'];
 
   constructor(
     private fb: FormBuilder,
@@ -27,17 +28,46 @@ export class EditServicesComponent implements OnInit {
   ) {
     this.serviceForm = this.fb.group({
       Name: ['', Validators.required],
-      Email: ['', Validators.email],
-      Phone_Number: ['', Validators.required],
+      Email: ['', [Validators.email]],
+      Phone_Number: [''],
       Website: [''],
       Facebook: [''],
       Instagram: [''],
-      Description: ['', Validators.required],
+      Image: [''],
+      Description: [''],
+      Date_Created: [''],
+      Community_Sponsor: [false],
       Service_Type: ['', Validators.required],
-      Image:[''],
-      Date_Created:[''],
-      Date_Updated:[''],
-      Approved:['']
+      Hours: this.fb.group({
+        Luni: this.fb.group({
+          open: ['8:00 AM'],
+          close: ['5:00 PM']
+        }),
+        Marti: this.fb.group({
+          open: ['8:00 AM'],
+          close: ['5:00 PM']
+        }),
+        Miercuri: this.fb.group({
+          open: ['8:00 AM'],
+          close: ['5:00 PM']
+        }),
+        Joi: this.fb.group({
+          open: ['8:00 AM'],
+          close: ['5:00 PM']
+        }),
+        Vineri: this.fb.group({
+          open: ['8:00 AM'],
+          close: ['5:00 PM']
+        }),
+        Sambata: this.fb.group({
+          open: ['Closed'],
+          close: ['Closed']
+        }),
+        Duminica: this.fb.group({
+          open: ['Closed'],
+          close: ['Closed']
+        })
+      }),
     });
   }
 
@@ -47,6 +77,7 @@ export class EditServicesComponent implements OnInit {
 
   ngOnInit(): void {
     this.serviceId = this.route.snapshot.paramMap.get('id')!;
+    console.log(this.serviceId);
     this.servicesService.getServiceById(this.serviceId).subscribe(service => {
       this.serviceForm.patchValue({
         Id : this.serviceId,
@@ -63,8 +94,10 @@ export class EditServicesComponent implements OnInit {
         //Image: service?.Image,
         Date_Created: service?.Date_Created,
         Date_Updated: service?.Date_Updated,
-        Approved: true//service?.Approved
+        Approved: true,//service?.Approved
+        Hours: service?.Hours
       });
+      console.log(this.serviceForm.value);
       if(service?.Image){
         this.oldImage = service?.Image;
       }
@@ -97,8 +130,8 @@ export class EditServicesComponent implements OnInit {
       this.serviceObj.Description= this.serviceForm.value.Description;
       this.serviceObj.Date_Created= this.serviceForm.value.Date_Created;
       this.serviceObj.Date_Updated= this.serviceForm.value.Date_Updated;
-      this.serviceObj.Approved = this.serviceForm.value.Approved;
       this.serviceObj.Image= this.serviceForm.value.Image;
+      this.serviceObj.Hours = this.serviceForm.value.Hours;
       if (this.selectedFile) {
         console.log(this.selectedFile);
         this.imageUploadService.uploadImage(this.selectedFile, 'serviceImages').subscribe(downloadURL => {
@@ -117,27 +150,27 @@ export class EditServicesComponent implements OnInit {
 
   private saveService(): void {
 
-     const serviceJS = {
-        id: this.serviceObj.id,
-        Name: this.serviceObj.Name,
-        Phone_Number: this.serviceObj.Phone_Number,
-        Service_Type: this.serviceObj.Service_Type,
-        Community_Sponsor: false,
-        Email: this.serviceObj.Email,
-        Website: this.serviceObj.Website,
-        Facebook: this.serviceObj.Facebook,
-        Instagram: this.serviceObj.Instagram,
-        Description: this.serviceObj.Description,
-        Date_Created: this.serviceObj.Date_Created,
-        Date_Updated: new Date().getDate.toString(),
-        Image: this.serviceObj.Image,
-        Approved: false,
-        OpenHour: '',
-        CloseHour:''
-      };
-  console.log(serviceJS);
+    //  const serviceJS = {
+    //     id: this.serviceObj.id,
+    //     Name: this.serviceObj.Name,
+    //     Phone_Number: this.serviceObj.Phone_Number,
+    //     Service_Type: this.serviceObj.Service_Type,
+    //     Community_Sponsor: false,
+    //     Email: this.serviceObj.Email,
+    //     Website: this.serviceObj.Website,
+    //     Facebook: this.serviceObj.Facebook,
+    //     Instagram: this.serviceObj.Instagram,
+    //     Description: this.serviceObj.Description,
+    //     Date_Created: this.serviceObj.Date_Created,
+    //     Date_Updated: new Date().getDate.toString(),
+    //     Image: this.serviceObj.Image,
+    //     Approved: false,
+    //     OpenHour: '',
+    //     CloseHour:''
+    //   };
+  // console.log(serviceJS);
   let id = this.route.snapshot.paramMap.get('id')!;
-      this.servicesService.updateService(id, serviceJS).subscribe(ser =>{
+      this.servicesService.updateService(id, this.serviceObj).subscribe(ser =>{
         console.log('Service updated successfully  ID:', ser?.id);
         this.serviceForm.reset();
         this.router.navigate(['/services', ser?.id]);

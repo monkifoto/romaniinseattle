@@ -14,6 +14,12 @@
     <h3>Vă rugăm să introduceți cel puțin o metodă de contact.</h3>
   <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
+      <label class="required" for="Service_Type">Categoria de serviciului:</label>
+      <select id="Service_Type" formControlName="Service_Type" required>
+        <option *ngFor="let type of serviceTypes" [value]="type">{{ type }}</option>
+      </select>
+    </div>
+    <div class="form-group">
       <label class="required" for="Name">Nume:</label>
       <input id="Name" placeholder="Ion Dumitrescu" formControlName="Name" required>
     </div>
@@ -48,18 +54,31 @@
       <textarea id="Description" formControlName="Description" ></textarea>
     </div>
 
-    <div class="form-group">
-      <label class="required" for="Service_Type">Categoria de serviciului:</label>
-      <select id="Service_Type" formControlName="Service_Type" required>
-        <option *ngFor="let type of serviceTypes" [value]="type">{{ type }}</option>
-      </select>
-    </div>
 
+    <div class="form-group">
+      <label for="Hours">Orele de contactare:</label>
+      <div formGroupName="Hours">
+        <div class="day-container">
+          <div *ngFor="let day of ['Luni', 'Marti', 'Miercuri', 'Joi', 'Vineri', 'Sambata', 'Duminica']" [formGroupName]="day" class="day">
+            <h2>{{day}}</h2>
+            <label for="{{day}}-open">Open:</label>
+            <select formControlName="open">
+              <option *ngFor="let hour of hoursOptions" [value]="hour">{{hour}}</option>
+            </select>
+            <label for="{{day}}-close">Close:</label>
+            <select formControlName="close">
+              <option *ngFor="let hour of hoursOptions" [value]="hour">{{hour}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+</div>
     <div class="form-group">
       <label for="Image">Imagine:</label>
       <input type="file" formControlName="Image" (change)="onFileSelected($event)">
     </div>
 
-    <button type="submit" [disabled]="serviceForm.invalid">Add Service</button>
+    <button type="submit" [disabled]="serviceForm.invalid">Adaugati Serviciul</button>
   </form>
 </div>

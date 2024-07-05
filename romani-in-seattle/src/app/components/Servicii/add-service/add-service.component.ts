@@ -15,6 +15,7 @@ export class AddServiceComponent implements OnInit {
   serviceTypes: string[] = [];
   selectedFile: File | null = null;
   serviceObj: ServiceWithId = new ServiceWithId();
+  hoursOptions: string[] = ['Closed', '7:00 AM', '8:00 AM', '9:00 AM','10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM','2:00 PM','3:00 PM','4:00 PM','5:00 PM','6:00 PM','7:00 PM','8:00 PM','9:00 PM'];
 
   constructor(private fb: FormBuilder, private servicesService: ServicesService, private imageUploadService: ImageUploadService, private router: Router) {
     this.serviceForm = this.fb.group({
@@ -27,8 +28,38 @@ export class AddServiceComponent implements OnInit {
       Image: [''],
       Description: [''],
       Date_Created: [''],
-      Community_Sponsor: [''],
+      Community_Sponsor: [false],
       Service_Type: ['', Validators.required],
+      Hours: this.fb.group({
+        Luni: this.fb.group({
+          open: ['8:00 AM'],
+          close: ['5:00 PM']
+        }),
+        Marti: this.fb.group({
+          open: ['8:00 AM'],
+          close: ['5:00 PM']
+        }),
+        Miercuri: this.fb.group({
+          open: ['8:00 AM'],
+          close: ['5:00 PM']
+        }),
+        Joi: this.fb.group({
+          open: ['8:00 AM'],
+          close: ['5:00 PM']
+        }),
+        Vineri: this.fb.group({
+          open: ['8:00 AM'],
+          close: ['5:00 PM']
+        }),
+        Sambata: this.fb.group({
+          open: ['Closed'],
+          close: ['Closed']
+        }),
+        Duminica: this.fb.group({
+          open: ['Closed'],
+          close: ['Closed']
+        })
+      }),
     });
   }
 
@@ -48,24 +79,16 @@ export class AddServiceComponent implements OnInit {
 
   onSubmit(): void {
     if (this.serviceForm.valid) {
-
-
-      this.serviceObj.Name = this.serviceForm.value.Name;
-      this.serviceObj.Phone_Number= this.serviceForm.value.Phone_Number;
-      this.serviceObj.Service_Type= this.serviceForm.value.Service_Type;
-      this.serviceObj.Community_Sponsor= false;
-      this.serviceObj.Email= this.serviceForm.value.Email;
-      this.serviceObj.Website= this.serviceForm.value.Website;
-      this.serviceObj.Facebook= this.serviceForm.value.Facebook;
-      this.serviceObj.Instagram= this.serviceForm.value.Instagram;
-      this.serviceObj.Description= this.serviceForm.value.Description;
-      this.serviceObj.Date_Created= this.serviceForm.value.Date_Created;
-      this.serviceObj.Image= this.serviceForm.value.Image;
-      this.serviceObj.Approved = true;
+      const formDatas = { ...this.serviceForm.value };
+      console.log('Form Data:', formDatas);
+      console.log(this.serviceForm.value.Hours);
+      const formData = { ...this.serviceForm.value };
+      formData.Hours = this.formatHours(formData.Hours);
+      console.log('Form Data hours:', formData.Hours );
 
       if (this.selectedFile) {
         this.imageUploadService.uploadImage(this.selectedFile, 'serviceImages').subscribe(downloadURL => {
-          this.serviceObj.Image = downloadURL;
+          this.serviceForm.value.Image = downloadURL;
           console.log(downloadURL);
           this.saveService();
         });
@@ -73,57 +96,25 @@ export class AddServiceComponent implements OnInit {
         this.saveService();
       }
 
-      // this.servicesService.addService(Service).then(() => {
-      //   console.log('Service added successfully');
-      //   this.serviceForm.reset();
-      // }).catch((error:Error | any) => {
-      //   console.error('Error adding service: ', error);
-      // });
+
     }
   }
 
+  private formatHours(hours: any): any {
+    for (const day of Object.keys(hours)) {
+      if (hours[day].open === '' && hours[day].close === '') {
+        hours[day] = null; // Convert empty strings to null
+      }
+    }
+    return hours;
+  }
   private saveService(): void {
-    //if (this.serviceObj.id) {
 
-     const serviceJS = {
-        id: this.serviceObj.id,
-        Name: this.serviceObj.Name,
-        Phone_Number: this.serviceObj.Phone_Number,
-        Service_Type: this.serviceObj.Service_Type,
-        Community_Sponsor: false,
-        Email: this.serviceObj.Email,
-        Website: this.serviceObj.Website,
-        Facebook: this.serviceObj.Facebook,
-        Instagram: this.serviceObj.Instagram,
-        Description: this.serviceObj.Description,
-        Date_Created: new Date().getDate.toString(),
-        Date_Updated: new Date().getDate.toString(),
-        Image: this.serviceObj.Image,
-        Approved: false,
-        OpenHour: '',
-        CloseHour:''
-      };
-
-      this.servicesService.addService(serviceJS).subscribe(ser =>{
+      this.servicesService.addService(this.serviceForm.value).subscribe(ser =>{
         console.log('Service added successfully with ID:', ser?.id);
         this.serviceForm.reset();
         this.router.navigate(['/services', ser?.id]);
       })
-      // then((newSer:any) => {
-      //     console.log('Service added successfully with ID:', newSer.id);
-      //     this.serviceForm.reset();
-      //     this.router.navigate(['/services', newSer.id]);
-      //   }).catch((error:Error | any) => {
-      //     console.error('Error adding service: ', error);
-      //   });
-
-        // this.servicesService.addService(serviceJS).(newService) => {
-        //   console.log('Service added with ID:', newService.id);
-        //   this.router.navigate(['/services', newService.id]);
-        // }).catch((error: any) => {
-        //   console.error('Error adding service:', error);
-        // });
 
   }
-  //}
 }

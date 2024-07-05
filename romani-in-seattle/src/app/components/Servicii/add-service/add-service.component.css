@@ -44,26 +44,6 @@
 }
 
 
-
-
-.section-header {
-  text-align: center;
-  padding: 40px 20px;
-  background-color: #f0f0f0;
-}
-
-.section-header h2 {
-  font-size: 2.5rem;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.section-header p {
-  font-size: 1.2rem;
-  color: #666;
-}
-
-
 .form-container {
   max-width: 600px;
   margin: 0 auto;
@@ -105,15 +85,26 @@
   resize: vertical;
 }
 
-button {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 1rem;
-  color: #fff;
-  background-color: #007bff;
+.day-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.day {
+  width: 20%; /* Two days per row, adjust as needed */
+  padding: 10px;
+  box-sizing: border-box;
+}
+button, select {
+  background-color: var(--button-color); /* Primary button color */
+  color: white;
   border: none;
-  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
   cursor: pointer;
+  margin: 10px 0;
+  transition: background-color 0.3s ease;
 }
 
 button[disabled] {

@@ -32,7 +32,7 @@
         <td>{{ offer.Website }}</td>
         <td>{{ offer.Facebook }}</td>
         <td>{{ offer.Instagram }}</td>
-        <td>{{ offer.Date_Created }}</td>
+        <td>{{ offer.Date_Created | date: 'dd/MM/yyyy' }}</td>
         <td>
           <input type="checkbox" [checked]="offer.Approved" (change)="toggleApproval(offer)" />
         </td>
