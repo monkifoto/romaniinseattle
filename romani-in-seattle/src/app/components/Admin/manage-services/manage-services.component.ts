@@ -41,6 +41,16 @@ export class ServicesManagementComponent implements OnInit  {
     this.serviceManagementService.updateService(service.id, service);
   }
 
+  toggleSponsor(service: ServiceWithId): void {
+    service.Community_Sponsor = !service.Community_Sponsor;
+    this.serviceManagementService.updateService(service.id, service);
+  }
+
+  getDays(): string[] {
+    return ['Luni', 'Marti', 'Miercuri', 'Joi', 'Vineri', 'Sambata', 'Duminica'];
+  }
+
+
   navigateToEditService(id: string): void {
     this.router.navigate(['/edit-service', id]);
   }

@@ -10,6 +10,7 @@
         <th>Service Type</th>
         <th>Contact</th>
         <th>Description</th>
+        <th>Hours</th>
         <th>Online Presence</th>
         <th>Sponsor</th>
         <th>Date Created</th>
@@ -25,8 +26,20 @@
         <td>{{ service.Service_Type }}</td>
         <td>{{ service.Phone_Number }} <br /><div *ngIf="service.Email"><a href='mailto:{{service.Email }}'>{{ service.Email }}</a></div></td>
         <td>{{ service.Description }}</td>
+        <td>
+<div  *ngIf="service.Hours" style="font-size: small; min-width: 150px">
+            Mon:{{ service.Hours.Luni?.open }} - {{ service.Hours.Luni?.close }}<br>
+            Tue:{{ service.Hours.Marti?.open }} - {{ service.Hours.Marti?.close }}<br>
+            Wed:{{ service.Hours.Miercuri?.open }} - {{ service.Hours.Miercuri?.close }}<br>
+            Thur:{{ service.Hours.Joi?.open }} - {{ service.Hours.Joi?.close }}<br>
+            Fri:{{ service.Hours.Vineri?.open }} - {{ service.Hours.Vineri?.close }}<br>
+            Sat:{{ service.Hours.Sambata?.open }} - {{ service.Hours.Sambata?.close }}<br>
+            Sun:{{ service.Hours.Duminica?.open }} - {{ service.Hours.Duminica?.close }}<br>
+</div>
+        </td>
         <td>{{ service.Website }}<br/> {{ service.Facebook }}<br/>{{ service.Instagram }}</td>
-        <td>{{ service.Community_Sponsor }}</td>
+        <td>
+          <input type="checkbox" [checked]="service.Community_Sponsor" (change)="toggleSponsor(service)" />
         <td>{{ service.Date_Created | date: 'dd/MM/yyyy'}}
           <br/>
           {{ service.Date_Updated | date: 'dd/MM/yyyy'}}
