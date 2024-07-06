@@ -1,6 +1,12 @@
 <div class="form-container">
   <form #offerForm="ngForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
+      <label for="OfferType">Tip de oferta</label>
+      <select id="OfferType" [(ngModel)]="offer.OfferType" name="OfferType" required class="form-control">
+        <option *ngFor="let type of offerTypes" [value]="type">{{ type }}</option>
+      </select>
+    </div>
+    <div class="form-group">
       <label class="required" for="Title">Titlu:</label>
       <input type="text" [(ngModel)]="offer.Title" name="Title" required placeholder="Titlu">
     </div>
@@ -40,13 +46,18 @@
       <label for="Website">Website:</label>
       <input type="url" [(ngModel)]="offer.Website" name="Website" placeholder="Pagina de Web">
     </div>
-    <div class="form-group">
-      <label for="OfferType">Tip de oferta</label>
-      <select id="OfferType" [(ngModel)]="offer.OfferType" name="OfferType" required class="form-control">
-        <option *ngFor="let type of offerTypes" [value]="type">{{ type }}</option>
-      </select>
-    </div>
 
+    <div class="form-group">
+      <label for="Images">Imagini existente:</label>
+      <img class="existing-image" [src]="offer.Image1"/>
+      <img class="existing-image" [src]="offer.Image2"/>
+      <img class="existing-image" [src]="offer.Image3"/>
+      <img class="existing-image" [src]="offer.Image4"/>
+      <img class="existing-image" [src]="offer.Image5"/>
+      <!-- <div class="existing-images">
+        <img *ngFor="let image of offer.Images" [src]="image" alt="Offer Image" class="existing-image">
+      </div> -->
+    </div>
     <div class="form-group">
       <label for="Images">Images</label>
       <input type="file" id="Images" (change)="onFileSelected($event)" multiple accept="image/*" class="form-control">

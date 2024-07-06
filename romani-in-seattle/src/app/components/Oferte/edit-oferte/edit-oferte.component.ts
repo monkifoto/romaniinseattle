@@ -5,6 +5,8 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Observable, forkJoin } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import { OffersService } from 'src/app/Services/offers.service';
+import { Offers } from 'src/app/Model/offers.model';
 
 @Component({
   selector: 'app-edit-oferte',
@@ -15,7 +17,7 @@ export class EditOferteComponent implements OnInit {
   offerForm: FormGroup;
   offer: any = {};
   offerId!: string;
-  offerTypes: string[] = ['Type1', 'Type2', 'Type3']; // Replace with actual types
+  offerTypes: string[] = []; // Replace with actual types
   selectedFiles: File[] = [];
   imageUrls: string[] = [];
 
@@ -24,7 +26,8 @@ export class EditOferteComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private firestore: AngularFirestore,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private offerService: OffersService
   ) {
     this.offerForm = this.fb.group({
       Title: ['', Validators.required],
@@ -37,7 +40,11 @@ export class EditOferteComponent implements OnInit {
       Location: ['', Validators.required],
       Website: [''],
       OfferType: ['', Validators.required],
-      Images: ['']
+      Image1: [''],
+      Image2: [''],
+      Image3: [''],
+      Image4: [''],
+      Image5: ['']
     });
   }
 
@@ -46,12 +53,18 @@ export class EditOferteComponent implements OnInit {
     if (this.offerId) {
       this.loadOffer();
     }
+    this.offerService.getAllOfferTypes().subscribe((types: string[]) => {
+      this.offerTypes = types;
+    });
   }
 
   loadOffer(): void {
-    this.firestore.doc(`offers/${this.offerId}`).valueChanges().subscribe((data: any) => {
-      this.offer = data;
-      this.offerForm.patchValue(data);
+    this.offerService.getOfferById(this.offerId).subscribe((data: Offers | undefined) => {
+      if (data) {
+        this.offer = data;
+        console.log(data);
+        this.offerForm.patchValue(data);
+      }
     });
   }
 

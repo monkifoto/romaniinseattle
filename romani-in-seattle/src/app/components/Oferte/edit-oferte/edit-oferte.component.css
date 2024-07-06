@@ -1,30 +1,71 @@
+/* src/app/add-job/add-job.component.css */
+
 .form-container {
   max-width: 600px;
   margin: 0 auto;
-  padding: 16px;
+  padding: 20px;
   background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 100px;
 }
 
 .form-group {
-  margin-bottom: 16px;
+  margin-bottom: 15px;
 }
 
-.required::after {
-  content: ' *';
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group label.required::after {
+  content: " *";
   color: red;
+  margin-left: 5px;
+}
+
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form-group textarea {
+  resize: vertical;
 }
 
 button {
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: white;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #0056b3;
+button[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.existing-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.existing-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
 }
