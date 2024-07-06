@@ -2,167 +2,148 @@
   display: none;
 }
 
-.editButton{
-  visibility: hidden;
-}
-/* .service-detail {
-  max-width: 600px;
-  margin: auto;
+.service-details-container {
   padding: 16px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  margin: 100px auto;
+  max-width: 1200px;
+  background-color: #f9f9f9; /* Offwhite background */
+  border-radius: 10px; /* Rounded corners */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.carousel {
-  display: flex;
-  overflow: hidden;
-  max-height: 300px;
+.service-header {
+  text-align: center;
   margin-bottom: 16px;
 }
 
-.image-container {
-  flex: 0 0 400px;
-  overflow: hidden;
-  position: relative;
-}
-
-.image-container img {
-  width: 100%;
-  height: auto;
-  max-height: 300px;
-  object-fit: cover;
-}
-
-button {
-  display: block;
-  margin: 16px auto;
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #0056b3;
-} */
-
-.service-details-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f8f9fa;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-top: 100px;
-}
-.service-details-label{
-  display:inline-block;
-  font-size: 1.1em;
-  font-weight: bold;
-  padding: 10px;
-}
-
 .service-header h1 {
-  text-align: center;
-  font-size: 2.5em;
-  margin-bottom: 20px;
-  color: #333;
+  font-size: 2em;
 }
 
 .service-content {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-}
-
-.service-image {
-  flex: 1;
-  margin-right: 20px;
+  flex-direction: column;
+  align-items: center;
 }
 
 .service-image img {
-  max-width: 100%;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.service-image h1{
+  align-items: center;
+  text-align: center;
 }
 
 .service-details {
-  flex: 2;
-  font-size: 1.2em;
-  color: #555;
+  width: 100%;
+  margin-top: 16px;
 }
 
-.service-details h2 {
-  font-size: 2em;
-  margin-bottom: 10px;
-  color: #444;
+.service-details-label {
+  font-weight: bold;
+  font-size: 1.1em;
+  color: var(--button-color);
+  display: inline-block;
+  width: 100px;
 }
 
-.service-details p {
-  margin-bottom: 10px;
-}
-
+.service-details div,
 .service-details a {
-  color: #007bff;
-  text-decoration: none;
+  margin: 4px 0;
+  font-size: 0.9em;
 }
 
-.service-details a:hover {
-  text-decoration: underline;
+.service-details ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.service-details ul li {
+  font-size: 0.8em;
+  margin: 4px 0;
+}
+
+.service-description {
+  font-size: 1em;
+  margin-top: 16px;
+  border-top: 1px solid #ccc;
+  padding-top: 16px;
 }
 
 .service-actions {
-  text-align: center;
-  margin-top: 20px;
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .service-actions button {
-  padding: 10px 20px;
-  font-size: 1em;
-  color: #fff;
-  background-color: var(--button-color);
+  padding: 8px 16px;
   border: none;
   border-radius: 5px;
+  background-color: var(--button-color);
+  color: #fff;
   cursor: pointer;
+  font-size: 1em;
 }
 
 .service-actions button:hover {
-  background-color: var(--button-color);
+  background-color: #0056b3;
 }
 
-@media (max-width: 1024px) {
-  .service-card {
-    width: calc(50% - 32px);
-    min-width: 350px;
+.date-created{
+  display: none;
+}
+.dayLabel{
+  display: inline-block;
+  width: 80px;
+  color: var(--button-color);
+}
+
+.hours-label{
+  display: inline-block;
+  width: 100%;
+  font-size: 1.2rem;
+  color: var(--button-color);
+
+}
+
+@media (min-width: 768px) {
+  .service-content {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .service-image {
+    margin-right: 16px;
+  }
+
+  .service-details {
+    flex: 1;
   }
 }
 
-@media (max-width: 600px) {
-  .service-card {
-    width: calc(90% - 100px);
-    min-width: 350px;
+@media (max-width: 767px) {
+  .service-header h1 {
+    font-size: 1.5em;
   }
 
-  @media screen and (max-width: 960px) {
-    .service-card {
-      width: calc(90% - 100px);
-      min-width: 350px;
-    }
+  .service-details {
+    text-align: left;
+  }
 
-    .hero-overlay h1 {
-      color: white;
-      font-size: 2.5rem;
-      text-align: center;
-    }
+  .service-actions {
+    flex-direction: column;
+    align-items: center;
+  }
 
-
-    .overlay_subtitle h2 {
-      color: white;
-      font-size: 1.5rem;
-      text-align: center;
-    }
+  .service-actions button {
+    margin: 4px 0;
   }
 }

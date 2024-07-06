@@ -1,58 +1,39 @@
-
-
-<!-- <h1> Detalii Serviciu</h1>
-<div class="service-detail">
-  <h2>{{ service.Name }}</h2>
-  <div class="carousel">
-    <div class="image-container">
-      <img [src]="service.Image" alt="Offer Image">
-    </div>
-  </div>
-  <p><strong>Service Type:</strong> {{ service.Service_Type }}</p>
-  <p><strong>Phone Number:</strong> {{ service.Phone_Number }}</p>
-  <p><strong>Email:</strong> {{ service.Email }}</p>
-  <p><strong>Description:</strong> {{ service.Description }}</p>
-  <p><strong>Website:</strong> <a [href]="service.Website" target="_blank">{{ service.Website }}</a></p>
-  <p><strong>Date Created:</strong> {{ service.Date_Created | date: 'shortDate' }}</p>
-  <button (click)="goBack()">Inapoi la Servicii</button>
-</div> -->
-
-
-<div class="service-details-container" >
+<div class="service-details-container">
   <div class="service-header">
-    <h1><strong>Name:</strong>{{ service.Name }}</h1>
+
     <div class="forDebug">
-    <h3><strong>Service Id:</strong>{{service.id}}</h3>
-  </div>
+      <h3><strong>Service Id:</strong> {{service.id}}</h3>
+    </div>
   </div>
   <div class="service-content">
     <div class="service-image">
       <img [src]="service.Image" alt="{{ service.Name }}">
+      <h1>{{ service.Name }}</h1>
     </div>
     <div class="service-details">
       <div><label class="service-details-label">Tip Serviciu:</label> {{ service.Service_Type }}</div>
       <div><label class="service-details-label">Nr Telefon:</label> {{ service.Phone_Number }}</div>
-        <div><label class="service-details-label">Email:</label> {{ service.Email }}</div>
-        <div><label class="service-details-label">Website:</label> <a [href]="service.Website" target="_blank">{{ service.Website }}</a></div>
-        <div><label class="service-details-label">Facebook:</label> <a [href]="service.Facebook" target="_blank">{{ service.Facebook }}</a></div>
-        <div><label class="service-details-label">Instagram:</label> <a [href]="service.Instagram" target="_blank">{{ service.Instagram }}</a></div>
-        <div><label class="service-details-label">Sponsor:</label> {{ service.Community_Sponsor ? 'Yes' : 'No' }}</div>
-        <div><label class="service-details-label">Data:</label> {{ service.Date_Created | date:'shortDate' }}</div>
-        <div><label class="service-details-label">Descriere:</label>{{ service.Description}}</div>
-        <div>
-
-          <label class="service-details-label">Orele de contactare</label>
-
-  <ul>
-    <li><strong>Monday:</strong> {{ service.Hours.Luni?.open }} - {{ service.Hours.Luni?.close }}</li>
-    <li><strong>Tuesday:</strong> {{ service.Hours.Marti?.open }} - {{ service.Hours.Marti?.close }}</li>
-    <li><strong>Wednesday:</strong> {{ service.Hours.Miercuri?.open }} - {{ service.Hours.Miercuri?.close }}</li>
-    <li><strong>Thursday:</strong> {{ service.Hours.Joi?.open }} - {{ service.Hours.Joi?.close }}</li>
-    <li><strong>Friday:</strong> {{ service.Hours.Vineri?.open }} - {{ service.Hours.Vineri?.close }}</li>
-    <li><strong>Saturday:</strong> {{ service.Hours.Sambata?.open }} - {{ service.Hours.Sambata?.close }}</li>
-    <li><strong>Sunday:</strong> {{ service.Hours.Duminica?.open }} - {{ service.Hours.Duminica?.close }}</li>
-  </ul>
-        </div>
+      <div><label class="service-details-label">Email:</label> {{ service.Email }}</div>
+      <div><label class="service-details-label">Website:</label> <a [href]="service.Website" target="_blank">{{ service.Website }}</a></div>
+      <div><label class="service-details-label">Facebook:</label> <a [href]="service.Facebook" target="_blank">{{ service.Facebook }}</a></div>
+      <div><label class="service-details-label">Instagram:</label> <a [href]="service.Instagram" target="_blank">{{ service.Instagram }}</a></div>
+      <div><label class="service-details-label">Sponsor:</label> {{ service.Community_Sponsor ? 'Yes' : 'No' }}</div>
+      <div class="date-created"><label class="service-details-label ">Data:</label> {{ service.Date_Created | date:'shortDate' }}</div>
+      <div class="service-description">
+        <label class="service-details-label">Descriere:</label> {{ service.Description }}
+      </div>
+      <div>
+        <label class="hours-label">Orele de contactare:</label>
+        <ul>
+          <li><strong class="dayLabel">Monday:</strong> {{ service.Hours.Luni?.open }} - {{ service.Hours.Luni?.close }}</li>
+          <li><strong class="dayLabel">Tuesday:</strong> {{ service.Hours.Marti?.open }} - {{ service.Hours.Marti?.close }}</li>
+          <li><strong class="dayLabel">Wednesday:</strong> {{ service.Hours.Miercuri?.open }} - {{ service.Hours.Miercuri?.close }}</li>
+          <li><strong class="dayLabel">Thursday:</strong> {{ service.Hours.Joi?.open }} - {{ service.Hours.Joi?.close }}</li>
+          <li><strong class="dayLabel">Friday:</strong> {{ service.Hours.Vineri?.open }} - {{ service.Hours.Vineri?.close }}</li>
+          <li><strong class="dayLabel">Saturday:</strong> {{ service.Hours.Sambata?.open }} - {{ service.Hours.Sambata?.close }}</li>
+          <li><strong class="dayLabel">Sunday:</strong> {{ service.Hours.Duminica?.open }} - {{ service.Hours.Duminica?.close }}</li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class="service-actions">
@@ -60,5 +41,3 @@
     <button (click)="goBack()">Inapoi la Servicii</button>
   </div>
 </div>
-
-
