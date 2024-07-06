@@ -16,7 +16,8 @@
         <th>Instagram</th>
         <th>Date Created</th>
         <th>Approved</th>
-        <th>Commands</th>
+        <th>Edit</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -36,7 +37,8 @@
         <td>
           <input type="checkbox" [checked]="offer.Approved" (change)="toggleApproval(offer)" />
         </td>
-        <td><button class="editButton"  (click)="deleteService(offer.id)">Delete</button></td>
+        <td><button class="editButton"  (click)="navigateToEditOferte(offer.id)">Edit</button></td>
+        <td><button class="editButton"  (click)="deleteOferta(offer.id)">Delete</button></td>
       </tr>
     </tbody>
   </table>

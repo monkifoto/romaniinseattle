@@ -39,6 +39,7 @@ import { GlobalErrorHandler } from './Error-handler/global-error-handler.service
 import { ErrorLoggingService } from './Services/error-logging.service';
 import { ErrorLogComponent } from './components/Admin/error-log/error-log.component';
 import { HttpClientModule } from '@angular/common/http';
+import { EditOferteComponent } from './components/Oferte/edit-oferte/edit-oferte.component';
 
 
 
@@ -64,6 +65,7 @@ import { HttpClientModule } from '@angular/common/http';
     EventCardComponent,
     TestComponent,
     ErrorLogComponent,
+    EditOferteComponent,
   ],
   imports: [
     BrowserModule,

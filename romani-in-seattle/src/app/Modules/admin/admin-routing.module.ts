@@ -8,6 +8,7 @@ import { OfferManagementComponent } from 'src/app/components/Admin/offer-managem
 import { EventManagementComponent } from 'src/app/components/Admin/event-management/event-management.component';
 import { ErrorLogComponent } from 'src/app/components/Admin/error-log/error-log.component';
 
+
 // const routes: Routes = [
 //   { path: '', component: AdminComponent },
 //   {

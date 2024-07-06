@@ -8,45 +8,11 @@
 </div>
 
 <div class="add-service-container">
-  <button (click)="navigateToAddOffer()">Adaugati oferte</button>
+  <button (click)="navigateToAddOffer()">Adaugati oferta</button>
 </div>
 
 <div class="offer-list">
   <app-offer-card *ngFor="let offer of offers" [offer]="offer"></app-offer-card>
 </div>
 
-<!-- <div class="offers">
-  <h2>Offers</h2>
-  <div class="offers-list">
-    <div *ngFor="let offer of offers" class="offers-card">
-      <div class="offers-card-image">
-        <img src="http://source.unsplash.com/800x600/?Caregiver" alt="{{ offer.Title }}">
-      </div>
-      <div class="offers-card-content">
-        <h3>{{ offer.Title }}</h3>
-        <h4>{{ offer.Company_Name }}</h4>
-        <p>{{ offer.Contact_Name }}</p>
-        <hr>
-        <p>{{ offer.Location }}</p>
-        <p>{{ offer.Phone_Number }}</p>
-        <p>{{ offer.Email }}</p>
-        <p>{{ offer.Website }}</p>
-        <p>{{ offer.Description }}</p>
-        <div class="offer-images">
-          <img *ngIf="offer.Image1" [src]="offer.Image1" alt="Image 1">
-          <img *ngIf="offer.Image2" [src]="offer.Image2" alt="Image 2">
-          <img *ngIf="offer.Image3" [src]="offer.Image3" alt="Image 3">
-          <img *ngIf="offer.Image4" [src]="offer.Image4" alt="Image 4">
-          <img *ngIf="offer.Image5" [src]="offer.Image5" alt="Image 5">
-        </div>
-        <p *ngIf="offer.Filled">This offer is filled</p>
-        <p *ngIf="!offer.Filled">This offer is still open</p>
-        <div class="offers-footer" *ngIf="offer.Filled">
-          <span class="featured">Expired</span>
-        </div>
-        <p>Offer Type: {{ offer.OfferType }}</p>
-        <p>Date Created: {{ offer.Date_Created }}</p>
-      </div>
-    </div>
-  </div>
-</div> -->
+

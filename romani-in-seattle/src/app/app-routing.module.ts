@@ -20,6 +20,7 @@ import { OfferManagementComponent } from './components/Admin/offer-management/of
 import { EventManagementComponent } from './components/Admin/event-management/event-management.component';
 import { TestComponent } from './components/Admin/test/test/test.component';
 import { AdminRoutingModule } from './Modules/admin/admin-routing.module';
+import { EditOferteComponent } from './components/Oferte/edit-oferte/edit-oferte.component';
 
 
 
@@ -41,6 +42,7 @@ const routes: Routes = [
   { path: 'services/add', component: AddServiceComponent },
   { path: 'services/:id', component: ServiceDetailComponent },
   { path: 'edit-service/:id', component: EditServicesComponent },
+  { path: 'edit-oferte/:id', component: EditOferteComponent},
  { path: 'test', component: TestComponent},
 
 { path: 'login', component: LoginComponent },
