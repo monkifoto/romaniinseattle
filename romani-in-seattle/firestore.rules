@@ -22,6 +22,10 @@ service cloud.firestore {
      match /analytics/{document} {
       allow read, write: if true;
     }
+       match /errorLogs/{document} {
+      allow read, write: if true;
+    }
+
 
   }
 }
