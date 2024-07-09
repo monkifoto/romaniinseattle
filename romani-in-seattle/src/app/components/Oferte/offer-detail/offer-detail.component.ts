@@ -10,7 +10,8 @@ import { Offers, OffersWithId } from 'src/app/Model/offers.model';
 })
 export class OfferDetailComponent implements OnInit {
   offer: OffersWithId | undefined;
-  images?: string[] = [];
+  images: string[] = [];
+  currentIndex: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,47 +22,47 @@ export class OfferDetailComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.offerService.getOfferById(id).subscribe((offer: OffersWithId | any) => {
+      this.offerService.getOfferById(id).subscribe((offer: OffersWithId) => {
         this.offer = offer;
-        console.log(this.offer);
-        this.images = this.offer?.Images?.filter(image => !!image); // Filter out empty images
+        if (this.offer && this.offer.Images) {
+          this.images = this.offer.Images.filter(image => !!image); // Filter out empty images
+        }
+        this.initCarousel();
       });
-      setTimeout(() => this.initCarousel(), 0);
     }
   }
 
   goBack(): void {
     this.router.navigate(['/offers']);
   }
+
   initCarousel() {
-    const items = document.querySelectorAll('.carousel-item');
-    let currentIndex = 0;
-
-    const showSlide = (index: number) => {
-      items.forEach((item, i) => {
-        item.classList.toggle('active', i === index);
-      });
-    };
-
-    this.prevSlide = () => {
-      currentIndex = (currentIndex > 0) ? currentIndex - 1 : items.length - 1;
-      showSlide(currentIndex);
-    };
-
-    this.nextSlide = () => {
-      currentIndex = (currentIndex + 1) % items.length;
-      showSlide(currentIndex);
-    };
-
-    showSlide(currentIndex);
+    setTimeout(() => {
+      const items = document.querySelectorAll('.carousel-item');
+      if (items.length > 0) {
+        items[0].classList.add('active');
+      }
+    }, 0);
   }
 
   prevSlide() {
-    // Placeholder for the prevSlide function
+    if (this.images.length) {
+      this.currentIndex = (this.currentIndex > 0) ? this.currentIndex - 1 : this.images.length - 1;
+      this.updateSlide();
+    }
   }
 
   nextSlide() {
-    // Placeholder for the nextSlide function
+    if (this.images.length) {
+      this.currentIndex = (this.currentIndex + 1) % this.images.length;
+      this.updateSlide();
+    }
+  }
+
+  updateSlide() {
+    const items = document.querySelectorAll('.carousel-item');
+    items.forEach((item, index) => {
+      item.classList.toggle('active', index === this.currentIndex);
+    });
   }
 }
-

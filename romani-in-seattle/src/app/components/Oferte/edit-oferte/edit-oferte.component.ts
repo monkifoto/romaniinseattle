@@ -15,191 +15,111 @@ import { Offers, OffersWithId } from 'src/app/Model/offers.model';
 export class EditOferteComponent implements OnInit {
   offerForm: FormGroup;
   offerTypes: string[] = [];
-  selectedFiles: FileList | null = null;
-  images: { name: string, url: string, file: File }[] = [];
-
-  offer: OffersWithId = {
-    Title: '',
-    Company_Name: '',
-    Contact_Name: '',
-    Phone_Number: '',
-    Email: '',
-    Description: '',
-    Price: '',
-    Location: '',
-    Website: '',
-    OfferType: '',
-    Community_Sponsor: false,
-    Date_Created: '',
-    Date_Updated: '',
-    Hours: {},
-    Images: [],
-    id: '',
-    Facebook: '',
-    Instagram: '',
-    Filled: false,
-    Approved: false,
-    ApprovedDate: ''
-  };
-  offerId!: string;
-  imageUrls: any;
-  oldImages: string[] = [];
+  images: { name: string, url: string, file?: File, progress?: number }[] = [];
+  imageUploadStatus: { [key: string]: string } = {};
+  offerId: string = '';
+  offer: OffersWithId | undefined;
 
   constructor(
     private fb: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
+    private offersService: OffersService,
     private imageUploadService: ImageUploadService,
-    private offerService: OffersService
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.offerForm = this.fb.group({
       Title: ['', Validators.required],
-      Company_Name: ['', Validators.required],
+      Company_Name: [''],
       Contact_Name: ['', Validators.required],
-      Phone_Number: ['', Validators.required],
-      Email: ['', [Validators.email, Validators.required]],
-      Description: ['', Validators.required],
-      Price: ['', Validators.required],
-      Location: ['', Validators.required],
+      Phone_Number: [''],
+      Email: ['', [Validators.email]],
+      Location: [''],
       Website: [''],
-      OfferType: ['', Validators.required],
+      Description: ['', Validators.required],
+      Price: [''],
       Images: [],
+      Filled: false,
+      Date_Created: [''],
+      ApprovedDate: [''],
+      OfferType: [''],
+      Community_Sponsor: false,
     });
   }
 
   ngOnInit(): void {
-    this.offerId = this.route.snapshot.paramMap.get('id')!;
-    console.log(this.offerId);
-    this.offerService.getOfferById(this.offerId).subscribe(ofr =>{
-      this.offerForm.patchValue({
-        Id: this.offerId,
-        Contact_Name: ofr?.Contact_Name,
-        Company_Name :ofr?.Company_Name,
-        Email: ofr?.Email,
-        Website: ofr?.Website,
-        Description : ofr?.Description,
-        Date_Created : ofr?.Date_Created,
-        Date_Updated: ofr?.Date_Updated,
-        ApprovedDate: ofr?.ApprovedDate,
-        Approved: ofr?.Approved,
-        Community_Sponsor: ofr?.Community_Sponsor,
-        Facebook: ofr?.Facebook,
-        Images: ofr?.Images,
-        Filled: ofr?.Filled
-
+    this.route.paramMap.subscribe(params => {
+      this.offerId = params.get('id')!;
+      this.offersService.getOfferById(this.offerId).subscribe(offer => {
+        if (offer) {
+          this.offer = offer;
+          this.offerForm.patchValue(offer);
+          this.images = offer.Images.map(url => ({ name: '', url }));
+        }
       });
-      console.log(this.offerForm.value);
-      if(ofr?.Images){
-        this.oldImages = ofr.Images;
-      }
     });
     this.fetchOfferTypes();
-    // if (this.offerId) {
-    //   this.loadOffer();
-    // }
-    // this.offerService.getAllOfferTypes().subscribe((types: string[]) => {
-    //   this.offerTypes = types;
-    // });
   }
 
-  fetchOfferTypes(): void {
-    this.offerService.getAllOfferTypes().subscribe(types => {
-      this.offerTypes = types;
-    });
-  }
-
-  // loadOffer(): void {
-  //   this.offerService.getOfferById(this.offerId).subscribe((data: OffersWithId | undefined) => {
-  //     if (data) {
-  //       this.offer = data;
-  //       console.log(data);
-  //       this.offerForm.patchValue(data);
-  //     }
-  //   });
-  // }
-
-  onFileSelected(event: any): void {
-    //this.selectedFiles = event.target.files;
+  onFileSelected(event: any) {
     const files: FileList = event.target.files;
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.images.push({ name: file.name, url: e.target.result, file: file });
-      };
-      reader.readAsDataURL(file);
-    }
-  }
+      this.imageUploadStatus[file.name] = 'Uploading...';
 
-  onSubmit(): void {
-    if (this.offerForm.valid) {
-      // if (this.selectedFiles.length > 0) {
-      //   this.uploadImagesAndSaveOffer();
-      // } else {
-      //   this.saveOffer();
-      // }
-      this.offer.Images = this.images.map(img => img.url);
-      this.offerService.updateOffer(this.offer.id!, this.offer).subscribe({
-        next: updatedOffer => {
-          if (updatedOffer) {
-            this.uploadImages(updatedOffer.id);
-          }
-        },
-        error: error => {
-          console.error('Error updating offer:', error);
-        }
-      });
-    }
-  }
+      const image: { name: string, url: string, file: File, progress?: number } = { name: file.name, url: '', file: file, progress: 0 };
+      this.images.push(image);
 
-  uploadImages(offerId: string): void {
-    this.images.filter(img => img.file).forEach(image => {
-      this.imageUploadService.uploadOfferImage(image.file!, offerId).subscribe({
-        next: url => {
-          if (this.offer && this.offer.Images.length < 10) {
-            this.offer.Images.push(url);
-            this.offerService.updateOffer(offerId, this.offer).subscribe();
+      this.imageUploadService.uploadOfferImage(file, this.offerId).subscribe(
+        {
+          next: (progress: number | string) => {
+            if (typeof progress === 'string') {
+              image.url = progress;
+              this.offer!.Images.push(progress);
+              this.imageUploadStatus[file.name] = 'Uploaded';
+            } else {
+              image.progress = progress;
+            }
+          },
+          error: (error: any) => {
+            console.error('Image upload failed: ', error);
+            this.imageUploadStatus[file.name] = 'Failed to upload';
           }
-        },
-        error: error => {
-          console.error('Error uploading image:', error);
         }
-      });
-    });
+      );
+    }
   }
 
   removeImage(image: { name: string, url: string, file?: File }): void {
     this.images = this.images.filter(img => img !== image);
+    this.offer!.Images = this.offer!.Images.filter(url => url !== image.url);
+    this.imageUploadService.deleteOfferImage(image.url).subscribe(() => {
+      this.offersService.updateOffer(this.offerId, this.offer!).subscribe();
+    });
   }
 
-  // uploadImagesAndSaveOffer(): void {
-  //   const uploadTasks: Observable<any>[] = [];
-  //   this.selectedFiles.forEach(file => {
-  //     const filePath = `offers/${Date.now()}_${file.name}`;
-  //     const fileRef = this.storage.ref(filePath);
-  //     const uploadTask = this.storage.upload(filePath, file).snapshotChanges().pipe(
-  //       finalize(() => fileRef.getDownloadURL().subscribe(url => {
-  //         this.imageUrls.push(url);
-  //         if (this.imageUrls.length === this.selectedFiles.length) {
-  //           this.offerForm.value.Images = this.imageUrls;
-  //           this.saveOffer();
-  //         }
-  //       }))
-  //     );
-  //     uploadTasks.push(uploadTask);
-  //   });
-  //   forkJoin(uploadTasks).subscribe();
-  // }
+  fetchOfferTypes(): void {
+    this.offersService.getAllOfferTypes().subscribe(types => {
+      this.offerTypes = types;
+    });
+  }
 
-  saveOffer(): void {
-    // if (this.offerId) {
-    //   this.firestore.doc(`offers/${this.offerId}`).update(this.offerForm.value).then(() => {
-    //     this.router.navigate(['/offers', this.offerId]);
-    //   });
-    // } else {
-    //   this.firestore.collection('offers').add(this.offerForm.value).then((docRef) => {
-    //     this.router.navigate(['/offers', docRef.id]);
-    //   });
-    // }
+  onSubmit(): void {
+    if (this.offerForm.valid) {
+      this.offer!.Title = this.offerForm.value.Title;
+      this.offer!.Phone_Number = this.offerForm.value.Phone_Number;
+      this.offer!.Price = this.offerForm.value.Price;
+      this.offer!.Community_Sponsor = this.offerForm.value.Community_Sponsor;
+      this.offer!.Company_Name = this.offerForm.value.Company_Name;
+      this.offer!.Contact_Name = this.offerForm.value.Contact_Name;
+      this.offer!.Website = this.offerForm.value.Website;
+      this.offer!.Email = this.offerForm.value.Email;
+      this.offer!.Location = this.offerForm.value.Location;
+      this.offer!.OfferType = this.offerForm.value.OfferType;
+      this.offer!.Description = this.offerForm.value.Description;
+      this.offer!.Date_Updated = new Date().toISOString();
+      this.offersService.updateOffer(this.offerId, this.offer!).subscribe(() => {
+        this.router.navigate(['/offers']);
+      });
+    }
   }
 }

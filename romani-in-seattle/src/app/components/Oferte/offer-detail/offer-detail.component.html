@@ -9,7 +9,7 @@
   <div class="offer-carousel-container">
     <div class="carousel">
       <div class="carousel-inner">
-        <div *ngFor="let image of offer?.Images; let i = index" class="carousel-item" [class.active]="i === 0">
+        <div *ngFor="let image of images; let i = index" class="carousel-item" [class.active]="i === currentIndex">
           <img [src]="image" alt="Offer Image {{ i + 1 }}">
         </div>
       </div>
@@ -45,5 +45,6 @@
       <strong>Created Date:</strong> {{ offer?.Date_Created | date: 'shortDate' }}<br>
       <strong>Updated Date:</strong> {{ offer?.Date_Updated | date: 'shortDate' }}
     </div>
+    <button class="return-button" (click)="goBack()">Return to Offers</button>
   </div>
 </div>
