@@ -49,9 +49,127 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  background-color: var(--button-color);
 }
 
 button[disabled] {
   background-color: #ccc;
   cursor: not-allowed;
+}
+
+.offer-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.offer-header h1 {
+  font-size: 2em;
+  margin: 0;
+}
+
+.company-name {
+  font-size: 1.2em;
+  color: #555;
+}
+
+.contact-name, .contact-info, .location {
+  font-size: 1em;
+  color: #777;
+}
+
+.offer-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.offer-thumbnail {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.offer-details {
+  text-align: left;
+}
+
+.description {
+  font-size: 1.2em;
+  margin-bottom: 15px;
+}
+
+.price {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.website a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.website a:hover {
+  text-decoration: underline;
+}
+
+.offer-type, .date-created, .date-updated {
+  font-size: 0.9em;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+@media (max-width: 600px) {
+  .offer-container {
+    padding: 15px;
+  }
+
+  .offer-header h1 {
+    font-size: 1.5em;
+  }
+
+  .company-name, .contact-name, .contact-info, .location, .description, .price, .offer-type, .date-created, .date-updated {
+    font-size: 1em;
+  }
+
+  .offer-thumbnail {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+
+
+.image-preview {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.image-preview div {
+  position: relative;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.image-preview img {
+  max-width: 100px;
+  max-height: 100px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.image-preview button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
 }

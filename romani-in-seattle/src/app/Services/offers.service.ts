@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable, catchError, map, throwError } from 'rxjs';
+import { Observable, catchError, from, map, switchMap, throwError } from 'rxjs';
 import { Offers, OffersWithId } from '../Model/offers.model';
 import { OfferType } from '../Model/offer-type.model';
 import { ErrorLoggingService } from './error-logging.service';
+import { ImageUploadService } from './image-upload.service';
 
 
 @Injectable({
@@ -11,8 +12,16 @@ import { ErrorLoggingService } from './error-logging.service';
 })
 export class OffersService {
 
-  constructor(private firestore: AngularFirestore, private errorLoggingService: ErrorLoggingService) { }
+  constructor(private firestore: AngularFirestore,
+     private errorLoggingService: ErrorLoggingService,
+     private imageService: ImageUploadService)
+     { }
+
   private offerCollection = this.firestore.collection('Offers');
+
+  generateOfferId(): string {
+    return this.firestore.createId();
+  }
 
   getAllOffers(): Observable<OffersWithId[]> {
     return this.firestore.collection('Offers',ref=>ref.orderBy('Community_Sponsor','desc')).snapshotChanges().pipe(
@@ -21,7 +30,7 @@ export class OffersService {
         const id = a.payload.doc.id;
         return {id, ...data };
       }))
-    ).pipe(map(ser => ser.filter(se => se.Approved == true))).pipe(
+    ).pipe(
       catchError(error => {
         this.errorLoggingService.logError(error, 'getAllOffers');
         return throwError(() => new Error(error));
@@ -44,41 +53,18 @@ export class OffersService {
     );
   }
 
-
-  getOfferById(id: string): Observable<Offers | undefined> {
+  getOfferById(id: string): Observable<OffersWithId > {
     return this.firestore.collection<Offers>('Offers').doc(id).valueChanges().pipe(
+      map(offer => {
+        if (!offer) {
+          throw new Error(`Offer with ID ${id} not found`);
+        }
+        return { id, ...offer } as OffersWithId;
+      }),
       catchError(error => {
-        this.errorLoggingService.logError(error, 'getGetOffersById: ' + id);
+        this.errorLoggingService.logError(error, 'getOfferById: ' + id);
         return throwError(() => new Error(error));
       })
-    );
-  }
-
-  addOffer(offer: Offers): Observable<OffersWithId|undefined> {
-    const id = this.firestore.createId();
-    offer['id']= id;
-   // const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
-    offer.Date_Created =  new Date().toISOString();;
-    offer.Date_Updated =  new Date().toISOString();;
-    this.offerCollection.doc(id).set(offer).catch(error => {
-      this.errorLoggingService.logError(error, 'addOffer');
-      throw error;
-    });
-    return this.firestore.doc<Offers>(`Offers/${id}`).valueChanges().pipe(
-      map(service => service ? { id, ...service } : undefined)
-    );
-  }
-
-
-  updateOffer(id: string, offer: Offers): Observable<OffersWithId | undefined> {
-    console.log("Update Offer: " + id);
-    offer.Date_Updated = new Date().toISOString();
-    this.offerCollection.doc(id).update(offer).catch(error => {
-      this.errorLoggingService.logError(error, 'updateOffer');
-      throw error;
-    });
-    return this.firestore.doc<Offers>(`Offers/${id}`).valueChanges().pipe(
-      map(service => service ? { id, ...service } : undefined)
     );
   }
 
@@ -95,6 +81,58 @@ export class OffersService {
       })
     );
   }
+
+
+  addOffer(offer: Offers): Observable<OffersWithId|undefined> {
+    console.log(offer);
+    const id = this.firestore.createId();
+    offer['id']= id;
+    offer.Date_Created =  new Date().toISOString();;
+    offer.Date_Updated =  new Date().toISOString();;
+    this.offerCollection.doc(id).set(Object.assign({},offer)).catch(error => {
+      this.errorLoggingService.logError(error, 'addOffer');
+      throw error;
+    });
+    return this.firestore.doc<Offers>(`Offers/${id}`).valueChanges().pipe(
+      map(service => service ? { id, ...service } : undefined)
+    );
+  }
+
+  addOfferWithId(offer: OffersWithId, id: string): Observable<OffersWithId> {
+    offer.id = id;
+    offer.Date_Created = new Date().toISOString();
+    offer.Date_Updated = new Date().toISOString();
+
+    // Convert the set promise to an observable
+    return from(this.offerCollection.doc(id).set(Object.assign({}, offer))).pipe(
+      switchMap(() => this.firestore.doc<OffersWithId>(`Offers/${id}`).valueChanges().pipe(
+        map(storedOffer => {
+          if (!storedOffer) {
+            throw new Error(`Offer with ID ${id} not found`);
+          }
+          return { ...storedOffer, id } as OffersWithId;
+        }),
+        catchError(error => {
+          this.errorLoggingService.logError(error, 'addOffer');
+          return throwError(() => new Error(error));
+        })
+      ))
+    );
+  }
+
+  updateOffer(id: string, offer: Offers): Observable<OffersWithId | undefined> {
+    console.log("Update Offer: " + id);
+    offer.Date_Updated = new Date().toISOString();
+    this.offerCollection.doc(id).update(offer).catch(error => {
+      this.errorLoggingService.logError(error, 'updateOffer');
+      throw error;
+    });
+    return this.firestore.doc<Offers>(`Offers/${id}`).valueChanges().pipe(
+      map(service => service ? { id, ...service } : undefined)
+    );
+  }
+
+
 
   deleteOffer(offerId: string): Promise<void> {
     return this.offerCollection.doc(offerId).delete().catch(error => {

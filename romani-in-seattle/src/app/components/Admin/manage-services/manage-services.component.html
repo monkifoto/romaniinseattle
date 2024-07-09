@@ -5,7 +5,9 @@
   <h2>Manage Services</h2>
   <table>
     <thead>
-      <tr><th>Image</th>
+      <tr>
+        <th>ID</th>
+        <th>Image</th>
         <th>Name</th>
         <th>Service Type</th>
         <th>Contact</th>
@@ -21,8 +23,9 @@
     </thead>
     <tbody>
       <tr *ngFor="let service of filteredServices">
+        <td><a href="/services/{{service.id}}">{{service.id}}</a></td>
         <td><img class="service-card-image" src='{{service.Image}}'/></td>
-        <td><a href="/services/{{service.id}}">{{ service.Name }}</a></td>
+        <td>{{ service.Name }}</td>
         <td>{{ service.Service_Type }}</td>
         <td>{{ service.Phone_Number }} <br /><div *ngIf="service.Email"><a href='mailto:{{service.Email }}'>{{ service.Email }}</a></div></td>
         <td>{{ service.Description }}</td>

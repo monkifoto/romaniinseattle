@@ -1,57 +1,74 @@
 <div class="form-container">
-  <form  #offerForm="ngForm" (ngSubmit)="onSubmit(offerForm)">
+  <h2>
+    Ofertele adăugate prin această pagină sunt supuse aprobării administratorului înainte de a fi afișate în listă.</h2>
+    <h3>Vă rugăm să introduceți cel puțin o metodă de contact.</h3>
+  <form  [formGroup]="offerForm"(ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="OfferType">Tip de oferta</label>
+      <select id="OfferType" id="OfferType" formControlName="OfferType" required class="form-control">
+        <option *ngFor="let type of offerTypes" [value]="type">{{ type }}</option>
+      </select>
+    </div>
     <div class="form-group">
       <label class="required" for="Title">Titlu:</label>
-      <input type="text" [(ngModel)]="offer.Title" name="Title" required placeholder="Titlu">
+      <input type="text" id="Title" formControlName="Title" required placeholder="Titlu">
     </div>
 
     <div class="form-group">
       <label for="Company_Name">Numele Companiei:</label>
-      <input type="text" [(ngModel)]="offer.Company_Name" name="Company_Name" required placeholder="Numele Companiei">
+      <input type="text" id="Company_Name" formControlName="Company_Name" required placeholder="Numele Companiei">
     </div>
 
     <div class="form-group">
       <label class="required" for="Contact_Name">Numele persoanei de contact:</label>
-      <input type="text" [(ngModel)]="offer.Contact_Name" name="Contact_Name" required placeholder="Persoana de contact">
+      <input type="text" id="Contact_Name" formControlName="Contact_Name" required placeholder="Persoana de contact">
     </div>
 
     <div class="form-group">
-      <label class="required" for="Phone_Number">Numar de telefon:</label>
-      <input type="text" [(ngModel)]="offer.Phone_Number" name="Phone_Number" required placeholder="Numar de telefon">
+      <label  for="Phone_Number">Numar de telefon:</label>
+      <input type="text" id ="Phone_Number" formControlName="Phone_Number"  placeholder="Numar de telefon">
     </div>
 
     <div class="form-group">
-      <label for="Email">Adresa de Email:</label>
-      <input type="email" [(ngModel)]="offer.Email" name="Email" required placeholder="Adresa de Email">
+      <label class="required" for="Email">Adresa de Email:</label>
+      <input type="email" id="Email" formControlName="Email" required placeholder="Adresa de Email">
+    </div>
+    <div class="form-group">
+      <label  for="Email">Adresa de Facebook:</label>
+      <input type="email" id="Facebook" formControlName="Facebook" required placeholder="Adresa de Facebook">
+    </div>
+    <div class="form-group">
+      <label  for="Email">Cont de Instagram:</label>
+      <input type="email" id="Instagram" formControlName="Instagram" required placeholder="cont_de_instagram">
     </div>
     <div class="form-group">
       <label class="required" for="Description">Descriere:</label>
-      <textarea [(ngModel)]="offer.Description" name="Description" required placeholder="Descriere"></textarea>
+      <textarea id="Description" formControlName="Description" required placeholder="Descriere"></textarea>
     </div>
     <div class="form-group">
       <label for="Price">Pret:</label>
-      <input type="text" [(ngModel)]="offer.Price" name="Price" required placeholder="Pret">
+      <input type="text" id="Price" formControlName="Price"  placeholder="Pret">
     </div>
     <div class="form-group">
-      <label class="required" for="Location">Locatie:</label>
-      <input type="text" [(ngModel)]="offer.Location" name="Location" required placeholder="Locatie">
+      <label for="Location">Locatie:</label>
+      <input type="text" id="Location" formControlName="Location"  placeholder="Locatie">
     </div>
     <div class="form-group">
       <label for="Website">Website:</label>
-      <input type="url" [(ngModel)]="offer.Website" name="Website" placeholder="Pagina de Web">
-    </div>
-    <div class="form-group">
-      <label for="OfferType">Tip de oferta</label>
-      <select id="OfferType" [(ngModel)]="offer.OfferType" name="OfferType" required class="form-control">
-        <option *ngFor="let type of offerTypes" [value]="type">{{ type }}</option>
-      </select>
+      <input type="url" id="Website" formControlName="Website" placeholder="Pagina de Web">
     </div>
 
     <div class="form-group">
-      <label for="Images">Images</label>
-      <input type="file" id="Images" (change)="onFileSelected($event)" multiple accept="image/*" class="form-control">
+    <input type="file" (change)="onFileSelected($event)" multiple>
+    <div *ngFor="let image of images">
+      <img [src]="image.url" [alt]="image.name" width="100">
+      <span>{{image.name}}</span>
+      <button type="button" (click)="removeImage(image)">Remove</button>
+      <span>{{imageUploadStatus[image.name]}}</span>
+    </div>
     </div>
 
-    <button type="submit" >Adauga Oferta</button>
+
+    <button type="submit" [disabled]="offerForm.invalid" >Adauga Oferta</button>
   </form>
 </div>

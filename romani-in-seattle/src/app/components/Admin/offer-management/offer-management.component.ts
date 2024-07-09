@@ -32,7 +32,7 @@ export class OfferManagementComponent implements OnInit {
     this.offerService.updateOffer(offer.id!, offer);
   }
   deleteOferta(id: string): void {
-    if (confirm('Are you sure you want to delete this service?')) {
+    if (confirm('Are you sure you want to delete this offer?')) {
       this.offerService.deleteOffer(id);
     }
   }

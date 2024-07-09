@@ -14,11 +14,7 @@ export class Offers {
   Filled!:boolean;
   Date_Created: string ='';
   Date_Updated: string='';
-  Image1: string='';
-  Image2: string='';
-  Image3: string='';
-  Image4: string='';
-  Image5: string='';
+  Images: string[] = [];
   OfferType: string='';
   Community_Sponsor!: boolean;
   Approved!: boolean;

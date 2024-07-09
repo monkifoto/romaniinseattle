@@ -13,5 +13,10 @@ service firebase.storage {
     match /serviceImages/{document} {
       allow read, write: if true;
     }
+     match /b/{bucket}/o {
+    		match /{allPaths=**} {
+      	allow read, write: if true;
+    		}
+  		}
   }
 }

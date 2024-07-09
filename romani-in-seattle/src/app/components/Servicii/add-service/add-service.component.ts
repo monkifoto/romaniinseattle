@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ServicesService } from 'src/app/Services/services.service';
-import { Service, ServiceWithId } from 'src/app/Model/service.model';
 import { ImageUploadService } from 'src/app/Services/image-upload.service';
 import { Router } from '@angular/router';
 
@@ -14,7 +13,6 @@ export class AddServiceComponent implements OnInit {
   serviceForm: FormGroup;
   serviceTypes: string[] = [];
   selectedFile: File | null = null;
-  serviceObj: ServiceWithId = new ServiceWithId();
   hoursOptions: string[] = ['Closed', '7:00 AM', '8:00 AM', '9:00 AM','10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM','2:00 PM','3:00 PM','4:00 PM','5:00 PM','6:00 PM','7:00 PM','8:00 PM','9:00 PM'];
 
   constructor(private fb: FormBuilder, private servicesService: ServicesService, private imageUploadService: ImageUploadService, private router: Router) {
@@ -79,12 +77,6 @@ export class AddServiceComponent implements OnInit {
 
   onSubmit(): void {
     if (this.serviceForm.valid) {
-      const formDatas = { ...this.serviceForm.value };
-      console.log('Form Data:', formDatas);
-      console.log(this.serviceForm.value.Hours);
-      const formData = { ...this.serviceForm.value };
-      formData.Hours = this.formatHours(formData.Hours);
-      console.log('Form Data hours:', formData.Hours );
 
       if (this.selectedFile) {
         this.imageUploadService.uploadImage(this.selectedFile, 'serviceImages').subscribe(downloadURL => {

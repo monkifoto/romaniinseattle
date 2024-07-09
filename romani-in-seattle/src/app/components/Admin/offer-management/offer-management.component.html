@@ -3,18 +3,16 @@
   <table>
     <thead>
       <tr>
-        <th>Title</th>
-        <th>Company Name</th>
-        <th>Contact Name</th>
-        <th>Phone Number</th>
-        <th>Email</th>
+        <th>ID</th>
+        <th>Title/<br>Company Name</th>
+        <th>Contact Name/<br>Phone Number/<br>Email</th>
         <th>Description</th>
         <th>Price</th>
         <th>Location</th>
         <th>Website</th>
         <th>Facebook</th>
         <th>Instagram</th>
-        <th>Date Created</th>
+        <th>Date Created/<br>Date Updated</th>
         <th>Approved</th>
         <th>Edit</th>
         <th>Delete</th>
@@ -22,18 +20,16 @@
     </thead>
     <tbody>
       <tr *ngFor="let offer of offers">
-        <td>{{ offer.Title }}</td>
-        <td>{{ offer.Company_Name }}</td>
-        <td>{{ offer.Contact_Name }}</td>
-        <td>{{ offer.Phone_Number }}</td>
-        <td>{{ offer.Email }}</td>
+        <td><a href="/offers/{{offer.id}}">{{offer.id}}</a></td>
+        <td>{{ offer.Title }}<br>{{ offer.Company_Name }}</td>
+        <td>{{ offer.Contact_Name }}<br>{{ offer.Phone_Number }}<br>{{ offer.Email }}</td>
         <td>{{ offer.Description }}</td>
         <td>{{ offer.Price }}</td>
         <td>{{ offer.Location }}</td>
         <td>{{ offer.Website }}</td>
         <td>{{ offer.Facebook }}</td>
         <td>{{ offer.Instagram }}</td>
-        <td>{{ offer.Date_Created | date: 'dd/MM/yyyy' }}</td>
+        <td>{{ offer.Date_Created | date: 'dd/MM/yyyy' }}/ {{ offer.Date_Updated | date: 'dd/MM/yyyy' }}</td>
         <td>
           <input type="checkbox" [checked]="offer.Approved" (change)="toggleApproval(offer)" />
         </td>

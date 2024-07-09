@@ -1,24 +1,21 @@
-
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OffersService } from 'src/app/Services/offers.service';
-import { Offers, OffersWithId } from 'src/app/Model/offers.model';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ImageUploadService } from 'src/app/Services/image-upload.service';
-import { Observable, forkJoin, from, map, switchMap } from 'rxjs';
 import { Router } from '@angular/router';
+import { OffersWithId } from 'src/app/Model/offers.model';
 
 @Component({
   selector: 'app-add-offers',
   templateUrl: './add-offers.component.html',
-  styleUrls: ['./add-offers.component.css']
+  styleUrls: ['./add-offers.component.css'],
 })
 export class AddOffersComponent implements OnInit {
   offerForm: FormGroup;
- // offer!: Offers;
-
-   offerTypes: string[] = [];
-  //offerTypes!: Observable<string[]>;
+  offerTypes: string[] = [];
+  images: { name: string, url: string, file: File }[] = [];
+  imageUploadStatus: { [key: string]: string } = {};
+  offerId: string = '';
 
   offer: OffersWithId = {
     Title: '',
@@ -27,113 +24,103 @@ export class AddOffersComponent implements OnInit {
     Phone_Number: '',
     Email: '',
     Description: '',
+    Price: '',
     Location: '',
     Website: '',
-    Filled: false,
-    Date_Created: new Date().toISOString(),
-    Date_Updated:'',
-    Price: '',
-    Image1: '',
-    Image2: '',
-    Image3: '',
-    Image4: '',
-    Image5: '',
     OfferType: '',
+    Community_Sponsor: false,
+    Date_Created: '',
+    Date_Updated: '',
+    Hours: {},
+    Images: [],
+    id: '',
     Facebook: '',
     Instagram: '',
-    id: '',
-    Community_Sponsor:false,
+    Filled: false,
     Approved: false,
     ApprovedDate: ''
   };
-  selectedFiles: FileList | null = null;
 
-  constructor(private fb: FormBuilder, private offersService: OffersService, private firestore: AngularFirestore, private imageUploadService: ImageUploadService, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private offersService: OffersService,
+    private imageUploadService: ImageUploadService,
+    private router: Router
+  ) {
     this.offerForm = this.fb.group({
       Title: ['', Validators.required],
       Company_Name: [''],
       Contact_Name: ['', Validators.required],
-      Phone_Number: ['', Validators.required],
-      Email: ['', [ Validators.email]],
-      Location: ['', Validators.required],
+      Phone_Number: [''],
+      Email: ['', [Validators.email]],
+      Location: [''],
       Website: [''],
       Description: ['', Validators.required],
       Price: [''],
-      Image1: [''],
-      Image2: [''],
-      Image3: [''],
-      Image4: [''],
-      Image5: [''],
+      Images: [],
       Filled: false,
       Date_Created: [''],
       ApprovedDate: [''],
       OfferType: [''],
-      Community_Sponsor:false
+      Community_Sponsor: false,
     });
-  }
-
-  onFileSelected(event: any): void {
-    this.selectedFiles = event.target.files;
   }
 
   ngOnInit(): void {
-    this.offersService.getAllOfferTypes().subscribe((types: string[]) => {
+    this.fetchOfferTypes();
+    this.offerId = this.offersService.generateOfferId(); // Generate ID once at initialization
+  }
+
+  onFileSelected(event: any) {
+    const files: FileList = event.target.files;
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      this.imageUploadStatus[file.name] = 'Uploading...';
+
+      this.imageUploadService.uploadOfferImage(file, this.offerId).subscribe(
+        (downloadURL: string) => {
+          this.offer.Images.push(downloadURL);
+          this.images.push({ name: file.name, url: downloadURL, file: file });
+          this.imageUploadStatus[file.name] = 'Uploaded';
+        },
+        (error: any) => {
+          console.error('Image upload failed: ', error);
+          this.imageUploadStatus[file.name] = 'Failed to upload';
+        }
+      );
+    }
+  }
+
+  removeImage(image: { name: string, url: string, file: File }): void {
+    this.images = this.images.filter(img => img !== image);
+    this.offer.Images = this.offer.Images.filter(url => url !== image.url);
+  }
+
+  fetchOfferTypes(): void {
+    this.offersService.getAllOfferTypes().subscribe(types => {
       this.offerTypes = types;
     });
-
-
   }
 
-  onSubmit(form: NgForm): void {
-    console.log(form);
-    if (this.selectedFiles && this.selectedFiles.length > 0) {
-      const uploadObservables: Observable<string>[] = [];
-      for (let i = 0; i < this.selectedFiles.length; i++) {
-        const file = this.selectedFiles[i];
-        const uploadTask = this.imageUploadService.uploadImage(file, 'offers');
-        uploadObservables.push(uploadTask);
-      }
-
-
-      forkJoin(uploadObservables).pipe(
-        map(downloadURLs => {
-          this.offer.Image1 = downloadURLs[0] || '';
-          this.offer.Image2 = downloadURLs[1] || '';
-          this.offer.Image3 = downloadURLs[2] || '';
-          this.offer.Image4 = downloadURLs[3] || '';
-          this.offer.Image5 = downloadURLs[4] || '';
-        }),
-        switchMap(async () => this.saveOffer())
-      ).subscribe();
-    } else {
-      this.saveOffer().subscribe();
+  onSubmit(): void {
+    if (this.offerForm.valid) {
+      this.offer.Title = this.offerForm.value.Title;
+      this.offer.Phone_Number = this.offerForm.value.Phone_Number;
+      this.offer.Price = this.offerForm.value.Price;
+      this.offer.Community_Sponsor = this.offerForm.value.Community_Sponsor;
+      this.offer.Company_Name = this.offerForm.value.Company_Name;
+      this.offer.Contact_Name = this.offerForm.value.Contact_Name;
+     // this.offer.Facebook = this.offerForm.value.Facebook;
+      this.offer.Website = this.offerForm.value.Website;
+      this.offer.Email = this.offerForm.value.Email;
+      this.offer.Location = this.offerForm.value.Location;
+      this.offer.OfferType = this.offerForm.value.OfferType;
+      this.offer.Description = this.offerForm.value.Description;
+      this.offer.Date_Created = new Date().toISOString();
+      this.offer.Date_Updated = new Date().toISOString();
+      this.offersService.addOfferWithId(this.offer, this.offerId).subscribe(() => {
+        this.router.navigate(['/offers']);
+      });
     }
-    ///----working old code
-    // if (this.offerForm.valid) {
-    //   const newOffer = this.offerForm.value;
-
-    //   this.offersService.addOffer(newOffer).then(() => {
-    //     console.log('Offer added successfully');
-    //     this.offerForm.reset();
-    //   }).catch(error => {
-    //     console.error('Error adding Offer: ', error);
-    //   });
-    // }
   }
-  private saveOffer(): Observable<void> {
-    return from(this.firestore.collection('Offers').add(this.offer).then((newOffer) => {
-      console.log('Offer added with ID:', newOffer.id);
-    this.router.navigate(['/offers', newOffer.id]);
-  }).catch(error => {
-    console.error('Error adding offer:', error);
-  }));
-  }
-
-  // this.offerService.addOffer(this.offer).then(newOffer => {
-  //   console.log('Offer added with ID:', newOffer.id);
-  //   this.router.navigate(['/offers', newOffer.id]);
-  // }).catch(error => {
-  //   console.error('Error adding offer:', error);
-  // });
-
-  }
+}

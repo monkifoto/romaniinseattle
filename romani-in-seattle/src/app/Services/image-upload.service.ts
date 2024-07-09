@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import {AngularFireStorage} from '@angular/fire/compat/storage';
-import { finalize } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { catchError, finalize, switchMap } from 'rxjs/operators';
+import { Observable, from, throwError } from 'rxjs';
+import { ErrorLoggingService } from './error-logging.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImageUploadService {
-  constructor(private storage: AngularFireStorage) {}
+  constructor(private storage: AngularFireStorage,
+    private errorLoggingService: ErrorLoggingService
+  ) {}
 
   uploadImage(file: File, path: string): Observable<string> {
     const filePath = `${path}/${file.name}`;
@@ -28,5 +31,43 @@ export class ImageUploadService {
         })
       ).subscribe();
     });
+  }
+
+  // uploadOfferImage(file: File, offerId: string): Observable<string> {
+  //   const filePath = `offers/${offerId}/${file.name}`;
+  //   const fileRef = this.storage.ref(filePath);
+  //   const task = this.storage.upload(filePath, file);
+
+  //   return task.snapshotChanges().pipe(
+  //     finalize(() => fileRef.getDownloadURL()),
+  //     switchMap(() => fileRef.getDownloadURL()),
+  //     catchError(error => {
+  //       this.errorLoggingService.logError(error, 'uploadImage');
+  //       return throwError(() => new Error(error));
+  //     })
+  //   );
+  // }
+
+  uploadOfferImage(file: File, offerId: string): Observable<string> {
+    const filePath = `offers/${offerId}/${file.name}`;
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, file);
+
+    return from(task).pipe(
+      switchMap(() => fileRef.getDownloadURL()),
+      catchError(error => {
+        this.errorLoggingService.logError(error, 'uploadImage');
+        throw error;
+      })
+    );
+  }
+  deleteOfferImage(imageUrl: string): Observable<void> {
+    const ref = this.storage.refFromURL(imageUrl);
+    return ref.delete().pipe(
+      catchError(error => {
+        this.errorLoggingService.logError(error, 'deleteImage');
+        return throwError(() => new Error(error));
+      })
+    );
   }
 }
