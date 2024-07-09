@@ -21,6 +21,8 @@ import { EventManagementComponent } from './components/Admin/event-management/ev
 import { TestComponent } from './components/Admin/test/test/test.component';
 import { AdminRoutingModule } from './Modules/admin/admin-routing.module';
 import { EditOferteComponent } from './components/Oferte/edit-oferte/edit-oferte.component';
+import { EventDetailComponent } from './components/Evenimente/event-detail/event-detail.component';
+import { EventEditComponent } from './components/Evenimente/event-edit/event-edit.component';
 
 
 
@@ -32,17 +34,24 @@ const routes: Routes = [
 
   { path: 'events', component: EventsComponent},
   { path: 'add-event', component: AddEventComponent },
+  { path: 'events/add', component: AddEventComponent },
+  { path: 'events/:id', component: EventDetailComponent},
+  { path: 'edit-event/:id', component: EventEditComponent},
+
 
   { path: 'offers', component: OffersComponent },
   { path: 'add-offers', component: AddOffersComponent },
+  { path: 'offers/add', component: AddOffersComponent },
   { path: 'offers/:id', component: OfferDetailComponent },
+  { path: 'edit-oferte/:id', component: EditOferteComponent},
 
   { path: 'services', component: ServicesComponent },
   { path: 'add-service', component: AddServiceComponent },
   { path: 'services/add', component: AddServiceComponent },
   { path: 'services/:id', component: ServiceDetailComponent },
   { path: 'edit-service/:id', component: EditServicesComponent },
-  { path: 'edit-oferte/:id', component: EditOferteComponent},
+
+
  { path: 'test', component: TestComponent},
 
 { path: 'login', component: LoginComponent },

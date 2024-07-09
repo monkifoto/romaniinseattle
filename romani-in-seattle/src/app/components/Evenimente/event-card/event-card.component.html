@@ -1,15 +1,15 @@
 
 <div class="event-card">
   <div class="event-image" *ngIf="event.Poster_Image">
-    <img [src]="event.Poster_Image" alt="{{ event.Name }}">
+    <img [src]="event.Poster_Image" alt="{{ event.Event_Name }}">
   </div>
   <div class="event-details">
-    <div class="card-title">{{ event.Name }}</div>
+    <div class="card-title">{{ event.Event_Name }}</div>
     <p><strong>Locatie:</strong> <br/>{{ event.Location }}</p>
     <p><strong>Data Evenimentului:</strong> {{ event.Event_Date | date: 'short' }}</p>
-    <p><strong>Ora:</strong> {{ event.Time }}</p>
+    <p><strong>Ora:</strong> {{ event.Event_Time }}</p>
     <p><strong>Pret:</strong> {{ event.Price }}</p>
-    <p><strong>Persoana de contact:</strong> {{ event.Contact }} - {{ event.Phone_Number }}</p>
+    <p><strong>Persoana de contact:</strong> {{ event.Contact_Person_Name }} - {{ event.Phone_Number }}</p>
     <p><strong>Pagina Web:</strong> <a [href]="event.Website" target="_blank">{{ event.Website }}</a></p>
     <p *ngIf="event.Facebook" ><strong>Facebook:</strong> <a [href]="event.Facebook" target="_blank">{{ event.Facebook }}</a></p>
     <p *ngIf="event.Instagram" ><strong>Instagram:</strong> <a [href]="event.Instagram" target="_blank">{{ event.Instagram }}</a></p>
@@ -21,4 +21,5 @@
     </div>
   </div>
   </div>
+  <button (click)="navigateToDetails()">View Details</button>
 </div>

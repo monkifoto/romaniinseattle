@@ -1,0 +1,62 @@
+<div class="form-container">
+  <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Event Name</label>
+      <input id="name" formControlName="Name" type="text" />
+    </div>
+    <div class="form-group">
+      <label for="contact">Contact</label>
+      <input id="contact" formControlName="Contact" type="text" />
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <input id="phone" formControlName="Phone_Number" type="text" />
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" formControlName="Description"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="location">Location</label>
+      <input id="location" formControlName="Location" type="text" />
+    </div>
+    <div class="form-group">
+      <label for="event_date">Event Date</label>
+      <input id="event_date" formControlName="Event_Date" type="date" />
+    </div>
+    <div class="form-group">
+      <label for="time">Time</label>
+      <input id="time" formControlName="Time" type="time" />
+    </div>
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input id="price" formControlName="Price" type="text" />
+    </div>
+    <div class="form-group">
+      <label for="poster_image">Poster Image</label>
+      <input id="poster_image" formControlName="Poster_Image" type="text" />
+    </div>
+    <div class="form-group">
+      <label for="website">Website</label>
+      <input id="website" formControlName="Website" type="text" />
+    </div>
+    <div class="form-group">
+      <label for="facebook">Facebook</label>
+      <input id="facebook" formControlName="Facebook" type="text" />
+    </div>
+    <div class="form-group">
+      <label for="instagram">Instagram</label>
+      <input id="instagram" formControlName="Instagram" type="text" />
+    </div>
+    <div class="form-group">
+      <label for="community_sponsor">Community Sponsor</label>
+      <input id="community_sponsor" formControlName="Community_Sponsor" type="checkbox" />
+    </div>
+    <div class="form-group">
+      <label for="approved">Approved</label>
+      <input id="approved" formControlName="Approved" type="checkbox" />
+    </div>
+    <button type="submit">Save Changes</button>
+    <button type="button" (click)="goBack()">Cancel</button>
+  </form>
+</div>

@@ -14,7 +14,7 @@ import Pica from 'pica';
 export class AddOffersComponent implements OnInit {
   offerForm: FormGroup;
   offerTypes: string[] = [];
-  images: { name: string, url: string, file: File }[] = [];
+  images: { name: string, url: string, file?: File, progress?: number }[] = [];
   imageUploadStatus: { [key: string]: string } = {};
   offerId: string = '';
 
@@ -56,6 +56,8 @@ export class AddOffersComponent implements OnInit {
       Email: ['', [Validators.email]],
       Location: [''],
       Website: [''],
+      Facebook: [''],
+      Instagram: [''],
       Description: ['', Validators.required],
       Price: [''],
       Images: [],
@@ -79,23 +81,61 @@ export class AddOffersComponent implements OnInit {
       const resizedFile = await this.resizeImage(file);
       this.imageUploadStatus[file.name] = 'Uploading...';
 
+      const image: { name: string, url: string, file: File, progress?: number } = { name: file.name, url: '', file: file, progress: 0 };
+      this.images.push(image);
+
       this.imageUploadService.uploadOfferImage(resizedFile, this.offerId).subscribe(
-        (downloadURL: string) => {
-          this.offer.Images.push(downloadURL);
-          this.images.push({ name: file.name, url: downloadURL, file: file });
-          this.imageUploadStatus[file.name] = 'Uploaded';
-        },
-        (error: any) => {
-          console.error('Image upload failed: ', error);
-          this.imageUploadStatus[file.name] = 'Failed to upload';
+        {
+          next: (progress: number | string) => {
+            if (typeof progress === 'string') {
+              image.url = progress;
+              this.offer!.Images.push(progress);
+              this.imageUploadStatus[file.name] = 'Uploaded';
+            } else {
+              image.progress = progress;
+            }
+          },
+          error: (error: any) => {
+            console.error('Image upload failed: ', error);
+            this.imageUploadStatus[file.name] = 'Failed to upload';
+          }
         }
       );
     }
   }
 
-  removeImage(image: { name: string, url: string, file: File }): void {
+  // async onFileSelected(event: any) {
+  //   const files: FileList = event.target.files;
+  //   for (let i = 0; i < files.length; i++) {
+  //     const file = files[i];
+  //     const resizedFile = await this.resizeImage(file);
+  //     this.imageUploadStatus[file.name] = 'Uploading...';
+
+  //     this.imageUploadService.uploadOfferImage(resizedFile, this.offerId).subscribe(
+  //       (downloadURL: string) => {
+  //         this.offer.Images.push(downloadURL);
+  //         this.images.push({ name: file.name, url: downloadURL, file: file });
+  //         this.imageUploadStatus[file.name] = 'Uploaded';
+  //       },
+  //       (error: any) => {
+  //         console.error('Image upload failed: ', error);
+  //         this.imageUploadStatus[file.name] = 'Failed to upload';
+  //       }
+  //     );
+  //   }
+  // }
+
+  // removeImage(image: { name: string, url: string, file: File }): void {
+  //   this.images = this.images.filter(img => img !== image);
+  //   this.offer.Images = this.offer.Images.filter(url => url !== image.url);
+  // }
+
+  removeImage(image: { name: string, url: string, file?: File }): void {
     this.images = this.images.filter(img => img !== image);
-    this.offer.Images = this.offer.Images.filter(url => url !== image.url);
+    this.offer!.Images = this.offer!.Images.filter(url => url !== image.url);
+    this.imageUploadService.deleteOfferImage(image.url).subscribe(() => {
+      this.offersService.updateOffer(this.offerId, this.offer!).subscribe();
+    });
   }
 
   fetchOfferTypes(): void {

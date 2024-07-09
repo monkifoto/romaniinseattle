@@ -14,17 +14,18 @@
         <th>Instagram</th>
         <th>Approved</th>
         <th>Date Created</th>
-        <th>Actions</th>
+        <th>Edit</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let event of events">
-        <td>{{ event.Name }}</td>
+        <td>{{ event.Event_Name }}</td>
         <td>{{ event.Description }}</td>
         <td>{{ event.Location }}</td>
         <td>{{ event.Event_Date | date: 'short' }}</td>
-        <td>{{ event.Time }}</td>
-        <td>{{ event.Contact }}</td>
+        <td>{{ event.Event_Time }}</td>
+        <td>{{ event.Contact_Person_Name }}</td>
         <td><a [href]="event.Website" target="_blank">{{ event.Website }}</a></td>
         <td><a [href]="event.Facebook" target="_blank">{{ event.Facebook }}</a></td>
         <td><a [href]="event.Instagram" target="_blank">{{ event.Instagram }}</a></td>
@@ -33,7 +34,8 @@
           <input type="checkbox" [checked]="event.Approved" (change)="toggleApproval(event)" />
         </td>
         <td>{{ event.Date_Created  }}</td>
-        <td><button class="editButton"  (click)="deleteService(event.id)">Delete</button></td>
+        <td><button class="editButton"  (click)="navigateToEditEvent(event.id)">Edit</button></td>
+        <td><button class="editButton"  (click)="deleteEvent(event.id)">Delete</button></td>
       </tr>
     </tbody>
   </table>

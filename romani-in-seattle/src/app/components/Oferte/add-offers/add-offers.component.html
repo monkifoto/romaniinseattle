@@ -33,42 +33,50 @@
       <label class="required" for="Email">Adresa de Email:</label>
       <input type="email" id="Email" formControlName="Email" required placeholder="Adresa de Email">
     </div>
+
     <div class="form-group">
       <label  for="Facebook">Adresa de Facebook:</label>
-      <input type="text" id="Facebook" formControlName="Facebook" required placeholder="Adresa de Facebook">
+      <input type="text" id="Facebook" formControlName="Facebook" placeholder="Adresa de Facebook">
     </div>
+
     <div class="form-group">
       <label  for="Instagram">Cont de Instagram:</label>
-      <input type="text" id="Instagram" formControlName="Instagram" required placeholder="cont_de_instagram">
+      <input type="text" id="Instagram" formControlName="Instagram" placeholder="cont_de_instagram">
     </div>
+
     <div class="form-group">
       <label class="required" for="Description">Descriere:</label>
       <textarea id="Description" formControlName="Description" required placeholder="Descriere"></textarea>
     </div>
+
     <div class="form-group">
       <label for="Price">Pret:</label>
       <input type="text" id="Price" formControlName="Price"  placeholder="Pret">
     </div>
+
     <div class="form-group">
       <label for="Location">Locatie:</label>
       <input type="text" id="Location" formControlName="Location"  placeholder="Locatie">
     </div>
+    
     <div class="form-group">
       <label for="Website">Website:</label>
       <input type="url" id="Website" formControlName="Website" placeholder="Pagina de Web">
     </div>
 
     <div class="form-group">
-    <input type="file" (change)="onFileSelected($event)" multiple>
-    <div *ngFor="let image of images">
-      <img [src]="image.url" [alt]="image.name" width="100">
-      <span>{{image.name}}</span>
-      <button type="button" (click)="removeImage(image)">Remove</button>
-      <span>{{imageUploadStatus[image.name]}}</span>
+      <label for="Images">Images</label>
+      <input id="Images" type="file" (change)="onFileSelected($event)" multiple class="form-control-file" />
+      <div class="image-preview-container">
+        <div class="image-preview" *ngFor="let image of images">
+          <img [src]="image.url" alt="{{ image.name }}" class="img-thumbnail" />
+          <div *ngIf="image.progress !== undefined" class="progress">
+            <div class="progress-bar" [style.width.%]="image.progress"></div>
+          </div>
+          <button type="button" class="btn btn-danger btn-sm" (click)="removeImage(image)">X</button>
+        </div>
+      </div>
     </div>
-    </div>
-
-
     <button type="submit" [disabled]="offerForm.invalid" >Adauga Oferta</button>
   </form>
 </div>

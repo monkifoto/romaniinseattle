@@ -4,14 +4,15 @@ export class Event {
   [x: string]: any;
   Poster_Image:string ='';
 
-  Name:string ='';
-  Contact: string ='';
+  Event_Name:string ='';
+  Contact_Person_Name: string ='';
+  Email: string ='';
   Phone_Number:string ='';
 
   Description: string ='';
   Location:string ='';
   Event_Date:string ='';
-  Time: string =''
+  Event_Time: string =''
   Price:string ='';
 
   Website?:string ='';

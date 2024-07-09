@@ -1,0 +1,36 @@
+<div class="event-details-container">
+  <div class="event-header">
+    <h1>{{ event?.Event_Name }}</h1>
+    <div class="event-contact">
+      <strong>Contact:</strong> {{ event?.Contact_Person_Name }}
+    </div>
+  </div>
+
+  <div class="event-poster-container">
+    <img [src]="event?.Poster_Image" alt="Event Poster" class="poster-image">
+  </div>
+
+  <div class="event-content">
+    <div class="event-info">
+      <div><strong>Phone Number:</strong> {{ event?.Phone_Number }}</div>
+      <div><strong>Email:</strong> {{ event?.Email }}</div>
+      <div><strong>Website:</strong> <a [href]="event?.Website" target="_blank">{{ event?.Website }}</a></div>
+      <div><strong>Location:</strong> {{ event?.Location }}</div>
+      <div><strong>Event Date:</strong> {{ event?.Event_Date }}</div>
+      <div><strong>Time:</strong> {{ event?.Event_Time }}</div>
+      <div><strong>Price:</strong> {{ event?.Price }}</div>
+    </div>
+    <div class="event-description">
+      <strong>Description:</strong> {{ event?.Description }}
+    </div>
+    <div class="event-sponsor">
+      <strong>Sponsor:</strong> {{ event?.Community_Sponsor ? 'Yes' : 'No' }}
+    </div>
+    <div class="event-dates">
+      <strong>Created Date:</strong> {{ event?.Date_Created | date: 'shortDate' }}<br>
+      <strong>Updated Date:</strong> {{ event?.Date_Updated | date: 'shortDate' }}
+    </div>
+  </div>
+
+  <button (click)="goBack()">Return to Events</button>
+</div>

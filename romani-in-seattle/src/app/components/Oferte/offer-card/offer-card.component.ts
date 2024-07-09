@@ -31,7 +31,7 @@ export class OfferCardComponent implements OnInit {
   startImageCarousel(): void {
     setInterval(() => {
       this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
-    }, 3000); // Change image every 3 seconds
+    }, 15000); // Change image every 3 seconds
   }
 
   nextImage(): void {
