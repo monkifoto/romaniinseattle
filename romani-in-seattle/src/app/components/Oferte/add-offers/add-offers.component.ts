@@ -4,6 +4,7 @@ import { OffersService } from 'src/app/Services/offers.service';
 import { ImageUploadService } from 'src/app/Services/image-upload.service';
 import { Router } from '@angular/router';
 import { OffersWithId } from 'src/app/Model/offers.model';
+import Pica from 'pica';
 
 @Component({
   selector: 'app-add-offers',
@@ -71,13 +72,14 @@ export class AddOffersComponent implements OnInit {
     this.offerId = this.offersService.generateOfferId(); // Generate ID once at initialization
   }
 
-  onFileSelected(event: any) {
+  async onFileSelected(event: any) {
     const files: FileList = event.target.files;
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
+      const resizedFile = await this.resizeImage(file);
       this.imageUploadStatus[file.name] = 'Uploading...';
 
-      this.imageUploadService.uploadOfferImage(file, this.offerId).subscribe(
+      this.imageUploadService.uploadOfferImage(resizedFile, this.offerId).subscribe(
         (downloadURL: string) => {
           this.offer.Images.push(downloadURL);
           this.images.push({ name: file.name, url: downloadURL, file: file });
@@ -122,5 +124,39 @@ export class AddOffersComponent implements OnInit {
         this.router.navigate(['/offers']);
       });
     }
+  }
+
+
+  async resizeImage(file: File): Promise<File> {
+    const pica = Pica();
+    const img = new Image();
+    img.src = URL.createObjectURL(file);
+
+    return new Promise((resolve, reject) => {
+      img.onload = async () => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
+        const maxSide = 1024;
+        const scaleFactor = Math.min(maxSide / img.width, maxSide / img.height);
+        canvas.width = img.width * scaleFactor;
+        canvas.height = img.height * scaleFactor;
+
+        try {
+          await pica.resize(img, canvas);
+          canvas.toBlob((blob: Blob | null) => {
+            if (blob) {
+              const resizedFile = new File([blob], file.name, { type: file.type });
+              resolve(resizedFile);
+            } else {
+              reject(new Error('Image resizing failed'));
+            }
+          }, file.type);
+        } catch (error) {
+          reject(error);
+        }
+      };
+
+      img.onerror = (error) => reject(error);
+    });
   }
 }

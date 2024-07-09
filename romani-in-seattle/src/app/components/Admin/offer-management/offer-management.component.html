@@ -9,9 +9,7 @@
         <th>Description</th>
         <th>Price</th>
         <th>Location</th>
-        <th>Website</th>
-        <th>Facebook</th>
-        <th>Instagram</th>
+        <th>Online Presence</th>
         <th>Date Created/<br>Date Updated</th>
         <th>Approved</th>
         <th>Edit</th>
@@ -22,14 +20,12 @@
       <tr *ngFor="let offer of offers">
         <td><a href="/offers/{{offer.id}}">{{offer.id}}</a></td>
         <td>{{ offer.Title }}<br>{{ offer.Company_Name }}</td>
-        <td>{{ offer.Contact_Name }}<br>{{ offer.Phone_Number }}<br>{{ offer.Email }}</td>
+        <td>{{ offer.Contact_Name }}<br>{{ offer.Phone_Number }}<br><a href="mailto:{{ offer.Email }}">{{ offer.Email }}</a></td>
         <td>{{ offer.Description }}</td>
         <td>{{ offer.Price }}</td>
         <td>{{ offer.Location }}</td>
-        <td>{{ offer.Website }}</td>
-        <td>{{ offer.Facebook }}</td>
-        <td>{{ offer.Instagram }}</td>
-        <td>{{ offer.Date_Created | date: 'dd/MM/yyyy' }}/ {{ offer.Date_Updated | date: 'dd/MM/yyyy' }}</td>
+        <td>{{ offer.Website }}<br>{{ offer.Facebook }}<br>{{ offer.Instagram }}</td>
+        <td>{{ offer.Date_Created | date: 'MM/dd/yyyy' }}/ {{ offer.Date_Updated | date: 'MM/dd/yyyy' }}</td>
         <td>
           <input type="checkbox" [checked]="offer.Approved" (change)="toggleApproval(offer)" />
         </td>

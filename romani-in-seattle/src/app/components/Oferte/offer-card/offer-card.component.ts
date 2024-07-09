@@ -10,43 +10,36 @@ import { Router } from '@angular/router';
 export class OfferCardComponent implements OnInit {
   @Input()
   offer!: OffersWithId;
-  currentImageIndex = 1;
+  currentImageIndex = 0;
+  images: string[] = [];
+  defaultImage = 'https://storage.cloud.google.com/romaniinseattle.appspot.com/offers/defaultImage.jpg';
+
 
   constructor(private router: Router) {}
-
   ngOnInit(): void {
-    //console.log(this.offer);
-    // if(!this.offer.Image1){
-    //   this.offer.Image1 = 'https://storage.cloud.google.com/romaniinseattle.appspot.com/offers/dafaultImage.jpg';
-    // }
-    // if(!this.offer.Image2){
-    //   this.offer.Image2 = 'https://storage.cloud.google.com/romaniinseattle.appspot.com/offers/dafaultImage.jpg';
-    // }
-    // if(!this.offer.Image3){
-    //   this.offer.Image3 = 'https://storage.cloud.google.com/romaniinseattle.appspot.com/offers/dafaultImage.jpg';
-    // }
-    // if(!this.offer.Image4){
-    //   this.offer.Image4 = 'https://storage.cloud.google.com/romaniinseattle.appspot.com/offers/dafaultImage.jpg';
-    // }
-    // if(!this.offer.Image5){
-    //   this.offer.Image5 = 'https://storage.cloud.google.com/romaniinseattle.appspot.com/offers/dafaultImage.jpg';
-    // }
+    console.log(this.offer);
 
+    if (this.offer?.Images?.length) {
+      this.images = this.offer.Images;
+    } else {
+      this.images = [this.defaultImage];
+    }
 
     this.startImageCarousel();
   }
 
   startImageCarousel(): void {
     setInterval(() => {
-      this.currentImageIndex = (this.currentImageIndex % 5) + 1; // Loop from 1 to 5
+      this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
     }, 3000); // Change image every 3 seconds
   }
+
   nextImage(): void {
-    this.currentImageIndex = (this.currentImageIndex % 5) + 1;
+    this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
   }
 
   prevImage(): void {
-    this.currentImageIndex = ((this.currentImageIndex - 2 + 5) % 5) + 1;
+    this.currentImageIndex = (this.currentImageIndex - 1 + this.images.length) % this.images.length;
   }
 
   navigateToDetails(): void {
