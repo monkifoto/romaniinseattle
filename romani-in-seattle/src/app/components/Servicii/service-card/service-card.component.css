@@ -13,6 +13,12 @@
   position: relative;
 }
 
+.service-card:hover {
+  /* transform: translateY(-5px); */
+  transform: scale(1.02);
+}
+
+
 .service-card-image-container {
   display: flex;
   justify-content: center;

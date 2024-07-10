@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { OffersWithId } from 'src/app/Model/offers.model';
 import { EventsService } from 'src/app/Services/events.service';
 import { OffersService } from 'src/app/Services/offers.service';
-import { Event } from 'src/app/Model/event.model';
+import { Event, EventWithId } from 'src/app/Model/event.model';
 interface ResourceLink {
   name: string;
   url: string;
@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit  {
     { name: 'Romanian United Foundation', url: 'https://www.romanianunitedfund.org/'}
   ];
 
-  events: Event[] = [];
+  events: EventWithId[] = [];
   offers: OffersWithId[] = [];
 
   constructor(private eventService: EventsService, private offersService: OffersService, private router: Router) { }

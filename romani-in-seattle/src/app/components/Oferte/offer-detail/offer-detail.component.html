@@ -2,7 +2,7 @@
   <div class="offer-header">
     <h1>{{ offer?.Title }}</h1>
     <div class="offer-company">
-      <strong>Company:</strong> {{ offer?.Company_Name }}
+      <strong>Compania:</strong> {{ offer?.Company_Name }}
     </div>
   </div>
 
@@ -20,20 +20,20 @@
 
   <div class="offer-content">
     <div class="offer-info">
-      <div><strong>Contact Name:</strong> {{ offer?.Contact_Name }}</div>
-      <div><strong>Phone Number:</strong> {{ offer?.Phone_Number }}</div>
-      <div><strong>Email:</strong> {{ offer?.Email }}</div>
-      <div><strong>Website:</strong> <a [href]="offer?.Website" target="_blank">{{ offer?.Website }}</a></div>
-      <div><strong>Facebool:</strong> {{ offer?.Facebook }}</div>
-      <div><strong>Instagram:</strong> {{ offer?.Instagram }}</div>
-      <div><strong>Location:</strong> {{ offer?.Location }}</div>
-      <div><strong>Offer Type:</strong> {{ offer?.OfferType }}</div>
+      <div><strong>Persoana de contact:</strong> {{ offer?.Contact_Name }}</div>
+      <div><strong>Numar de telefon:</strong> {{ offer?.Phone_Number }}</div>
+      <div><strong>Adresa de Email:</strong> {{ offer?.Email }}</div>
+      <div><strong>Pagina Web:</strong> <a [href]="offer?.Website" target="_blank">{{ offer?.Website }}</a></div>
+      <div><strong>Facebook:</strong> <span [innerHTML]="offer?.Facebook | urlHelper"></span> </div>
+      <div><strong>Instagram:</strong> <span [innerHTML]="offer?.Instagram | instagramHandle"></span></div>
+      <div><strong>Locatie:</strong> {{ offer?.Location }}</div>
+      <div><strong>Tip de oferta:</strong> {{ offer?.OfferType }}</div>
     </div>
     <div class="offer-description">
-      <strong>Description:</strong> {{ offer?.Description }}
+      <strong>Detalii:</strong> {{ offer?.Description }}
     </div>
     <div class="offer-hours">
-      <strong>Hours:</strong>
+      <strong>Ore:</strong>
       <ul>
         <!-- <li *ngFor="let day of Object.keys(offer?.Hours || {})">
           {{ day }}: {{ offer?.Hours[day]?.open }} - {{ offer?.Hours[day]?.close }}
@@ -43,10 +43,10 @@
     <div class="offer-sponsor">
       <strong>Sponsor:</strong> {{ offer?.Community_Sponsor ? 'Yes' : 'No' }}
     </div>
-    <div class="offer-dates">
-      <strong>Created Date:</strong> {{ offer?.Date_Created | date: 'shortDate' }}<br>
-      <strong>Updated Date:</strong> {{ offer?.Date_Updated | date: 'shortDate' }}
+    <div *ngIf="(isLoggedIn$ | async)"  class="offer-dates">
+      <strong>Creata pe data de:</strong> {{ offer?.Date_Created | date: 'shortDate' }}<br>
+      <strong>Modificata pe data de:</strong> {{ offer?.Date_Updated | date: 'shortDate' }}
     </div>
-    <button class="return-button" (click)="goBack()">Return to Offers</button>
+    <button class="return-button" (click)="goBack()">Inapoi la Oferte</button>
   </div>
 </div>

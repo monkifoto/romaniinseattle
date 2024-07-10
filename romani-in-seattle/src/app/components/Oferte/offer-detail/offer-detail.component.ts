@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OffersService } from 'src/app/Services/offers.service';
 import { Offers, OffersWithId } from 'src/app/Model/offers.model';
+import { AuthService } from 'src/app/Services/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-offer-detail',
@@ -12,12 +14,16 @@ export class OfferDetailComponent implements OnInit {
   offer: OffersWithId | undefined;
   images: string[] = [];
   currentIndex: number = 0;
+  isLoggedIn$!: Observable<boolean>;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private offerService: OffersService
-  ) {}
+    private offerService: OffersService,
+    private authService: AuthService
+  )  {
+    this.isLoggedIn$ = this.authService.isLoggedIn();
+  }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');

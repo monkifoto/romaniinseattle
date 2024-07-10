@@ -40,22 +40,27 @@
     </div>
 
     <div class="sharedContent-Section ">
-      <h1>Evenimente</h1>
-      <!-- <div class="services-container">
-        <app-event-card *ngFor="let event of events" [event]="event"></app-event-card>
-      </div> -->
+      <h1>Oportunități si Oferte</h1>
 
-    </div>
+      <div class="offer-list">
+        <app-offer-card *ngFor="let offer of offers" [offer]="offer"></app-offer-card>
+      </div>
 
     <div class="sharedContent-Section ">
-    <h1>Oportunități si Oferte</h1>
+      <h1>Evenimente</h1>
+      <div class="services-container">
+        <app-event-card *ngFor="let event of events" [event]="event"></app-event-card>
+      </div>
 
-    <div class="offer-list">
-      <app-offer-card *ngFor="let offer of offers" [offer]="offer"></app-offer-card>
     </div>
+
+
+
     </div>
     <div class="sharedContent-Section ">
     <h1>Resurse</h1>
+
+
 <section class="resource-consulate">
   <div class="community-descriptions">
     <div class="description-card">

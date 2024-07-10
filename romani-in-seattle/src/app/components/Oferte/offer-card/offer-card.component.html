@@ -30,16 +30,11 @@
     <span class="featured">Expired</span>
   </div> -->
 
-  <div class="offer-footer">
+  <div class="card-footer">
     <div class="social-icons">
-      <div *ngIf="offer.Facebook"><a target="_blank" href='{{offer.Facebook }}'><img src='../../../assets/images/SVG/facebook-icon.svg'></a><br>
-      Facebook</div>
-   <div *ngIf="offer.Instagram"><a target="_blank" href='https://www.instagram.com/{{offer.Instagram }}'><img src='../../../assets/images/SVG/instagram-icon.svg'></a><br>
-  Instagram</div>
-   <div *ngIf="offer.Email"><a href='mailto:{{offer.Email }}'><img src='../../../assets/images/SVG/email-icon.svg'></a><br>
-  Email</div>
-   <div *ngIf="offer.Website"><a target="_blank" href='{{offer.Website }}'><img src='../../../assets/images/SVG/browser-icon.svg'></a><br>
-  Website</div>
-    </div>
-  </div>
+    <div *ngIf="offer.Facebook"><a target="_blank" href='{{offer.Facebook }}'><img src='../../../assets/images/SVG/facebook-icon.svg'></a></div>
+    <div *ngIf="offer.Instagram"><div [innerHTML]="offer.Instagram | instagramLink : svgInstagramIcon"></div></div>
+    <div *ngIf="offer.Email"><a href='mailto:{{offer.Email }}'><img src='../../../assets/images/SVG/email-icon.svg'></a></div>
+    <div *ngIf="offer.Website"><a target="_blank" href='{{offer.Website }}'><img src='../../../assets/images/SVG/browser-icon.svg'></a></div>
+</div>
 </div>

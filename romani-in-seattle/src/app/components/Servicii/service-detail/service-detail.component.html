@@ -14,9 +14,9 @@
       <div><label class="service-details-label">Tip Serviciu:</label> {{ service.Service_Type }}</div>
       <div><label class="service-details-label">Nr Telefon:</label> {{ service.Phone_Number }}</div>
       <div><label class="service-details-label">Email:</label> {{ service.Email }}</div>
-      <div><label class="service-details-label">Website:</label> <a [href]="service.Website" target="_blank">{{ service.Website }}</a></div>
-      <div><label class="service-details-label">Facebook:</label> <a [href]="service.Facebook" target="_blank">{{ service.Facebook }}</a></div>
-      <div><label class="service-details-label">Instagram:</label> <a [href]="service.Instagram" target="_blank">{{ service.Instagram }}</a></div>
+      <div><label class="service-details-label">Website:</label> <span [innerHTML]="service.Website | urlHelper"></span></div>
+      <div><label class="service-details-label">Facebook:</label> <span [innerHTML]="service.Facebook | urlHelper"></span></div>
+      <div><label class="service-details-label">Instagram:</label> <span [innerHTML]="service.Instagram | instagramHandle"></span></div>
       <div><label class="service-details-label">Sponsor:</label> {{ service.Community_Sponsor ? 'Yes' : 'No' }}</div>
       <div class="date-created"><label class="service-details-label ">Data:</label> {{ service.Date_Created | date:'shortDate' }}</div>
       <div class="service-description">

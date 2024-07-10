@@ -11,6 +11,7 @@ import { formatUrl } from 'src/app/utils/url.utils';
 export class ServiceCardComponent implements OnInit {
   @Input()
   svc!: ServiceWithId;
+  svgInstagramIcon = '../../../assets/images/SVG/instagram-icon.svg';
 
   constructor(private router: Router) {}
 

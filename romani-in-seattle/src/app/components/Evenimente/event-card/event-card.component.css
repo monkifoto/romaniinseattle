@@ -1,5 +1,5 @@
 /* src/app/shared/event-card/event-card.component.css */
-.event-card {
+.card {
   background-color: #FAFAFA;
   width: 400px;
   min-height: 550px;
@@ -11,36 +11,12 @@
   position: relative;
 }
 
-.event-image img {
-  width: 100%;
-  height: auto;
+.card:hover {
+  /* transform: translateY(-5px); */
+  transform: scale(1.02);
 }
 
-.event-details {
-  padding: 16px;
-  text-align: left;
-}
-
-.event-details h3 {
-  margin-top: 0;
-}
-
-.event-details p {
-  margin: 4px 0;
-}
-
-.event-details a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.event-details a:hover {
-  text-decoration: underline;
-}
-
-
-
-.service-card {
+/* .card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -53,6 +29,33 @@
   box-sizing: border-box;
   position: relative;
   min-width: 400px;
+} */
+
+.card-image img {
+  width: 100%;
+  height: auto;
+}
+
+.card-details {
+  padding: 16px;
+  text-align: left;
+}
+
+.card-details h3 {
+  margin-top: 0;
+}
+
+.card-details p {
+  margin: 4px 0;
+}
+
+.card-details a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.card-details a:hover {
+  text-decoration: underline;
 }
 
 .card-header {
@@ -81,28 +84,6 @@
   color: gold;
 }
 
-.card-image img{
-  max-width: 300px;
-}
-
-.services-filter {
- display: flex;
- justify-content: center;
- align-items: center;
- margin: 30px;
- padding: 30px;
-}
-
-.services-filter label {
-  margin-right: 10px;
-}
-
-.services-filter select {
-  padding: 5px;
-  font-size: 1rem;
-}
-
-
 .sponsor-icon {
   font-size: 1.5rem;
   margin-right: 4px;
@@ -126,6 +107,20 @@
   color: red;
 }
 
+
+.card-footer button {
+  background-color: var(--button-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.card-footer button:hover {
+  background-color: #0056b3;
+}
 
 @media (max-width: 1024px) {
   .service-card {

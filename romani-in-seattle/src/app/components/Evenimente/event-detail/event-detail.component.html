@@ -14,7 +14,9 @@
     <div class="event-info">
       <div><strong>Phone Number:</strong> {{ event?.Phone_Number }}</div>
       <div><strong>Email:</strong> {{ event?.Email }}</div>
-      <div><strong>Website:</strong> <a [href]="event?.Website" target="_blank">{{ event?.Website }}</a></div>
+      <div><strong>Website:</strong> <span [innerHTML]="event?.Website | urlHelper"></span></div>
+      <div><strong>Facebook:</strong> <span [innerHTML]="event?.Facebook | urlHelper"></span></div>
+      <div><strong>Instagram:</strong> {{ event?.Instagram }}</div>
       <div><strong>Location:</strong> {{ event?.Location }}</div>
       <div><strong>Event Date:</strong> {{ event?.Event_Date }}</div>
       <div><strong>Time:</strong> {{ event?.Event_Time }}</div>

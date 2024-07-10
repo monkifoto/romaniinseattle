@@ -14,14 +14,10 @@
 
           <div class="card-footer">
             <div class="social-icons">
-              <div *ngIf="svc.Facebook"><a target="_blank" href='{{svc.Facebook }}'><img src='../../../assets/images/SVG/facebook-icon.svg'></a><br>
-              Facebook</div>
-           <div *ngIf="svc.Instagram"><a target="_blank" href='https://www.instagram.com/{{svc.Instagram }}'><img src='../../../assets/images/SVG/instagram-icon.svg'></a><br>
-          Instagram</div>
-           <div *ngIf="svc.Email"><a href='mailto:{{svc.Email }}'><img src='../../../assets/images/SVG/email-icon.svg'></a><br>
-          Email</div>
-           <div *ngIf="svc.Website"><a target="_blank" href='{{svc.Website }}'><img src='../../../assets/images/SVG/browser-icon.svg'></a><br>
-          Website</div>
+            <div *ngIf="svc.Facebook"><a target="_blank" href='{{svc.Facebook }}'><img src='../../../assets/images/SVG/facebook-icon.svg'></a></div>
+            <div *ngIf="svc.Instagram"><div [innerHTML]="svc.Instagram | instagramLink : svgInstagramIcon"></div></div>
+            <div *ngIf="svc.Email"><a href='mailto:{{svc.Email }}'><img src='../../../assets/images/SVG/email-icon.svg'></a></div>
+            <div *ngIf="svc.Website"><a target="_blank" href='{{svc.Website }}'><img src='../../../assets/images/SVG/browser-icon.svg'></a></div>
        </div>
           </div>
 

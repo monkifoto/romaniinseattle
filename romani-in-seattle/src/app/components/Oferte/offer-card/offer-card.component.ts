@@ -13,6 +13,7 @@ export class OfferCardComponent implements OnInit {
   currentImageIndex = 0;
   images: string[] = [];
   defaultImage = 'https://storage.cloud.google.com/romaniinseattle.appspot.com/offers/defaultImage.jpg';
+  svgInstagramIcon = '../../../assets/images/SVG/instagram-icon.svg';
 
 
   constructor(private router: Router) {}

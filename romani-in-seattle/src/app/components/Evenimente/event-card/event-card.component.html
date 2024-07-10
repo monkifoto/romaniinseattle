@@ -1,9 +1,9 @@
 
-<div class="event-card">
-  <div class="event-image" *ngIf="event.Poster_Image">
+<div class="card">
+  <div class="card-image" *ngIf="event.Poster_Image">
     <img [src]="event.Poster_Image" alt="{{ event.Event_Name }}">
   </div>
-  <div class="event-details">
+  <div class="card-details">
     <div class="card-title">{{ event.Event_Name }}</div>
     <p><strong>Locatie:</strong> <br/>{{ event.Location }}</p>
     <p><strong>Data Evenimentului:</strong> {{ event.Event_Date | date: 'short' }}</p>
@@ -21,5 +21,7 @@
     </div>
   </div>
   </div>
-  <button (click)="navigateToDetails()">View Details</button>
+  <div class="card-footer">
+    <button (click)="navigateToDetails()">Detalii</button>
+  </div>
 </div>

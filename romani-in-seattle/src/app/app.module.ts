@@ -42,6 +42,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { EditOferteComponent } from './components/Oferte/edit-oferte/edit-oferte.component';
 import { EventDetailComponent } from './components/Evenimente/event-detail/event-detail.component';
 import { EventEditComponent } from './components/Evenimente/event-edit/event-edit.component';
+import { UrlHelperPipe,InstagramHandlePipe, InstagramLinkPipe } from './Pipes/url-helper.pipe';
 
 
 
@@ -70,6 +71,9 @@ import { EventEditComponent } from './components/Evenimente/event-edit/event-edi
     EditOferteComponent,
     EventDetailComponent,
     EventEditComponent,
+    UrlHelperPipe,
+    InstagramHandlePipe,
+    InstagramLinkPipe
   ],
   imports: [
     BrowserModule,
