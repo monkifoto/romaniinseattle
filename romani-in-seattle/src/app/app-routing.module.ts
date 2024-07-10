@@ -23,6 +23,7 @@ import { AdminRoutingModule } from './Modules/admin/admin-routing.module';
 import { EditOferteComponent } from './components/Oferte/edit-oferte/edit-oferte.component';
 import { EventDetailComponent } from './components/Evenimente/event-detail/event-detail.component';
 import { EventEditComponent } from './components/Evenimente/event-edit/event-edit.component';
+import { TestPageComponent } from './components/test-page/test-page.component';
 
 
 
@@ -53,6 +54,7 @@ const routes: Routes = [
 
 
  { path: 'test', component: TestComponent},
+ { path: 'test-page', component: TestPageComponent},
 
 { path: 'login', component: LoginComponent },
 { path: '', redirectTo: '/login', pathMatch: 'full' },

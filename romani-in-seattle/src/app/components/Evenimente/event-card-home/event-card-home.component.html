@@ -1,0 +1,10 @@
+<div class="small-card">
+  <div class="image-container">
+    <img [src]="event.Poster_Image" alt="{{ event.Event_Name }}" class="event-image">
+  </div>
+  <div class="content-container">
+    <h2 class="event-name">{{ event.Event_Name }}</h2>
+    <p class="event-date">{{ event.Event_Date | date: 'MM/dd/yyyy' }} | {{ event.Event_Time }}</p>
+    <button (click)="navigateToDetails()">Detalii</button>
+  </div>
+</div>

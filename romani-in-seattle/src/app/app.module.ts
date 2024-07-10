@@ -43,6 +43,9 @@ import { EditOferteComponent } from './components/Oferte/edit-oferte/edit-oferte
 import { EventDetailComponent } from './components/Evenimente/event-detail/event-detail.component';
 import { EventEditComponent } from './components/Evenimente/event-edit/event-edit.component';
 import { UrlHelperPipe,InstagramHandlePipe, InstagramLinkPipe } from './Pipes/url-helper.pipe';
+import { TestPageComponent } from './components/test-page/test-page.component';
+import { EventCardHomeComponent } from './components/Evenimente/event-card-home/event-card-home.component';
+import { OfferCardHomeComponent } from './components/Oferte/offer-card-home/offer-card-home.component';
 
 
 
@@ -73,7 +76,10 @@ import { UrlHelperPipe,InstagramHandlePipe, InstagramLinkPipe } from './Pipes/ur
     EventEditComponent,
     UrlHelperPipe,
     InstagramHandlePipe,
-    InstagramLinkPipe
+    InstagramLinkPipe,
+    TestPageComponent,
+    EventCardHomeComponent,
+    OfferCardHomeComponent
   ],
   imports: [
     BrowserModule,

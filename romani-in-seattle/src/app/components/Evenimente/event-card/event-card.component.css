@@ -1,4 +1,4 @@
-/* src/app/shared/event-card/event-card.component.css */
+/*
 .card {
   background-color: #FAFAFA;
   width: 400px;
@@ -12,24 +12,8 @@
 }
 
 .card:hover {
-  /* transform: translateY(-5px); */
   transform: scale(1.02);
 }
-
-/* .card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 10px;
-  padding: 40px;
-  width: calc(25% - 32px);
-  box-sizing: border-box;
-  position: relative;
-  min-width: 400px;
-} */
 
 .card-image img {
   width: 100%;
@@ -99,13 +83,7 @@
   text-align: right;
   margin: 20px;
 }
-.card-expired{
-  padding: 10px;
-  text-align: center;
-}
-.expired{
-  color: red;
-}
+
 
 
 .card-footer button {
@@ -158,4 +136,115 @@
     }
   }
 }
+ */
+ .event-card {
+  display: block;
+  position: relative;
+  width: 400px;
+  min-height: 550px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+  height: 800px;
+}
 
+.event-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.calendar-icon {
+  position: relative;
+  bottom: 45px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 4px 8px;
+  border-radius: 4px;
+  width: 50px;
+  height: 50px;
+  border: solid 1px lightgray;
+}
+
+.calendar-icon img {
+  width: 30px;
+  height: 30px;
+  margin-right: 4px;
+}
+
+.event-date {
+  font-size: 14px;
+  color: #333;
+}
+
+.event-details {
+  padding: 12px;
+}
+
+.event-date-time {
+  margin-bottom: 8px;
+}
+
+.date-time {
+  font-size: 14px;
+  color: #888;
+}
+
+.event-description {
+  font-size: 14px;
+  color: #666;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Number of lines to show */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.contact-name {
+  margin-top: 8px;
+  font-weight: bold;
+}
+
+.contact-info {
+  color: #666;
+}
+
+.details-button {
+  margin-top: 12px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.details-button:hover {
+  background-color: #0056b3;
+}
+
+.card-expired{
+  padding: 10px;
+  text-align: center;
+}
+.expired{
+  color: red;
+}
+
+.card-footer {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: #666;
+  font-size: .6rem;
+  /* border: 1px solid black; */
+}

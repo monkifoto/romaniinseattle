@@ -1,5 +1,5 @@
 
-<div class="card">
+<!-- <div class="card">
   <div class="card-image" *ngIf="event.Poster_Image">
     <img [src]="event.Poster_Image" alt="{{ event.Event_Name }}">
   </div>
@@ -22,6 +22,47 @@
   </div>
   </div>
   <div class="card-footer">
+    <button (click)="navigateToDetails()">Detalii</button>
+  </div>
+</div> -->
+
+
+<div class="event-card">
+  <div class="event-image">
+    <!-- Event Image -->
+    <img [src]="event.Poster_Image" alt="{{ event.Event_Name }}">
+    <!-- Calendar Icon -->
+    <div class="calendar-icon">
+      <img src="../../../../assets/images/SVG/calendar.svg" alt="Calendar Icon">
+      <!-- Display Event Date -->
+      <span class="event-date">{{ event.Event_Date | date: 'dd' }}</span>
+    </div>
+  </div>
+  <div class="event-details">
+    <!-- Event Date and Time -->
+    <div class="event-date-time">
+      <span class="date-time">{{ event.Event_Date | date: 'MM/dd/yyyy' }} | {{ event.Event_Time }}</span>
+    </div>
+    <!-- Event Description -->
+    <div class="event-description">
+      {{ event.Description }}
+    </div>
+    <!-- Contact Name -->
+    <div class="contact-name">
+      {{ event.Contact_Person_Name }}
+    </div>
+    <!-- Contact Email or Phone Number -->
+    <div class="contact-info">
+      {{ event.Phone_Number }}
+    </div>
+
+    <!-- Button to Event Details -->
+
+  </div>
+  <div class="card-footer">
+    <div class="card-expired" *ngIf="event.Expired">
+      <span class="expired">Evenimentul a Expirat</span>
+    </div>
     <button (click)="navigateToDetails()">Detalii</button>
   </div>
 </div>
