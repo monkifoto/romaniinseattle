@@ -1,41 +1,47 @@
 <div class="service-details-container">
   <div class="service-header">
-
-    <div class="forDebug">
-      <h3><strong>Service Id:</strong> {{service.id}}</h3>
-    </div>
-  </div>
-  <div class="service-content">
     <div class="service-image">
       <img [src]="service.Image" alt="{{ service.Name }}">
-      <h1>{{ service.Name }}</h1>
     </div>
-    <div class="service-details">
-      <div><label class="service-details-label">Tip Serviciu:</label> {{ service.Service_Type }}</div>
-      <div><label class="service-details-label">Nr Telefon:</label> {{ service.Phone_Number }}</div>
-      <div><label class="service-details-label">Email:</label> {{ service.Email }}</div>
-      <div><label class="service-details-label">Website:</label> <span [innerHTML]="service.Website | urlHelper"></span></div>
-      <div><label class="service-details-label">Facebook:</label> <span [innerHTML]="service.Facebook | urlHelper"></span></div>
-      <div><label class="service-details-label">Instagram:</label> <span [innerHTML]="service.Instagram | instagramHandle"></span></div>
-      <div><label class="service-details-label">Sponsor:</label> {{ service.Community_Sponsor ? 'Yes' : 'No' }}</div>
-      <div class="date-created"><label class="service-details-label ">Data:</label> {{ service.Date_Created | date:'shortDate' }}</div>
-      <div class="service-description">
-        <label class="service-details-label">Descriere:</label> {{ service.Description }}
+    <div class="service-info">
+      <h1>{{ service.Name }}</h1>  <span *ngIf="service.Community_Sponsor" class="sponsor-icon">★</span>
+      <div class="service-meta">
+        <div class="service-location">{{ service.Service_Type.toLocaleUpperCase() }}</div>
+        <!-- <div class="service-date">{{ service.Date_Created | date:'shortDate' }}</div> -->
       </div>
-      <div>
-        <label class="hours-label">Orele de contactare:</label>
-        <ul>
-          <li><strong class="dayLabel">Monday:</strong> {{ service.Hours.Luni?.open }} - {{ service.Hours.Luni?.close }}</li>
-          <li><strong class="dayLabel">Tuesday:</strong> {{ service.Hours.Marti?.open }} - {{ service.Hours.Marti?.close }}</li>
-          <li><strong class="dayLabel">Wednesday:</strong> {{ service.Hours.Miercuri?.open }} - {{ service.Hours.Miercuri?.close }}</li>
-          <li><strong class="dayLabel">Thursday:</strong> {{ service.Hours.Joi?.open }} - {{ service.Hours.Joi?.close }}</li>
-          <li><strong class="dayLabel">Friday:</strong> {{ service.Hours.Vineri?.open }} - {{ service.Hours.Vineri?.close }}</li>
-          <li><strong class="dayLabel">Saturday:</strong> {{ service.Hours.Sambata?.open }} - {{ service.Hours.Sambata?.close }}</li>
-          <li><strong class="dayLabel">Sunday:</strong> {{ service.Hours.Duminica?.open }} - {{ service.Hours.Duminica?.close }}</li>
-        </ul>
+      <div class="service-bio">
+        <h2>Detalii</h2>
+        <p>{{ service.Description }}</p>
       </div>
     </div>
   </div>
+
+  <div class="service-content">
+    <div class="service-contact">
+      <h2>Moduri de contactare</h2>
+      <div class="service-details">
+        <div *ngIf="service.Phone_Number" ><label class="service-details-label">Nr Telefon:</label> {{ service.Phone_Number }}</div>
+        <div *ngIf="service.Email" ><label class="service-details-label">Email:</label> {{ service.Email }}</div>
+        <div *ngIf="service.Website"><label class="service-details-label">Website:</label> <span [innerHTML]="service.Website | urlHelper"></span></div>
+        <div *ngIf="service.Facebook"> <label class="service-details-label">Facebook:</label> <span [innerHTML]="service.Facebook | urlHelper"></span></div>
+        <div *ngIf="service.Instagram"><label class="service-details-label">Instagram:</label> <span [innerHTML]="service.Instagram | instagramHandle"></span></div>
+      </div>
+    </div>
+
+    <div class="service-hours" *ngIf="service.Hours.Luni || service.Hours.Marti || service.Hours.Miercuri || service.Hours.Joi || service.Hours.Vineri">
+      <h2>Orele pentru contactare</h2>
+      <ul>
+        <li><label class="service-hours-label">Luni:</label> {{ service.Hours.Luni?.open }} - {{ service.Hours.Luni?.close }}</li>
+        <li><label class="service-hours-label">Marti:</label> {{ service.Hours.Marti?.open }} - {{ service.Hours.Marti?.close }}</li>
+        <li><label class="service-hours-label">Miercuri:</label> {{ service.Hours.Miercuri?.open }} - {{ service.Hours.Miercuri?.close }}</li>
+        <li><label class="service-hours-label">Joi:</label> {{ service.Hours.Joi?.open }} - {{ service.Hours.Joi?.close }}</li>
+        <li><label class="service-hours-label">Vineri:</label> {{ service.Hours.Vineri?.open }} - {{ service.Hours.Vineri?.close }}</li>
+        <li><label class="service-hours-label">Sambata:</label> {{ service.Hours.Sambata?.open }} - {{ service.Hours.Sambata?.close }}</li>
+        <li><label class="service-hours-label">Duminica:</label> {{ service.Hours.Duminica?.open }} - {{ service.Hours.Duminica?.close }}</li>
+      </ul>
+    </div>
+  </div>
+
   <div class="service-actions">
     <button class="editButton" *ngIf="(isLoggedIn$ | async)" (click)="navigateToEditService(service.id)">Edit</button> &nbsp;
     <button (click)="goBack()">Inapoi la Servicii</button>

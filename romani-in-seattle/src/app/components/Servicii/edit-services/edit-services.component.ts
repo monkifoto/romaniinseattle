@@ -132,6 +132,7 @@ export class EditServicesComponent implements OnInit {
       this.serviceObj.Date_Updated= this.serviceForm.value.Date_Updated;
       this.serviceObj.Image= this.serviceForm.value.Image;
       this.serviceObj.Hours = this.serviceForm.value.Hours;
+      this.serviceObj.Approved = true;
       if (this.selectedFile) {
         console.log(this.selectedFile);
         this.imageUploadService.uploadImage(this.selectedFile, 'serviceImages').subscribe(downloadURL => {

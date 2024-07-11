@@ -7,9 +7,6 @@
     <thead>
       <tr>
         <th>ID</th>
-        <th>Image</th>
-        <th>Name</th>
-        <th>Service Type</th>
         <th>Contact</th>
         <th>Description</th>
         <th>Hours</th>
@@ -23,41 +20,42 @@
     </thead>
     <tbody>
       <tr *ngFor="let service of filteredServices">
-        <td><a href="/services/{{service.id}}">{{service.id}}</a></td>
-        <td><img class="service-card-image" src='{{service.Image}}'/></td>
-        <td>{{ service.Name }}</td>
-        <td>{{ service.Service_Type }}</td>
-        <td>{{ service.Phone_Number }} <br /><div *ngIf="service.Email"><a href='mailto:{{service.Email }}'>{{ service.Email }}</a></div></td>
-        <td>{{ service.Description }}</td>
-        <td>
-<div  *ngIf="service.Hours" style="font-size: small; min-width: 150px">
-            Mon:{{ service.Hours.Luni?.open }} - {{ service.Hours.Luni?.close }}<br>
-            Tue:{{ service.Hours.Marti?.open }} - {{ service.Hours.Marti?.close }}<br>
-            Wed:{{ service.Hours.Miercuri?.open }} - {{ service.Hours.Miercuri?.close }}<br>
-            Thur:{{ service.Hours.Joi?.open }} - {{ service.Hours.Joi?.close }}<br>
-            Fri:{{ service.Hours.Vineri?.open }} - {{ service.Hours.Vineri?.close }}<br>
-            Sat:{{ service.Hours.Sambata?.open }} - {{ service.Hours.Sambata?.close }}<br>
-            Sun:{{ service.Hours.Duminica?.open }} - {{ service.Hours.Duminica?.close }}<br>
-</div>
+        <td data-label="ID">
+          <img class="service-card-image" src='{{service.Image}}'/><br>
+          <div class="service-name">{{ service.Name }}</div>
+          <div class="service-type">{{ service.Service_Type }}</div><br>
+          <a href="/services/{{service.id}}">{{service.id}}</a><br>
         </td>
-        <td>{{ service.Website }}<br/> {{ service.Facebook }}<br/>{{ service.Instagram }}</td>
-        <td>
+        <td data-label="Contact">{{ service.Phone_Number }} <br /><div *ngIf="service.Email"><a href='mailto:{{service.Email }}'>{{ service.Email }}</a></div></td>
+        <td data-label="Description">
+
+          {{ service.Description }}
+        </td>
+        <td data-label="Hours">
+          <div *ngIf="service.Hours" style="font-size: small; min-width: 150px">
+            Mon: {{ service.Hours.Luni?.open }} - {{ service.Hours.Luni?.close }}<br>
+            Tue: {{ service.Hours.Marti?.open }} - {{ service.Hours.Marti?.close }}<br>
+            Wed: {{ service.Hours.Miercuri?.open }} - {{ service.Hours.Miercuri?.close }}<br>
+            Thur: {{ service.Hours.Joi?.open }} - {{ service.Hours.Joi?.close }}<br>
+            Fri: {{ service.Hours.Vineri?.open }} - {{ service.Hours.Vineri?.close }}<br>
+            Sat: {{ service.Hours.Sambata?.open }} - {{ service.Hours.Sambata?.close }}<br>
+            Sun: {{ service.Hours.Duminica?.open }} - {{ service.Hours.Duminica?.close }}<br>
+          </div>
+        </td>
+        <td data-label="Online Presence">{{ service.Website }}<br/> {{ service.Facebook }}<br/>{{ service.Instagram }}</td>
+        <td data-label="Sponsor">
           <input type="checkbox" [checked]="service.Community_Sponsor" (change)="toggleSponsor(service)" />
-        <td>{{ service.Date_Created | date: 'dd/MM/yyyy'}}
+        </td>
+        <td data-label="Date Created">{{ service.Date_Created | date: 'dd/MM/yyyy'}}
           <br/>
           {{ service.Date_Updated | date: 'dd/MM/yyyy'}}
         </td>
-        <td>
+        <td data-label="Approved">
           <input type="checkbox" [checked]="service.Approved" (change)="toggleApproval(service)" />
         </td>
-        <!-- <td><a href="#"  (click)="navigateToEditService(service.id)">Edit</a></td> -->
-         <td><button class="editButton"  (click)="navigateToEditService(service.id)">Edit</button></td>
-         <td><button class="editButton"  (click)="deleteService(service.id)">Delete</button></td>
+        <td data-label="Edit"><button class="editButton" (click)="navigateToEditService(service.id)">Edit</button></td>
+        <td data-label="Delete"><button class="editButton" (click)="deleteService(service.id)">Delete</button></td>
       </tr>
     </tbody>
   </table>
 </div>
-
-<!-- <div class="update-services-container">
-  <button (click)="updateDateCreated()">Update All Entries with Current Date</button>
-</div> -->

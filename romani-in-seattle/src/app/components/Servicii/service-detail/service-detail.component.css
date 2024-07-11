@@ -1,13 +1,13 @@
 .forDebug{
   display: none;
 }
-
+/*
 .service-details-container {
   padding: 16px;
   margin: 100px auto;
   max-width: 1024px;
-  background-color: #f9f9f9; /* Offwhite background */
-  border-radius: 10px; /* Rounded corners */
+  background-color: #f9f9f9;
+  border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -145,5 +145,151 @@
 
   .service-actions button {
     margin: 4px 0;
+  }
+} */
+
+
+.service-details-container {
+  padding: 16px;
+  margin: 100px auto;
+  max-width: 1024px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.service-header {
+  display: flex;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.service-image img {
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.service-info {
+  flex: 1;
+}
+
+.service-info h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.service-meta {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.sponsor-icon {
+  color: gold;
+  margin-right: 10px;
+}
+
+.service-location,
+.service-date {
+  margin-right: 20px;
+}
+
+.service-bio {
+  margin-top: 20px;
+}
+
+.service-bio h2 {
+  margin: 0 0 10px 0;
+  font-size: 1.2rem;
+}
+
+.service-bio p {
+  margin: 0;
+}
+
+.service-content {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.service-contact,
+.service-hours {
+  width: 48%;
+}
+
+.service-contact h2,
+.service-hours h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.service-details-label, .service-hours-label {
+  font-weight: bold;
+  margin-right: 10px;
+  width:100px;
+  display: inline-block;
+}
+
+.service-details > div {
+  padding: .5rem;
+}
+
+
+
+.service-hours li{
+  padding: .5rem;
+}
+
+.service-actions {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.service-actions .editButton,
+.service-actions button {
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.service-actions .editButton:hover,
+.service-actions button:hover {
+
+}
+
+@media (max-width: 768px) {
+  .service-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .service-image img {
+    margin-bottom: 20px;
+  }
+
+  .service-meta {
+    justify-content: center;
+  }
+
+  .service-content {
+    flex-direction: column;
+  }
+
+  .service-contact,
+  .service-hours {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .service-actions {
+    text-align: center;
   }
 }

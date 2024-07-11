@@ -1,38 +1,109 @@
 .admin-container {
   padding: 20px;
+  max-width: 1200px;
+  /* margin: 0 auto; */
+}
+
+.search-container {
+  margin-bottom: 20px;
+  text-align: right;
+}
+
+input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  max-width: 300px;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
-th, td {
+table th, table td {
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   text-align: left;
-}
-
-th {
-  background-color: #f4f4f4;
-}
-
-input[type="checkbox"] {
-  transform: scale(1.5);
-}
-
-
-.service-manager-container {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .service-card-image {
   width: 100px;
   height: 100px;
-  border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #ddd;
+  border-radius: 50%;
+}
+.service-type{
+  color: var(--button-color);
+  text-transform: uppercase;
+}
+.service-name{
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+@media (max-width: 768px) {
+  .search-container {
+    text-align: center;
+  }
+
+  input[type="text"] {
+    width: 100%;
+  }
+
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {
+    margin-bottom: 15px;
+  }
+
+  tr:nth-child(odd) {
+    background: #f9f9f9;
+  }
+
+  td {
+    border: none;
+    position: relative;
+    padding-left: 50%;
+    text-align: left;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  td:before {
+    /* position: absolute; */
+    top: 10px;
+    left: 10px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    content: attr(data-label);
+    text-align: left;
+    font-weight: bold;
+  }
+}
+
+.editButton {
+  background-color: var(--button-color);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.editButton:hover {
+  background-color: var(--button-color);
 }
