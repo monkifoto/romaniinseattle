@@ -21,7 +21,7 @@
   <div class="offer-content">
     <div class="offer-info">
       <div><strong>Persoana de contact:</strong> {{ offer?.Contact_Name }}</div>
-      <div><strong>Numar de telefon:</strong> {{ offer?.Phone_Number }}</div>
+      <div><strong>Numar de telefon:</strong> {{ offer?.Phone_Number | phoneNumber}}</div>
       <div><strong>Adresa de Email:</strong> {{ offer?.Email }}</div>
       <div><strong>Pagina Web:</strong> <a [href]="offer?.Website" target="_blank">{{ offer?.Website }}</a></div>
       <div><strong>Facebook:</strong> <span [innerHTML]="offer?.Facebook | urlHelper"></span> </div>

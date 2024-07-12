@@ -20,7 +20,7 @@
     <div class="service-contact">
       <h2>Moduri de contactare</h2>
       <div class="service-details">
-        <div *ngIf="service.Phone_Number" ><label class="service-details-label">Nr Telefon:</label> {{ service.Phone_Number }}</div>
+        <div *ngIf="service.Phone_Number" ><label class="service-details-label">Nr Telefon:</label> {{ service.Phone_Number | phoneNumber }}</div>
         <div *ngIf="service.Email" ><label class="service-details-label">Email:</label> {{ service.Email }}</div>
         <div *ngIf="service.Website"><label class="service-details-label">Website:</label> <span [innerHTML]="service.Website | urlHelper"></span></div>
         <div *ngIf="service.Facebook"> <label class="service-details-label">Facebook:</label> <span [innerHTML]="service.Facebook | urlHelper"></span></div>

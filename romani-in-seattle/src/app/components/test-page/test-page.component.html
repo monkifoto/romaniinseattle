@@ -1,25 +1,72 @@
-<div class="service-card" [ngClass]="{'mobile': isMobile}">
-  <div class="service-card-image-container">
-    <img [src]="svc.Image" alt="{{ svc.Name }}" class="service-card-image">
+<div class="offer-details-container">
+  <div class="offer-header">
+    <h1>{{ offer?.Title }}</h1>
+    <div class="offer-company">
+      <strong>Company:</strong> {{ offer?.Company_Name }}
+    </div>
   </div>
-  <div class="service-card-content">
-    <div class="card-header">
-      <div class="card-title">{{ svc.Name }}<span class="sponsor-icon" *ngIf="svc.Community_Sponsor">★</span></div>
-      <div class="card-subtitle service_type">{{ svc.Service_Type }}</div>
-      <div class="card-subtitle contact_info">{{ svc.Phone_Number }}</div>
-    </div>
-    <div class="card-description" *ngIf="!isMobile">{{ svc.Description }}</div>
-    <div class="card-footer">
-      <div class="social-icons">
-        <div *ngIf="svc.Facebook"><a target="_blank" href="{{ svc.Facebook }}"><img src="../../../assets/images/SVG/facebook-icon.svg"></a></div>
-        <div *ngIf="svc.Instagram"><div [innerHTML]="svc.Instagram | instagramLink : svgInstagramIcon"></div></div>
-        <div *ngIf="svc.Website"><a target="_blank" href="{{ svc.Website }}"><img src="../../../assets/images/SVG/browser-icon.svg"></a></div>
+
+  <div class="offer-carousel-container">
+    <div class="carousel">
+      <div class="carousel-inner">
+        <div *ngFor="let image of images; let i = index" class="carousel-item" [ngClass]="{'active': i === currentIndex}">
+          <img [src]="image" alt="Offer Image {{ i + 1 }}">
+        </div>
       </div>
-      <div class="card-buttons">
-        <button *ngIf="svc.Email" class="btn message" (click)="sendEmail(svc.Email)">Email</button>
-        <button class="btn connect" (click)="viewDetails()">Detalii</button>
-      </div>
+      <a class="carousel-control prev" (click)="prevSlide()">&#10094;</a>
+      <a class="carousel-control next" (click)="nextSlide()">&#10095;</a>
     </div>
-    <div class="card-description mobile-description" *ngIf="isMobile">{{ svc.Description }}</div>
+    <div class="carousel-thumbnails">
+      <img *ngFor="let image of images; let i = index" [src]="image" (click)="setCurrentSlide(i)" [ngClass]="{'active': i === currentIndex}" alt="Thumbnail {{ i + 1 }}">
+    </div>
+  </div>
+
+  <div class="offer-content">
+    <h1 class="offer-title">{{ offer?.Title }}</h1>
+    <div class="offer-price">{{ offer?.Price }}</div>
+    <div class="offer-overview">
+      <h2>Product Overview</h2>
+      <p>{{ offer?.Description }}</p>
+    </div>
+    <div class="offer-buttons">
+      <button class="filled-button">Add to Bag</button>
+      <button class="outline-button">Find in Store</button>
+    </div>
+  </div>
+
+  <div class="offer-content">
+    <div class="offer-info">
+      <div><strong>Contact Person:</strong> {{ offer?.Contact_Name }}</div>
+      <div><strong>Phone Number:</strong> {{ offer?.Phone_Number | phoneNumber }}</div>
+      <div><strong>Email Address:</strong> {{ offer?.Email }}</div>
+      <div><strong>Website:</strong> <a [href]="offer?.Website" target="_blank">{{ offer?.Website }}</a></div>
+      <div><strong>Facebook:</strong> <span [innerHTML]="offer?.Facebook | urlHelper"></span></div>
+      <div><strong>Instagram:</strong> <span [innerHTML]="offer?.Instagram | instagramHandle"></span></div>
+      <div><strong>Location:</strong> {{ offer?.Location }}</div>
+      <div><strong>Offer Type:</strong> {{ offer?.OfferType }}</div>
+    </div>
+    <div class="offer-description">
+      <strong>Details:</strong> {{ offer?.Description }}
+    </div>
+    <div class="offer-hours">
+      <strong>Hours:</strong>
+      <ul>
+        <!-- Example of looping through hours if they are available in offer data -->
+        <!-- <li *ngFor="let day of Object.keys(offer?.Hours || {})">
+          {{ day }}: {{ offer?.Hours[day]?.open }} - {{ offer?.Hours[day]?.close }}
+        </li> -->
+      </ul>
+    </div>
+    <div class="offer-sponsor">
+      <strong>Sponsor:</strong> {{ offer?.Community_Sponsor ? 'Yes' : 'No' }}
+    </div>
+    <div *ngIf="(isLoggedIn$ | async)" class="offer-dates">
+      <strong>Created On:</strong> {{ offer?.Date_Created | date: 'shortDate' }}<br>
+      <strong>Last Updated On:</strong> {{ offer?.Date_Updated | date: 'shortDate' }}
+    </div>
+    <button class="return-button" (click)="goBack()">Back to Offers</button>
   </div>
 </div>
+
+
+

@@ -46,6 +46,7 @@ import { UrlHelperPipe,InstagramHandlePipe, InstagramLinkPipe } from './Pipes/ur
 import { TestPageComponent } from './components/test-page/test-page.component';
 import { EventCardHomeComponent } from './components/Evenimente/event-card-home/event-card-home.component';
 import { OfferCardHomeComponent } from './components/Oferte/offer-card-home/offer-card-home.component';
+import { PhoneNumberPipe } from './Pipes/phone-number.pipe';
 
 
 
@@ -79,7 +80,8 @@ import { OfferCardHomeComponent } from './components/Oferte/offer-card-home/offe
     InstagramLinkPipe,
     TestPageComponent,
     EventCardHomeComponent,
-    OfferCardHomeComponent
+    OfferCardHomeComponent,
+    PhoneNumberPipe
   ],
   imports: [
     BrowserModule,

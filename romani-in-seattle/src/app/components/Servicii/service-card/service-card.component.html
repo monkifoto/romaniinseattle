@@ -6,7 +6,7 @@
     <div class="card-header">
       <div class="card-title">{{ svc.Name }}<span class="sponsor-icon" *ngIf="svc.Community_Sponsor">★</span></div>
       <div class="card-subtitle service_type">{{ svc.Service_Type }}</div>
-      <div class="card-subtitle contact_info">{{ svc.Phone_Number }}</div>
+      <div class="card-subtitle contact_info">{{ svc.Phone_Number | phoneNumber}}</div>
     </div>
     <div class="card-description" *ngIf="!isMobile">{{ svc.Description }}</div>
     <div class="card-footer">

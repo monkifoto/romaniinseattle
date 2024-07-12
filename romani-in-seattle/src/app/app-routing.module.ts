@@ -55,6 +55,7 @@ const routes: Routes = [
 
  { path: 'test', component: TestComponent},
  { path: 'test-page', component: TestPageComponent},
+ { path: 'test-page/:id', component: TestPageComponent },
 
 { path: 'login', component: LoginComponent },
 { path: '', redirectTo: '/login', pathMatch: 'full' },

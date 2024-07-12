@@ -1,177 +1,193 @@
-.service-card {
-  width: 400px;
-  height: 500px;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  background-color: #fff;
-  transition: transform 0.3s;
+.offer-details-container {
+  max-width: 1024px;
+  margin: auto;
+  padding: 10px;
+}
+
+.offer-carousel-container {
   display: flex;
   flex-direction: column;
-  margin: 10px;
-  /* padding: 40px; */
 }
 
-.service-card:hover {
-  transform: translateY(-5px);
-}
-
-.service-card-image-container {
+.carousel {
+  position: relative;
   width: 100%;
-  height: 50%;
+}
+
+.carousel-inner {
+  display: flex;
   overflow: hidden;
 }
 
-.service-card-image {
+.carousel-item {
+  flex: 0 0 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  display: none;
+}
+
+.carousel-item.active {
+  opacity: 1;
+  display: block;
+}
+
+.carousel-item img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 20% 20%;
+  display: block;
 }
 
-.service-card-content {
-  padding: 15px;
-  height: 50%;
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  cursor: pointer;
+  color: #000;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+.carousel-thumbnails {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding-top: 10px;
 }
 
-.card-header {
-  margin-bottom: 15px;
+.carousel-thumbnails img {
+  cursor: pointer;
+  border: 2px solid transparent;
+  width: 20%;
 }
 
-.card-title {
+.carousel-thumbnails img.active {
+  border-color: #000;
+}
+
+.offer-content {
+  padding: 20px 0;
+}
+
+.offer-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.offer-price {
   font-size: 1.5rem;
   font-weight: bold;
+  margin-bottom: 10px;
 }
 
-.sponsor-icon {
-  color: gold;
+.offer-overview {
+  margin-bottom: 20px;
 }
 
-.card-subtitle {
+.offer-overview h2 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.offer-overview p {
   font-size: 1rem;
-  color: #666;
+  margin: 0;
 }
 
-.contact_info {
-  margin-top: 5px;
-}
-
-.card-description {
-  text-align: left;
-  font-family: "Catamaran", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-  color: #666;
-  margin-top: 4px;
-  /**Major Properties**/
-  overflow:hidden;
-  /* line-height: 2rem;
-  max-height: 8rem; */
-  -webkit-box-orient: vertical;
-  display: block;
-  display: -webkit-box;
-  overflow: hidden !important;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 4;
-  font-size: 0.9rem;
-  margin-bottom: 15px;
-}
-
-.card-footer {
+.offer-buttons {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.social-icons {
-  display: flex;
+  flex-direction: column;
   gap: 10px;
 }
 
-.card-buttons {
-  display: flex;
-  gap: 10px;
-}
-
-.btn {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
+.filled-button,
+.outline-button {
+  padding: 10px 20px;
   cursor: pointer;
+  border: 1px solid #000;
+  font-size: 1rem;
 }
 
-.btn.message {
-  background-color: #fff;
-  color: var(--button-color);
-  border: 1px solid var(--button-color);
-}
-
-.btn.connect {
-  background-color: var(--button-color);
+.filled-button {
+  background-color: #000;
   color: #fff;
 }
 
-@media (max-width: 768px) {
-  .service-card {
-    width: 100%;
-    height: auto;
+.outline-button {
+  background-color: transparent;
+  color: #000;
+}
+
+/* Media Queries for Responsive Design */
+@media (min-width: 600px) {
+  .offer-carousel-container {
     flex-direction: row;
-    margin: 0;
   }
 
-  .card-header{
-    margin-bottom: 2px;
+  .carousel-thumbnails img {
+    width: 10%;
   }
 
-  .service-card-image-container {
-    width: 40%;
-    height: auto;
-    max-height: 150px;
-    margin: 5px;
+  .offer-buttons {
+    flex-direction: row;
+    gap: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  .offer-title {
+    font-size: 2.5rem;
   }
 
-  .service-card-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
+  .offer-price {
+    font-size: 2rem;
   }
 
-  .service-card-content {
-    width: 60%;
-    padding: 10px;
+  .offer-overview h2 {
+    font-size: 1.5rem;
   }
 
-  .card-description {
-    display: none;
+  .offer-overview p {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .offer-carousel-container {
+    flex-direction: row;
+    justify-content: space-between;
   }
 
-  .social-icons{
-    display: none;
+  .carousel {
+    width: 70%;
   }
 
-  .mobile-description {
-    display: none;
-    font-size: 0.8rem;
-    color: #666;
-    margin-top: 10px;
-  }
-
-  .card-footer {
+  .carousel-thumbnails {
+    width: 30%;
+    padding-left: 10px;
     flex-direction: column;
-    align-items: flex-start;
+    gap: 10px;
   }
 
-  .card-buttons {
+  .carousel-thumbnails img {
     width: 100%;
-    margin-top: 10px;
   }
 
-  .btn {
-    width: 100%;
+  .offer-content {
+    padding: 20px 0;
+  }
+
+  .offer-buttons {
+    flex-direction: row;
+    gap: 10px;
   }
 }

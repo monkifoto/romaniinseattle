@@ -12,23 +12,23 @@
 
   <div class="event-content">
     <div class="event-info">
-      <div><strong>Phone Number:</strong> {{ event?.Phone_Number }}</div>
-      <div><strong>Email:</strong> {{ event?.Email }}</div>
-      <div><strong>Website:</strong> <span [innerHTML]="event?.Website | urlHelper"></span></div>
-      <div><strong>Facebook:</strong> <span [innerHTML]="event?.Facebook | urlHelper"></span></div>
-      <div><strong>Instagram:</strong> {{ event?.Instagram }}</div>
-      <div><strong>Location:</strong> {{ event?.Location }}</div>
-      <div><strong>Event Date:</strong> {{ event?.Event_Date }}</div>
-      <div><strong>Time:</strong> {{ event?.Event_Time }}</div>
-      <div><strong>Price:</strong> {{ event?.Price }}</div>
+      <div><label class="event-details-label">Nr Telefon:</label> {{ event?.Phone_Number | phoneNumber}}</div>
+      <div><label class="event-details-label">Email:</label> {{ event?.Email }}</div>
+      <div><label class="event-details-label">Pagina Web:</label> <span class="truncated-link" [innerHTML]="event?.Website | urlHelper"></span></div>
+      <div><label class="event-details-label">Facebook:</label> <span [innerHTML]="event?.Facebook | urlHelper"></span></div>
+      <div><label class="event-details-label">Instagram:</label> {{ event?.Instagram }}</div>
+      <div><label class="event-details-label">Locatie:</label> {{ event?.Location }}</div>
+      <div><label class="event-details-label">Data Evenimentului:</label> {{ event?.Event_Date }}</div>
+      <div><label class="event-details-label">Ora:</label> {{ event?.Event_Time }}</div>
+      <div><label class="event-details-label">Pret:</label> {{ event?.Price }}</div>
     </div>
     <div class="event-description">
-      <strong>Description:</strong> {{ event?.Description }}
+      <strong>Detalii:</strong> {{ event?.Description }}
     </div>
-    <div class="event-sponsor">
+    <div class="event-sponsor"  *ngIf="(isLoggedIn$ | async)">
       <strong>Sponsor:</strong> {{ event?.Community_Sponsor ? 'Yes' : 'No' }}
     </div>
-    <div class="event-dates">
+    <div class="event-dates"  *ngIf="(isLoggedIn$ | async)">
       <strong>Created Date:</strong> {{ event?.Date_Created | date: 'shortDate' }}<br>
       <strong>Updated Date:</strong> {{ event?.Date_Updated | date: 'shortDate' }}
     </div>
