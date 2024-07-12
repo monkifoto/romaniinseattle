@@ -7,34 +7,31 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.offer-header h1 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 1.7rem;
+.sponsor-icon {
+  color: gold;
+  margin-right: 10px;
+  font-size: 2rem;
 }
 
 .offer-carousel-container {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .carousel {
-  display: flex;
-  flex-wrap: nowrap;
-  transition: transform 0.5s ease-in-out;
+  position: relative;
+  width: 100%;
 }
 
 .carousel-inner {
   display: flex;
-  width: 100%;
+  overflow: hidden;
 }
 
 .carousel-item {
-  min-width: 100%;
-  transition: transform 0.5s ease-in-out;
+  flex: 0 0 100%;
   opacity: 0;
+  transition: opacity 0.5s ease-in-out;
   display: none;
 }
 
@@ -43,67 +40,202 @@
   display: block;
 }
 
-.carousel img {
+.carousel-item img {
   width: 100%;
-  height: auto;
+  display: block;
 }
 
 .carousel-control {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  padding: 10px;
+  font-size: 2rem;
   cursor: pointer;
-  font-size: 18px;
+  color:var(--button-color);
 }
 
-.carousel-control.prev {
+.prev {
   left: 10px;
 }
 
-.carousel-control.next {
+.next {
   right: 10px;
 }
 
-.offer-content {
-  margin-top: 20px;
+.carousel-thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  padding-top: 5px;
+  /* padding-top: 10px; */
 }
 
-.offer-info div {
+.carousel-thumbnails img {
+  cursor: pointer;
+  border: 2px solid transparent;
+  width: 20%;
+
+}
+
+.carousel-thumbnails img.active {
+  border-color: var(--button-color);
+}
+
+.offer-content {
+  padding: 20px 0;
+}
+
+.offer-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  color: var(--button-color);
+}
+
+.offer-info{
+  display: block;
+  justify-content: space-between;
+  font-size: .8rem;
+}
+.offer-price {
+  font-size: 1.2rem;
+  font-weight: bold;
   margin-bottom: 10px;
 }
 
-.offer-description {
-  margin-top: 20px;
+.offer-overview {
+  margin-bottom: 20px;
 }
 
-.offer-hours {
-  margin-top: 20px;
+.offer-overview h2 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
-.offer-sponsor {
-  margin-top: 20px;
+.offer-overview p {
+  font-size: 1rem;
+  margin: 0;
 }
 
-.offer-dates {
-  margin-top: 20px;
+.offer-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.return-button {
-  display: block;
-  margin-top: 20px;
+.filled-button,
+.outline-button {
   padding: 10px 20px;
-  background-color: var(--button-color);
-  color: white;
-  border: none;
-  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  border: 1px solid var(--button-color);
+  font-size: 1rem;
 }
 
-.return-button:hover {
-  background-color: #0056b3;
+.filled-button {
+  background-color: var(--button-color);
+  color: #fff;
+}
+
+.outline-button {
+  background-color: transparent;
+  color: var(--button-color);
+}
+.offer-social{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.social-icon{
+  background-color: transparent; /* Offwhite background */
+  border-radius: 50%; /* Rounded corners */
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  width: 40px;
+  height: 40px;
+  border: solid 2px var(--button-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+/* Media Queries for Responsive Design */
+@media (min-width: 600px) {
+  .offer-carousel-container {
+    flex-direction: row;
+  }
+
+  .carousel-thumbnails img {
+    width: 10%;
+  }
+
+  .offer-buttons {
+    flex-direction: row;
+    gap: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  .offer-title {
+    font-size: 2.5rem;
+  }
+
+  .offer-price {
+    font-size: 2rem;
+  }
+
+  .offer-overview h2 {
+    font-size: 1.5rem;
+  }
+
+  .offer-overview p {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .offer-carousel-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .carousel {
+    width: 90%;
+  }
+
+  .carousel-thumbnails {
+    width: 7%;
+    /* padding-left: 10px; */
+    flex-direction: column;
+    /* gap: 10px; */
+  }
+
+  .carousel-thumbnails img {
+    width: 100%;
+  }
+
+  .offer-content {
+    padding: 20px 0;
+  }
+
+  .offer-buttons {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .offer-info{
+    padding-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: .8rem;
+  }
+
+  .offer-social{
+    width: 100%;
+    display: flex;
+    justify-content: right;
+  }
 }

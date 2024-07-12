@@ -15,6 +15,9 @@ export class OfferDetailComponent implements OnInit {
   images: string[] = [];
   currentIndex: number = 0;
   isLoggedIn$!: Observable<boolean>;
+  //   currentIndex: number = 0;
+  intervalId: any;
+  svgInstagramIcon = '../../../assets/images/SVG/instagram-icon.svg';
 
   constructor(
     private route: ActivatedRoute,
@@ -33,42 +36,59 @@ export class OfferDetailComponent implements OnInit {
         if (this.offer && this.offer.Images) {
           this.images = this.offer.Images.filter(image => !!image); // Filter out empty images
         }
-        this.initCarousel();
+        //this.initCarousel();
+        this.startAutoPlay();
       });
     }
+  }
+
+
+  setCurrentSlide(index: number) {
+    this.currentIndex = index;
+    console.log(`Current Slide Set To: ${index}`);
+    this.resetAutoPlay();
+  }
+
+  prevSlide() {
+    this.currentIndex = (this.currentIndex > 0) ? this.currentIndex - 1 : this.images.length - 1;
+    console.log(`Previous Slide: ${this.currentIndex}`);
+    this.resetAutoPlay();
+  }
+
+  nextSlide() {
+    this.currentIndex = (this.currentIndex < this.images.length - 1) ? this.currentIndex + 1 : 0;
+    console.log(`Next Slide: ${this.currentIndex}`);
+    this.resetAutoPlay();
+  }
+
+  startAutoPlay() {
+    this.intervalId = setInterval(() => {
+      this.nextSlide();
+    }, 10000);
+  }
+
+  resetAutoPlay() {
+    clearInterval(this.intervalId);
+    this.startAutoPlay();
   }
 
   goBack(): void {
     this.router.navigate(['/offers']);
   }
 
-  initCarousel() {
-    setTimeout(() => {
-      const items = document.querySelectorAll('.carousel-item');
-      if (items.length > 0) {
-        items[0].classList.add('active');
-      }
-    }, 0);
+  sendEmail(email: string | undefined): void {
+    window.location.href = `mailto:${email}`;
   }
 
-  prevSlide() {
-    if (this.images.length) {
-      this.currentIndex = (this.currentIndex > 0) ? this.currentIndex - 1 : this.images.length - 1;
-      this.updateSlide();
-    }
-  }
+  shareLink(): void {
+    const baseUrl = 'https://romaniinseattle.com';
+    const queryParams = this.router.url;
+    const shareUrl = `${baseUrl}${queryParams}`;
 
-  nextSlide() {
-    if (this.images.length) {
-      this.currentIndex = (this.currentIndex + 1) % this.images.length;
-      this.updateSlide();
-    }
-  }
-
-  updateSlide() {
-    const items = document.querySelectorAll('.carousel-item');
-    items.forEach((item, index) => {
-      item.classList.toggle('active', index === this.currentIndex);
+    navigator.clipboard.writeText(shareUrl).then(() => {
+      alert('Link copied to clipboard!');
+    }, (err) => {
+      console.error('Could not copy text: ', err);
     });
   }
 }

@@ -1,11 +1,4 @@
 <div class="offer-details-container">
-  <div class="offer-header">
-    <h1>{{ offer?.Title }}</h1>
-    <div class="offer-company">
-      <strong>Company:</strong> {{ offer?.Company_Name }}
-    </div>
-  </div>
-
   <div class="offer-carousel-container">
     <div class="carousel">
       <div class="carousel-inner">
@@ -22,49 +15,41 @@
   </div>
 
   <div class="offer-content">
+    <div class="offer-company">{{ offer?.Company_Name }} <span *ngIf="offer?.Community_Sponsor" class="sponsor-icon">★</span></div>
     <h1 class="offer-title">{{ offer?.Title }}</h1>
     <div class="offer-price">{{ offer?.Price }}</div>
     <div class="offer-overview">
-      <h2>Product Overview</h2>
-      <p>{{ offer?.Description }}</p>
+      <h2>Detailii</h2>
+      <div class="offer-info">
+        <div><strong>Persona de contact:</strong> {{ offer?.Contact_Name }}</div>
+        <div><strong>Nr de Telefon:</strong> {{ offer?.Phone_Number | phoneNumber }}</div>
+        <div><strong>Tip de oferta</strong> {{ offer?.OfferType }}</div>
+        <div><strong>Locatie</strong> {{ offer?.Location }}</div>
+      </div>
+      <div [innerHTML]="offer?.Description "></div>
     </div>
+    <!-- <div class="offer-location">{{ offer?.Location }}</div> -->
     <div class="offer-buttons">
-      <button class="filled-button">Add to Bag</button>
-      <button class="outline-button">Find in Store</button>
+      <button *ngIf=" offer?.Email" class="btn message" (click)="sendEmail(offer?.Email)">Contacteaza</button>
+      <button class="outline-button" (click)="shareLink()">Distribuie</button>
+      <div class="offer-social">
+        <h3>Prezenta Online</h3>
+        <br>
+        <div *ngIf="offer?.Facebook" class="social-icon"><a target="_blank" href="{{ offer?.Facebook }}"><img src="../../../assets/images/SVG/facebook-icon.svg"></a></div>
+        <div *ngIf="offer?.Instagram" class="social-icon"><div [innerHTML]="offer?.Instagram | instagramLink : svgInstagramIcon"></div></div>
+        <div *ngIf="offer?.Website" class="social-icon"><a target="_blank" href="{{ offer?.Website }}"><img src="../../../assets/images/SVG/browser-icon.svg"></a></div>
+    </div>
     </div>
   </div>
 
   <div class="offer-content">
-    <div class="offer-info">
-      <div><strong>Contact Person:</strong> {{ offer?.Contact_Name }}</div>
-      <div><strong>Phone Number:</strong> {{ offer?.Phone_Number | phoneNumber }}</div>
-      <div><strong>Email Address:</strong> {{ offer?.Email }}</div>
-      <div><strong>Website:</strong> <a [href]="offer?.Website" target="_blank">{{ offer?.Website }}</a></div>
-      <div><strong>Facebook:</strong> <span [innerHTML]="offer?.Facebook | urlHelper"></span></div>
-      <div><strong>Instagram:</strong> <span [innerHTML]="offer?.Instagram | instagramHandle"></span></div>
-      <div><strong>Location:</strong> {{ offer?.Location }}</div>
-      <div><strong>Offer Type:</strong> {{ offer?.OfferType }}</div>
-    </div>
-    <div class="offer-description">
-      <strong>Details:</strong> {{ offer?.Description }}
-    </div>
-    <div class="offer-hours">
-      <strong>Hours:</strong>
-      <ul>
-        <!-- Example of looping through hours if they are available in offer data -->
-        <!-- <li *ngFor="let day of Object.keys(offer?.Hours || {})">
-          {{ day }}: {{ offer?.Hours[day]?.open }} - {{ offer?.Hours[day]?.close }}
-        </li> -->
-      </ul>
-    </div>
-    <div class="offer-sponsor">
-      <strong>Sponsor:</strong> {{ offer?.Community_Sponsor ? 'Yes' : 'No' }}
-    </div>
+
+
     <div *ngIf="(isLoggedIn$ | async)" class="offer-dates">
       <strong>Created On:</strong> {{ offer?.Date_Created | date: 'shortDate' }}<br>
       <strong>Last Updated On:</strong> {{ offer?.Date_Updated | date: 'shortDate' }}
     </div>
-    <button class="return-button" (click)="goBack()">Back to Offers</button>
+    <button class="return-button" (click)="goBack()">Inapoi la Oferte</button>
   </div>
 </div>
 

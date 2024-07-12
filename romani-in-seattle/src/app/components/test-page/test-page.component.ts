@@ -16,6 +16,7 @@ export class TestPageComponent implements OnInit {
   isLoggedIn$!: Observable<boolean>;
   //   currentIndex: number = 0;
   intervalId: any;
+  svgInstagramIcon = '../../../assets/images/SVG/instagram-icon.svg';
 
   constructor(
     private route: ActivatedRoute,
@@ -74,6 +75,21 @@ export class TestPageComponent implements OnInit {
     this.router.navigate(['/offers']);
   }
 
+  sendEmail(email: string | undefined): void {
+    window.location.href = `mailto:${email}`;
+  }
+
+  shareLink(): void {
+    const baseUrl = 'https://romaniinseattle.com/offers';
+    const queryParams = this.router.url.split('?')[1] || '';
+    const shareUrl = `${baseUrl}${queryParams ? '?' + queryParams : ''}`;
+
+    navigator.clipboard.writeText(shareUrl).then(() => {
+      alert('Link copied to clipboard!');
+    }, (err) => {
+      console.error('Could not copy text: ', err);
+    });
+  }
   // initCarousel() {
   //   setTimeout(() => {
   //     const items = document.querySelectorAll('.carousel-item');
