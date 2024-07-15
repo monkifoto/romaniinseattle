@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { OffersWithId } from 'src/app/Model/offers.model';
 import { EventsService } from 'src/app/Services/events.service';
 import { OffersService } from 'src/app/Services/offers.service';
 import { Event, EventWithId } from 'src/app/Model/event.model';
+import { AngularFireAnalytics } from '@angular/fire/compat/analytics';
+import { HttpClient } from '@angular/common/http';
 interface ResourceLink {
   name: string;
   url: string;
@@ -23,23 +25,49 @@ export class HomeComponent implements OnInit  {
     { name: 'Biserica Sfintii Trei Ierarhi', url: 'http://www.ortodox.org/'},
     { name: 'Romanian United Foundation', url: 'https://www.romanianunitedfund.org/'}
   ];
-
+  private startTime!: number;
   events: EventWithId[] = [];
   offers: OffersWithId[] = [];
 
-  constructor(private eventService: EventsService, private offersService: OffersService, private router: Router) { }
+  constructor(private eventService: EventsService, private offersService: OffersService, private router: Router, private analytics: AngularFireAnalytics) { }
+
+
 
   ngOnInit(): void {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.analytics.logEvent('page_view', { page_path: event.urlAfterRedirects });
+      }
+    });
+
     this.eventService.getEvents().subscribe(data => {
       this.events = data;
     });
     this.offersService.getOffers().subscribe(offer => {
       this.offers = offer;
     });
+
+    const observer = new PerformanceObserver((list) => {
+      list.getEntries().forEach((entry) => {
+        this.analytics.logEvent('page_load_time', {
+          name: entry.name,
+          duration: entry.duration
+        });
+      });
+    });
+
+    observer.observe({ type: 'navigation', buffered: true });
   }
 
-  navigateToAddEvent(): void {
-    this.router.navigate(['/add-event']);
+
+  @HostListener('window:beforeunload')
+  logDuration() {
+    const duration = Date.now() - this.startTime;
+    this.analytics.logEvent('visit_duration', { duration: duration });
+  }
+
+  getData() {
+    const startTime = performance.now();
   }
 }
 

@@ -14,13 +14,15 @@ import { AnalyticsService } from './Services/analytics.service';
 export class AppComponent implements OnInit{
   title = 'romani-in-seattle';
 
-  constructor(
-    private analyticsService: AnalyticsService
-  ) {}
+  constructor(private router: Router, private analytics: AngularFireAnalytics,  private analyticsService: AnalyticsService) {}
+
 
   ngOnInit() {
-
-    //this.analyticsService.logEvent('page_view');
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.analytics.logEvent('page_view', { page_path: event.urlAfterRedirects });
+      }
+    });
   }
 
   trackButtonClick(): void {

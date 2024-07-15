@@ -19,6 +19,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFireAnalyticsModule, ScreenTrackingService, UserTrackingService } from '@angular/fire/compat/analytics';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { provideStorage, getStorage} from '@angular/fire/storage';
 import { FooterComponent } from './components/footer/footer.component';
@@ -95,6 +96,7 @@ import { PhoneNumberPipe } from './Pipes/phone-number.pipe';
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
+    AngularFireAnalyticsModule,
     AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(()=> initializeApp(environment.firebase)),
     provideFirestore(()=>getFirestore()),
@@ -105,7 +107,9 @@ import { PhoneNumberPipe } from './Pipes/phone-number.pipe';
   exports: [RouterModule],
   providers: [
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
-    ErrorLoggingService
+    ErrorLoggingService,
+    ScreenTrackingService,
+    UserTrackingService
   ],
   bootstrap: [AppComponent]
 })

@@ -28,36 +28,36 @@ import { TestPageComponent } from './components/test-page/test-page.component';
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent , title: 'Romani în Seattle - Acasa' },
 
-  { path: 'rules', component: RulesComponent },
-  { path: 'analytics', component: AnalyticsComponent },
+  { path: 'rules', component: RulesComponent, title: 'Romani în Seattle - Reguli' },
+  { path: 'analytics', component: AnalyticsComponent  , title: 'Romani în Seattle - Acasa' },
 
-  { path: 'events', component: EventsComponent},
-  { path: 'add-event', component: AddEventComponent },
-  { path: 'events/add', component: AddEventComponent },
-  { path: 'events/:id', component: EventDetailComponent},
-  { path: 'edit-event/:id', component: EventEditComponent},
+  { path: 'events', component: EventsComponent , title: 'Romani în Seattle - Evenimente' },
+  { path: 'add-event', component: AddEventComponent  , title: 'Romani în Seattle - Adauga Eveniment' },
+  { path: 'events/add', component: AddEventComponent  , title: 'Romani în Seattle -  Adauga Eveniment' },
+  { path: 'events/:id', component: EventDetailComponent , title: 'Romani în Seattle - Detalii Eveniment' },
+  { path: 'edit-event/:id', component: EventEditComponent , title: 'Romani în Seattle - Editare Eveniment' },
 
 
-  { path: 'offers', component: OffersComponent },
-  { path: 'add-offers', component: AddOffersComponent },
-  { path: 'offers/add', component: AddOffersComponent },
-  { path: 'offers/:id', component: OfferDetailComponent },
-  { path: 'edit-oferte/:id', component: EditOferteComponent},
+  { path: 'offers', component: OffersComponent  , title: 'Romani în Seattle - Acasa' },
+  { path: 'add-offers', component: AddOffersComponent  , title: 'Romani în Seattle - Adauga Oferta' },
+  { path: 'offers/add', component: AddOffersComponent  , title: 'Romani în Seattle - Adauga Oferta' },
+  { path: 'offers/:id', component: OfferDetailComponent  , title: 'Romani în Seattle - Detalii Oferta' },
+  { path: 'edit-oferte/:id', component: EditOferteComponent , title: 'Romani în Seattle - Editare Oferta' },
 
-  { path: 'services', component: ServicesComponent },
-  { path: 'add-service', component: AddServiceComponent },
-  { path: 'services/add', component: AddServiceComponent },
-  { path: 'services/:id', component: ServiceDetailComponent },
-  { path: 'edit-service/:id', component: EditServicesComponent },
+  { path: 'services', component: ServicesComponent  , title: 'Romani în Seattle - Servicii' },
+  { path: 'add-service', component: AddServiceComponent  , title: 'Romani în Seattle - Adauga Serviciu' },
+  { path: 'services/add', component: AddServiceComponent  , title: 'Romani în Seattle - Adauga Serviciu' },
+  { path: 'services/:id', component: ServiceDetailComponent  , title: 'Romani în Seattle - Detalii Serviciu' },
+  { path: 'edit-service/:id', component: EditServicesComponent  , title: 'Romani în Seattle - Editate Serviciu' },
 
 
  { path: 'test', component: TestComponent},
  { path: 'test-page', component: TestPageComponent},
  { path: 'test-page/:id', component: TestPageComponent },
 
-{ path: 'login', component: LoginComponent },
+{ path: 'login', component: LoginComponent  , title: 'Romani în Seattle - Logare' },
 { path: '', redirectTo: '/login', pathMatch: 'full' },
 {path: 'admin',loadChildren:() => import ('./Modules/admin/admin.module').then(m=>m.AdminModule)}
 
