@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ServiceWithId } from 'src/app/Model/service.model';
 import { ImageUploadService } from 'src/app/Services/image-upload.service';
 import { ServicesService } from 'src/app/Services/services.service';
+import { AngularFireAnalytics } from '@angular/fire/compat/analytics';
+import { ServiceType } from 'src/app/Model/service-type.model';
 
 @Component({
   selector: 'app-edit-services',
@@ -13,7 +15,7 @@ import { ServicesService } from 'src/app/Services/services.service';
 export class EditServicesComponent implements OnInit {
   serviceForm: FormGroup;
   serviceId: string | null = null;
-  serviceTypes: string[] = [];
+  serviceTypes: ServiceType[] = [];
   selectedFile: File | null = null;
   serviceObj: ServiceWithId = new ServiceWithId();
   oldImage: string | null = null;
@@ -25,6 +27,7 @@ export class EditServicesComponent implements OnInit {
     private router: Router,
     private servicesService: ServicesService,
     private imageUploadService: ImageUploadService,
+    private analytics: AngularFireAnalytics
   ) {
     this.serviceForm = this.fb.group({
       Name: ['', Validators.required],
@@ -115,7 +118,7 @@ export class EditServicesComponent implements OnInit {
 
 
   onSubmit(): void {
-
+    this.analytics.logEvent('button_click', { button_name: 'edit-service' });
     if (this.serviceForm.valid) {
 
       this.serviceObj.id = this.serviceId? this.serviceId : '0';
@@ -150,31 +153,20 @@ export class EditServicesComponent implements OnInit {
   }
 
   private saveService(): void {
-
-    //  const serviceJS = {
-    //     id: this.serviceObj.id,
-    //     Name: this.serviceObj.Name,
-    //     Phone_Number: this.serviceObj.Phone_Number,
-    //     Service_Type: this.serviceObj.Service_Type,
-    //     Community_Sponsor: false,
-    //     Email: this.serviceObj.Email,
-    //     Website: this.serviceObj.Website,
-    //     Facebook: this.serviceObj.Facebook,
-    //     Instagram: this.serviceObj.Instagram,
-    //     Description: this.serviceObj.Description,
-    //     Date_Created: this.serviceObj.Date_Created,
-    //     Date_Updated: new Date().getDate.toString(),
-    //     Image: this.serviceObj.Image,
-    //     Approved: false,
-    //     OpenHour: '',
-    //     CloseHour:''
-    //   };
-  // console.log(serviceJS);
   let id = this.route.snapshot.paramMap.get('id')!;
       this.servicesService.updateService(id, this.serviceObj).subscribe(ser =>{
         console.log('Service updated successfully  ID:', ser?.id);
         this.serviceForm.reset();
         this.router.navigate(['/services', ser?.id]);
       })
+  }
+
+  goBack(): void {
+    this.analytics.logEvent('button_click', { button_name: 'back-to-services' });
+    if (this.serviceId) {
+      this.router.navigate(['/services', this.serviceId]);
+    } else {
+      this.router.navigate(['/services']);
+    }
   }
 }

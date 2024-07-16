@@ -5,6 +5,7 @@ import { ImageUploadService } from 'src/app/Services/image-upload.service';
 import { Router } from '@angular/router';
 import { OffersWithId } from 'src/app/Model/offers.model';
 import Pica from 'pica';
+import { AngularFireAnalytics } from '@angular/fire/compat/analytics';
 
 @Component({
   selector: 'app-add-offers',
@@ -46,7 +47,8 @@ export class AddOffersComponent implements OnInit {
     private fb: FormBuilder,
     private offersService: OffersService,
     private imageUploadService: ImageUploadService,
-    private router: Router
+    private router: Router,
+    private analytics: AngularFireAnalytics
   ) {
     this.offerForm = this.fb.group({
       Title: ['', Validators.required],
@@ -104,31 +106,6 @@ export class AddOffersComponent implements OnInit {
     }
   }
 
-  // async onFileSelected(event: any) {
-  //   const files: FileList = event.target.files;
-  //   for (let i = 0; i < files.length; i++) {
-  //     const file = files[i];
-  //     const resizedFile = await this.resizeImage(file);
-  //     this.imageUploadStatus[file.name] = 'Uploading...';
-
-  //     this.imageUploadService.uploadOfferImage(resizedFile, this.offerId).subscribe(
-  //       (downloadURL: string) => {
-  //         this.offer.Images.push(downloadURL);
-  //         this.images.push({ name: file.name, url: downloadURL, file: file });
-  //         this.imageUploadStatus[file.name] = 'Uploaded';
-  //       },
-  //       (error: any) => {
-  //         console.error('Image upload failed: ', error);
-  //         this.imageUploadStatus[file.name] = 'Failed to upload';
-  //       }
-  //     );
-  //   }
-  // }
-
-  // removeImage(image: { name: string, url: string, file: File }): void {
-  //   this.images = this.images.filter(img => img !== image);
-  //   this.offer.Images = this.offer.Images.filter(url => url !== image.url);
-  // }
 
   removeImage(image: { name: string, url: string, file?: File }): void {
     this.images = this.images.filter(img => img !== image);
@@ -145,6 +122,7 @@ export class AddOffersComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.analytics.logEvent('button_click', { button_name: 'add-offer' });
     if (this.offerForm.valid) {
       this.offer.Title = this.offerForm.value.Title;
       this.offer.Phone_Number = this.offerForm.value.Phone_Number;

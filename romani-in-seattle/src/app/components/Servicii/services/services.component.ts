@@ -2,6 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ServicesService } from 'src/app/Services/services.service';
 import { Service, ServiceWithId } from 'src/app/Model/service.model';
+import { ServiceType } from 'src/app/Model/service-type.model';
 
 @Component({
   selector: 'app-services',
@@ -12,16 +13,17 @@ export class ServicesComponent implements OnInit {
   // services: Service[] = [];
   services: ServiceWithId[] = [];
   filteredServices: ServiceWithId[] = [];
-  serviceTypes: string[] = [];
-  selectedServiceType: string = '';
+  serviceTypes: ServiceType[] = [];
+  selectedServiceTypeId: string = '';
 
 
   constructor(private servicesService: ServicesService,private route: ActivatedRoute, private router: Router) { }
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.selectedServiceType = params['serviceType'] || '';
+      this.selectedServiceTypeId = params['serviceTypeId'] || '';
     });
-    this.filterServices(this.selectedServiceType);
+    console.log("Selected Type Id in On Init:", this.selectedServiceTypeId);
+    this.filterServices(this.selectedServiceTypeId);
   }
 
   navigateToAddService(): void {
@@ -38,42 +40,29 @@ export class ServicesComponent implements OnInit {
   }
 
   fetchServiceTypes(): void {
-    console.log("FetchServiceTypes Function");
     this.servicesService.getAllServiceTypes().subscribe(types => {
       this.serviceTypes = types;
       types.forEach(element => {
-        //console.log("Serviciu: " + element);
       });
     });
-      console.log("Number of Service Types returned by the database : " + this.serviceTypes.length);
-
   }
 
-  // fetchServices(): void {
-  //   this.servicesService.getServices().subscribe(data => {
-  //     this.services = data;
-  //   });
-  // }
 
-  onFilterChange(serviceType: string): void {
-     console.log('Filter changed:', serviceType);
-     //this.fetchServices();
+  onFilterChange(serviceTypeId: string): void {
+     console.log('Filter changed:', serviceTypeId);
      this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: { serviceType: serviceType },
+      queryParams: { serviceTypeId: serviceTypeId },
       queryParamsHandling: 'merge' // preserve the existing query params
     });
-    this.filterServices(serviceType);
+    this.filterServices(serviceTypeId);
   }
 
-  filterServices(selectedServiceType:string):void{
-      console.log("Filter Serices: " + selectedServiceType);
-
-
+  filterServices(selectedServiceTypeId:string):void{
       this.fetchServiceTypes();
-   // debugger;
-      if (!selectedServiceType|| selectedServiceType ==='') {
-      //this.filteredServices = this.services;
+console.log("Selected Service Type Id in Filter Sercices", selectedServiceTypeId);
+      if (!selectedServiceTypeId|| selectedServiceTypeId ==='') {
+ console.log("in if");
       this.servicesService.getServices().subscribe(services => {
         this.services = services.filter(ser => ser.Approved);;
         this.filteredServices = services.filter(ser => ser.Approved);
@@ -81,10 +70,12 @@ export class ServicesComponent implements OnInit {
         console.log("Number of Services returned by the Database :  " + this.services.length);
       });
     } else {
-      this.servicesService.getServicesByType(selectedServiceType).subscribe(
+      console.log("in else");
+      this.servicesService.getServicesByTypeID(selectedServiceTypeId).subscribe(
         fi =>{
-          this.services = fi.filter(ser => ser.Approved);;
-          this.filteredServices = fi.filter(ser => ser.Approved);;
+          console.log("fi count", fi.length);
+          this.services = fi.filter(ser => ser.Approved);
+          this.filteredServices = fi.filter(ser => ser.Approved);
           console.log("Number of Services returned by the Database :  " + this.services.length);
         }
       )
@@ -107,12 +98,12 @@ export class ServicesComponent implements OnInit {
   //   }
   }
 
-  extractServiceTypes(): void {
-    this.serviceTypes = [...new Set(this.services.map(service => service.Service_Type))];
-  }
+  // extractServiceTypes(): void {
+  //   this.serviceTypes = [...new Set(this.services.map(service => service.Service_Type))];
+  // }
 
   shareLink(): void {
-    const baseUrl = 'https://romaniinseattle.web.app/services';
+    const baseUrl = 'https://romaniinseattle.com/services';
     const queryParams = this.router.url.split('?')[1] || '';
     const shareUrl = `${baseUrl}${queryParams ? '?' + queryParams : ''}`;
 

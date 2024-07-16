@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Service, ServiceExt, ServiceWithId } from 'src/app/Model/service.model';
 import { formatUrl } from 'src/app/utils/url.utils';
+import { AngularFireAnalytics } from '@angular/fire/compat/analytics';
 
 @Component({
   selector: 'app-service-card',
@@ -14,7 +15,7 @@ export class ServiceCardComponent implements OnInit {
   svgInstagramIcon = '../../../assets/images/SVG/instagram-icon.svg';
   isMobile: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,   private analytics: AngularFireAnalytics) {}
 
   ngOnInit(): void {
     if(this.svc.Image === undefined || this.svc.Image ==''){
@@ -24,10 +25,12 @@ export class ServiceCardComponent implements OnInit {
   }
 
   viewDetails(): void {
+    this.analytics.logEvent('button_click', { button_name: 'service-details' });
     this.router.navigate(['/services', this.svc.id]);
   }
 
   sendEmail(email: string): void {
+    this.analytics.logEvent('button_click', { button_name: 'service-email' });
     window.location.href = `mailto:${email}`;
   }
 

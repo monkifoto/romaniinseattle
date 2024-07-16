@@ -7,6 +7,7 @@ import { finalize } from 'rxjs/operators';
 import { OffersService } from 'src/app/Services/offers.service';
 import { Offers, OffersWithId } from 'src/app/Model/offers.model';
 import Pica from 'pica';
+import { AngularFireAnalytics } from '@angular/fire/compat/analytics';
 
 @Component({
   selector: 'app-edit-oferte',
@@ -49,7 +50,8 @@ export class EditOferteComponent implements OnInit {
     private offersService: OffersService,
     private imageUploadService: ImageUploadService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private analytics: AngularFireAnalytics
   ) {
     this.offerForm = this.fb.group({
       Title: ['', Validators.required],
@@ -161,6 +163,7 @@ export class EditOferteComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.analytics.logEvent('button_click', { button_name: 'edit-offer' });
     if (this.offerForm.valid) {
       this.offer.Title = this.offerForm.value.Title;
       this.offer.Phone_Number = this.offerForm.value.Phone_Number;
@@ -215,5 +218,14 @@ export class EditOferteComponent implements OnInit {
 
       img.onerror = (error) => reject(error);
     });
+  }
+
+  goBack(): void {
+    this.analytics.logEvent('button_click', { button_name: 'back-to-services' });
+    if (this.offerId) {
+      this.router.navigate(['/services', this.offerId]);
+    } else {
+      this.router.navigate(['/services']);
+    }
   }
 }

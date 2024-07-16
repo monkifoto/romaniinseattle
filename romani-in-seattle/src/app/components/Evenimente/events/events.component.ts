@@ -13,7 +13,10 @@ import { AngularFireAnalytics } from '@angular/fire/compat/analytics';
 export class EventsComponent implements OnInit {
   events: EventWithId[] = [];
 
-  constructor(private eventService: EventsService, private router: Router,private analytics: AngularFireAnalytics) { }
+  constructor(private eventService: EventsService,
+     private router: Router,
+     private analytics: AngularFireAnalytics
+    ) { }
 
   ngOnInit(): void {
     this.eventService.getEvents().subscribe(data => {

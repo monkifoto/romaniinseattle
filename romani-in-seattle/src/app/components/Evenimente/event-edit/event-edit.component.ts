@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EventsService } from 'src/app/Services/events.service';
 import { EventWithId } from 'src/app/Model/event.model';
+import { AngularFireAnalytics } from '@angular/fire/compat/analytics';
 
 @Component({
   selector: 'app-event-edit',
@@ -18,7 +19,8 @@ export class EventEditComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
-    private eventsService: EventsService
+    private eventsService: EventsService,
+    private analytics: AngularFireAnalytics
   ) {
     this.eventForm = this.fb.group({
       Approved: [false],
@@ -50,6 +52,7 @@ export class EventEditComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.analytics.logEvent('button_click', { button_name: 'save-event' });
     if (this.eventForm.valid && this.eventId) {
       const updatedEvent = this.eventForm.value;
       this.eventsService.updateEvent(this.eventId, updatedEvent).subscribe(() => {
@@ -62,6 +65,7 @@ export class EventEditComponent implements OnInit {
   }
 
   goBack(): void {
+    this.analytics.logEvent('button_click', { button_name: 'back-to-events' });
     if (this.eventId) {
       this.router.navigate(['/events', this.eventId]);
     } else {

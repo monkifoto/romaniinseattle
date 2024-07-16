@@ -11,9 +11,9 @@
     <label for="service-type">Filtrați lista după tipul serviciului: </label>
   </div>
   <div class='service-control-container'>
-  <select id="service-type" (change)="onFilterChange(this.handleChange($event))" class="filter-dropdown" [(ngModel)]="selectedServiceType">
+  <select id="service-type" (change)="onFilterChange(this.handleChange($event))" class="filter-dropdown" [(ngModel)]="selectedServiceTypeId">
     <option value="">Toate serviciile</option>
-    <option *ngFor="let type of serviceTypes" [value]="type">{{ type }}</option>
+    <option *ngFor="let type of serviceTypes" [value]="type.id">{{ type.Name }}</option>
   </select>
 </div>
   <div class="service-control-container">

@@ -33,6 +33,6 @@
       <strong>Updated Date:</strong> {{ event?.Date_Updated | date: 'shortDate' }}
     </div>
   </div>
-
+  <button class="editButton" *ngIf="(isLoggedIn$ | async)" (click)="navigateToEditEvent(event?.id!)">Edit</button> &nbsp;
   <button (click)="goBack()">Inapoi la Evenimente</button>
 </div>

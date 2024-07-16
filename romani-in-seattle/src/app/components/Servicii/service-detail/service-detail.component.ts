@@ -6,6 +6,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 import { formatUrl } from 'src/app/utils/url.utils';
 import { AuthService } from 'src/app/Services/auth.service';
+import { AngularFireAnalytics } from '@angular/fire/compat/analytics';
 
 @Component({
   selector: 'app-service-detail',
@@ -23,7 +24,8 @@ export class ServiceDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private servicesService: ServicesService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private analytics: AngularFireAnalytics
   ) {
     this.isLoggedIn$ = this.authService.isLoggedIn();
   }
@@ -61,9 +63,11 @@ export class ServiceDetailComponent implements OnInit {
   }
 
   goBack(): void {
+    this.analytics.logEvent('button_click', { button_name: 'back-to-services' });
     this.router.navigate(['/services']);
   }
   navigateToEditService(id: string): void {
+    this.analytics.logEvent('button_click', { button_name: 'edit-service' });
     this.router.navigate(['/edit-service', id]);
   }
 }

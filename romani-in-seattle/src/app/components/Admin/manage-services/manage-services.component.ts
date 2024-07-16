@@ -79,7 +79,11 @@ export class ServicesManagementComponent implements OnInit  {
       this.serviceManagementService.deleteService(id);
     }
   }
-  // updateDateCreated(): void {
-  //   this.serviceManagementService.updateAllEntriesWithCurrentDate();
-  // }
+
+  updateSericeTypeIDsServices(): void {
+        this.serviceManagementService.updateServiceTypeIds()
+        .then(() => console.log('Service_Type_IDs updated'))
+        .catch(error => console.error('Error:', error));
+
+  }
 }

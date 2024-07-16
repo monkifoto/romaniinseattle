@@ -4,6 +4,7 @@ import { EventsService } from 'src/app/Services/events.service';
 import { EventWithId } from 'src/app/Model/event.model';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/Services/auth.service';
+import { AngularFireAnalytics } from '@angular/fire/compat/analytics';
 
 @Component({
   selector: 'app-event-detail',
@@ -19,7 +20,8 @@ export class EventDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private eventsService: EventsService,
-    private authService: AuthService
+    private authService: AuthService,
+    private analytics: AngularFireAnalytics
   ) {
     this.isLoggedIn$ = this.authService.isLoggedIn();
 
@@ -38,6 +40,11 @@ export class EventDetailComponent implements OnInit {
   }
 
   goBack(): void {
+    this.analytics.logEvent('button_click', { button_name: 'back-to-events' });
     this.router.navigate(['/events']);
+  }
+  navigateToEditEvent(id: string): void {
+    this.analytics.logEvent('button_click', { button_name: 'edit-event' });
+    this.router.navigate(['/edit-event', id]);
   }
 }
