@@ -11,8 +11,8 @@
 <div class="form-container">
   <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label class="required" for="Service_Type_Id">Categoria de serviciului:</label>
-      <select id="Service_Type_Id" formControlName="Service_Type_Id" required>
+      <label class="required" for="Service_Type_ID">Categoria de serviciului:</label>
+      <select id="Service_Type_ID" formControlName="Service_Type_ID" required>
         <option *ngFor="let type of serviceTypes" [value]="type.id">{{ type.Name }}</option>
       </select>
     </div>

@@ -34,7 +34,7 @@ export class AddServiceComponent implements OnInit {
       Description: [''],
       Date_Created: [''],
       Community_Sponsor: [false],
-      Service_Type_Id: ['',Validators.required],
+      Service_Type_ID: ['',Validators.required],
       Hours: this.fb.group({
         Luni: this.fb.group({
           open: ['8:00 AM'],
