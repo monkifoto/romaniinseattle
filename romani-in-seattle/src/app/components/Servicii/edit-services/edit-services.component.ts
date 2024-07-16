@@ -40,7 +40,7 @@ export class EditServicesComponent implements OnInit {
       Description: [''],
       Date_Created: [''],
       Community_Sponsor: [false],
-      Service_Type: ['', Validators.required],
+      Service_Type_Id: ['',Validators.required],
       Hours: this.fb.group({
         Luni: this.fb.group({
           open: ['8:00 AM'],
@@ -84,6 +84,7 @@ export class EditServicesComponent implements OnInit {
     this.servicesService.getServiceById(this.serviceId).subscribe(service => {
       this.serviceForm.patchValue({
         Id : this.serviceId,
+        Service_Type_Id: service?.Service_Type_Id,
         Name: service?.Name,
         // Email: service?.Email? '' : service?.Email,
         Email: service?.Email? service.Email:'',
@@ -124,7 +125,7 @@ export class EditServicesComponent implements OnInit {
       this.serviceObj.id = this.serviceId? this.serviceId : '0';
       this.serviceObj.Name = this.serviceForm.value.Name;
       this.serviceObj.Phone_Number= this.serviceForm.value.Phone_Number;
-      this.serviceObj.Service_Type= this.serviceForm.value.Service_Type;
+      this.serviceObj.Service_Type_Id= this.serviceForm.value.Service_Type_Id;
       this.serviceObj.Community_Sponsor= false;
       this.serviceObj.Email= this.serviceForm.value.Email;
       this.serviceObj.Website= this.serviceForm.value.Website;

@@ -45,8 +45,8 @@ export class ServicesService {
     );
   }
 
-  getServiceById(id: string): Observable<Service | undefined >  {
-    return this.servicesCollection.doc<Service>(id).valueChanges().pipe(
+  getServiceById(id: string): Observable<ServiceWithId | undefined >  {
+    return this.servicesCollection.doc<ServiceWithId>(id).valueChanges().pipe(
       catchError(error => {
         this.errorLoggingService.logError(error, 'getGetServiceById: ' + id);
         return throwError(() => new Error(error));

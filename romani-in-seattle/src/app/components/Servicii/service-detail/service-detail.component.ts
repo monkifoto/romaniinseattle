@@ -34,6 +34,7 @@ export class ServiceDetailComponent implements OnInit {
     this.serviceId = this.route.snapshot.paramMap.get('id')!;
     this.servicesService.getServiceById(this.serviceId).subscribe(serviceDBItem => {
         if(serviceDBItem){
+          console.log(serviceDBItem);
           this.service.Community_Sponsor = serviceDBItem?.Community_Sponsor ?? false;
           this.service.Name = serviceDBItem.Name ?? '';
           this.service.Date_Created = serviceDBItem.Date_Created?? '';
