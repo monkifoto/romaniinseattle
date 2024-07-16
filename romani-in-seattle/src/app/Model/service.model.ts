@@ -26,7 +26,7 @@ export class Service {
     Sambata?: { open: string, close: string };
     Duminica?: { open: string, close: string };
   } = {};
-  Service_Type_Id: string = '';
+  Service_Type_ID: string = '';
 }
 export interface ServiceExt extends ServiceWithId {
   getFormattedWebsite(): string;

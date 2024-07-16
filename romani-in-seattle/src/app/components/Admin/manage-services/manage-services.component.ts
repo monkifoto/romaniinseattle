@@ -80,10 +80,10 @@ export class ServicesManagementComponent implements OnInit  {
     }
   }
 
-  updateSericeTypeIDsServices(): void {
-        this.serviceManagementService.updateServiceTypeIds()
-        .then(() => console.log('Service_Type_IDs updated'))
-        .catch(error => console.error('Error:', error));
+  // updateSericeTypeIDsServices(): void {
+  //       this.serviceManagementService.updateServiceTypeIds()
+  //       .then(() => console.log('Service_Type_IDs updated'))
+  //       .catch(error => console.error('Error:', error));
 
-  }
+  // }
 }
