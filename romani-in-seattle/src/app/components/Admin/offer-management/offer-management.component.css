@@ -3,6 +3,7 @@
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
 }
 
 table {
@@ -22,4 +23,45 @@ th {
 
 input[type="checkbox"] {
   transform: scale(1.5);
+}
+
+@media (max-width: 768px) {
+  .offer-management-container {
+    padding: 10px;
+  }
+
+  table, th, td {
+    display: block;
+  }
+
+  th {
+    display: none;
+  }
+
+  td {
+    position: relative;
+    /* padding-left: 50%; */
+    text-align: left;
+  }
+
+  td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    width: calc(50% - 20px);
+    text-align: left;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  td[data-label="Title/Company Name"]::before { content: "Title/Company"; }
+  td[data-label="Contact Name/Phone Number/Email"]::before { content: "Contact Info"; }
+  td[data-label="Description"]::before { content: "Description"; }
+  td[data-label="Price"]::before { content: "Price"; }
+  td[data-label="Location"]::before { content: "Location"; }
+  td[data-label="Online Presence"]::before { content: "Online"; }
+  td[data-label="Date Created/Date Updated"]::before { content: "Dates"; }
+  td[data-label="Approved"]::before { content: "Approved"; }
+  td[data-label="Edit"]::before { content: "Edit"; }
+  td[data-label="Delete"]::before { content: "Delete"; }
 }

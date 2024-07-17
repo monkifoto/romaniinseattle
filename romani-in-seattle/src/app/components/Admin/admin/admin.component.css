@@ -1,20 +1,18 @@
-
 .admin-container {
-  padding-top: 50rem;
+  padding-top: 50px; /* Adjusted to a reasonable padding */
   width: 80%;
   margin: 0 auto;
-
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   overflow: hidden;
 }
-.header-container{
-  margin-top: 100px;
+
+.header-container {
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
-
-
 
 header h1 {
   margin: 0;
@@ -24,22 +22,23 @@ header h1 {
 .nav-pills {
   margin: 0;
   padding: 0;
-  /* background: #007bff; */
+  width: 100%;
 }
 
 .nav-pills ul {
   list-style-type: none;
   padding: 0;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  /* background: #007bff; */
 }
 
 .nav-pills ul li {
-  margin: 0 5px;
+  margin: 5px;
 }
 
-.nav-pills ul li a {
+.nav-pills ul li a,
+.nav-pills ul li button {
   display: block;
   padding: 10px 20px;
   border-radius: 5px;
@@ -47,11 +46,13 @@ header h1 {
   color: #fff;
   background: var(--button-color);
   transition: background-color 0.3s, color 0.3s;
+  text-align: center;
 }
 
 .nav-pills ul li a:hover,
-.nav-pills ul li a.active {
-  background-color: #0056b3;
+.nav-pills ul li a.active,
+.nav-pills ul li button:hover {
+  background-color: var(--button-color);
   color: #fff;
 }
 
@@ -64,6 +65,30 @@ main h2 {
   margin-top: 0;
 }
 
-button{
-  margin:0;
+@media (max-width: 768px) {
+  .nav-pills ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-pills ul li {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .nav-pills ul li a,
+  .nav-pills ul li button {
+    width: 90%;
+  }
+}
+
+button {
+  display: block;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #fff;
+  background: var(--button-color);
+  transition: background-color 0.3s, color 0.3s;
+  text-align: center;
 }

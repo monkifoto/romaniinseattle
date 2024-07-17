@@ -3,6 +3,7 @@
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
 }
 
 table {
@@ -22,4 +23,48 @@ th {
 
 input[type="checkbox"] {
   transform: scale(1.5);
+}
+
+@media (max-width: 768px) {
+  .event-management-container {
+    padding: 10px;
+  }
+
+  table, th, td {
+    display: block;
+  }
+
+  th {
+    display: none;
+  }
+
+  td {
+    position: relative;
+    /* padding-left: 50%; */
+    text-align: left;
+  }
+
+  td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    width: calc(50% - 20px);
+    text-align: left;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  td[data-label="Title"]::before { content: "Title"; }
+  td[data-label="Description"]::before { content: "Description"; }
+  td[data-label="Location"]::before { content: "Location"; }
+  td[data-label="Date"]::before { content: "Date"; }
+  td[data-label="Time"]::before { content: "Time"; }
+  td[data-label="Organizer"]::before { content: "Organizer"; }
+  td[data-label="Website"]::before { content: "Website"; }
+  td[data-label="Facebook"]::before { content: "Facebook"; }
+  td[data-label="Instagram"]::before { content: "Instagram"; }
+  td[data-label="Approved"]::before { content: "Approved"; }
+  td[data-label="Date Created"]::before { content: "Date Created"; }
+  td[data-label="Edit"]::before { content: "Edit"; }
+  td[data-label="Delete"]::before { content: "Delete"; }
 }
