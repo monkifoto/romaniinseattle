@@ -15,7 +15,6 @@ export class AddEventComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private eventsService: EventsService) {
     this.eventForm = this.fb.group({
-      Approved: [''],
       Community_Sponsor: [''],
       Contact: [''],
       Description: ['', Validators.required],

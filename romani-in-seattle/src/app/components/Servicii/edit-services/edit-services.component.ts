@@ -98,7 +98,7 @@ export class EditServicesComponent implements OnInit {
         //Image: service?.Image,
         Date_Created: service?.Date_Created,
         Date_Updated: service?.Date_Updated,
-        Approved: true,//service?.Approved
+        //Approved: true,//service?.Approved
         Hours: service?.Hours
       });
       console.log(this.serviceForm.value);

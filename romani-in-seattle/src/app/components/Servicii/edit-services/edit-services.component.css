@@ -87,7 +87,7 @@
 }
 
 .day {
-  width: 20%; /* Two days per row, adjust as needed */
+  width: 30%; /* Two days per row, adjust as needed */
   padding: 10px;
   box-sizing: border-box;
 }
